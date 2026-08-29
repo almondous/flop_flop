@@ -9,6 +9,16 @@ The exact circular C and O forms intentionally contrast with the square exchange
 - `technocore-logo-final.png` — lossless preview for quick viewing
 - `technocore-logo-final.svg` — primary lockup on Ice White
 - `technocore-mark-final.svg` — standalone transparent mark
-- `technocore-logo-applications.svg` — primary, reverse, and one-color applications
+- `technocore-logo-applications.png` — four-application preview sheet
+- `technocore-logo-applications.svg` — editable four-application sheet
+
+## Application Examples
+
+The application sheet shows the logo in four approved presentation modes:
+
+1. Primary — FLOP Cyan mark and FLOP Base wordmark on Ice White
+2. Reverse — FLOP Cyan mark and Ice White wordmark on FLOP Base
+3. One-color / Light — FLOP Base artwork on Ice White
+4. One-color / Dark — Ice White artwork on FLOP Base
 
 The wordmark and mark are outlined SVG geometry with no runtime font dependency. This is a contest proposal, not an official or pre-approved FLOP asset.
