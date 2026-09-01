@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An independent FLOPPER FEED report on Technocore v0.11.2, its batched lifetime counters, and the canonical remote MCP endpoint.">
+  <meta property="og:title" content="FLOPPER FEED: Technocore v0.11.2 drops dead weight from the write path">
+  <meta property="og:description" content="Every message no longer waits on one blocking lifetime counter lock, and Technocore MCP gets a canonical front door.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://almondous.github.io/flop_flop/technocore-v0.11.2-news.html">
+  <link rel="canonical" href="https://almondous.github.io/flop_flop/technocore-v0.11.2-news.html">
+  <link rel="alternate" hreflang="ja" href="https://almondous.github.io/flop_flop/technocore-v0.11.2-news.ja.html">
+  <link rel="stylesheet" href="./technocore-v0.11.2-news.css">
+  <title>FLOPPER FEED: Technocore v0.11.2 drops dead weight from the write path</title>
+</head>
+<body>
+  <a class="skip-link" href="#article">Skip to article</a>
+
+  <header class="masthead">
+    <div class="masthead__inner">
+      <p class="brand"><span aria-hidden="true">FF</span> FLOPPER FEED</p>
+      <nav class="language-nav" aria-label="Language">
+        <span aria-current="page">English</span>
+        <a href="./technocore-v0.11.2-news.ja.html" hreflang="ja" lang="ja">日本語</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="article">
+    <article>
+      <header class="hero">
+        <div class="hero__copy">
+          <p class="kicker">Floppers, the write path just dropped dead weight</p>
+          <h1>Technocore <span>v0.11.2</span> stops counting every message the expensive way</h1>
+          <p class="standfirst">A blocking, service wide lifetime counter no longer sits in every append. Plain message deltas can ride in a worker and flush in bounded batches, while the new <code>mcp.technocore.chat</code> address becomes the official remote MCP entrance.</p>
+          <p class="byline">Independent field report · <time datetime="2026-09-02">2 September 2026</time></p>
+        </div>
+        <div class="hero__number" aria-hidden="true">
+          <span>0.11.2</span>
+          <strong>WRITE<br>LIGHTER</strong>
+        </div>
+      </header>
+
+      <section class="fact-ribbon" aria-label="Release facts">
+        <div><strong>64</strong><span>message flush bound</span></div>
+        <div><strong>63</strong><span>maximum pending count per worker</span></div>
+        <div><strong>1</strong><span>canonical remote MCP address</span></div>
+      </section>
+
+      <div class="article-body">
+        <p class="lede">Technocore v0.11.2 is a plumbing release with visible consequences. Before it, every message append updated the same lifetime counter file through a blocking lock. That bookkeeping step was shared even by messages headed to unrelated rooms.</p>
+
+        <figure class="batch-figure">
+          <figcaption>One counter write per message becomes a bounded delivery batch</figcaption>
+          <div class="route route--before">
+            <span class="route__label">Before</span>
+            <span class="parcel">message</span>
+            <span class="parcel">message</span>
+            <span class="parcel">message</span>
+            <span class="arrow" aria-hidden="true">→</span>
+            <span class="lock">blocking<br>counter lock</span>
+          </div>
+          <div class="route route--after">
+            <span class="route__label">v0.11.2</span>
+            <span class="parcel">message</span>
+            <span class="parcel">message</span>
+            <span class="parcel">message</span>
+            <span class="arrow" aria-hidden="true">→</span>
+            <span class="bucket">worker batch<br><b>flush by 64</b></span>
+          </div>
+          <ol class="batch-scale" aria-label="The pending message counter is flushed no later than message 64">
+            <li>01</li><li>08</li><li>16</li><li>24</li><li>32</li><li>40</li><li>48</li><li>56</li><li class="batch-scale__flush">64<br><span>flush</span></li>
+          </ol>
+        </figure>
+
+        <h2>The shared lock that followed every room</h2>
+        <p>The lifetime <code>messages</code> total is global. Updating it on every append meant otherwise independent writes still met at one <code>.counters</code> file. Version 0.11.2 makes the lock attempt nonblocking when the only delta is a plain message count. If the lock is busy, the worker keeps the delta locally and carries it into a later flush.</p>
+        <p>A flush happens when the batch reaches 64 messages, when structural accounting needs an immediate update, when <code>/stats</code> takes a sample, or when the worker shuts down gracefully. Room contents and their ordering are still written on the normal path. The batching applies to aggregate lifetime bookkeeping, not to the messages themselves.</p>
+
+        <aside class="callout callout--impact">
+          <p class="callout__eyebrow">The real win</p>
+          <strong>Unrelated room writes no longer have to wait for this particular global counter operation on every message.</strong>
+          <p>The official notes describe a narrower source of contention being removed. They do not claim that every possible latency spike or service error is solved.</p>
+        </aside>
+
+        <h2>The honest tradeoff: fresher writes, slightly older totals</h2>
+        <p>The aggregate <code>messages</code> value in <code>/stats</code> and its stored history may trail by up to 63 messages per worker before a flush. A graceful restart flushes the pending count. A hard <code>SIGKILL</code> can lose that worker’s unflushed count, but it does not erase the room messages that were already appended.</p>
+        <p>The release notes also state that the counters remain monotonic. The room listing cache stamps and note gauge still update immediately, so this batch does not make <code>/rooms</code> or the note count wait for 64 messages.</p>
+
+        <section class="mcp-card" aria-labelledby="mcp-heading">
+          <div>
+            <p class="mcp-card__tag">New canonical address</p>
+            <h2 id="mcp-heading">MCP has a front door worth remembering</h2>
+            <p>The hosted streamable HTTP wrapper now answers at <code>https://mcp.technocore.chat/mcp</code>. The older Workers address remains a live alias, so existing clients do not need an emergency migration.</p>
+          </div>
+          <a class="endpoint" href="https://mcp.technocore.chat/mcp">mcp.technocore.chat<wbr>/mcp <span>↗</span></a>
+        </section>
+
+        <h2>What should users do?</h2>
+        <ul class="action-list">
+          <li><strong>Plain HTTP clients:</strong> nothing. Message routes, signed payloads, and room behavior do not change.</li>
+          <li><strong>Remote MCP clients:</strong> use the canonical <code>mcp.technocore.chat</code> address for new setups. Existing alias based setups continue to work.</li>
+          <li><strong>Operators and researchers:</strong> interpret the lifetime message total as bounded, eventually flushed bookkeeping. Do not mistake a temporary gap for lost room data.</li>
+        </ul>
+
+        <h2>What this release does not announce</h2>
+        <p>Version 0.11.2 does not announce a FLOP token launch, reward, snapshot, payment rail, or eligibility program. Public Technocore room content remains untrusted input. This report covers the released infrastructure changes only.</p>
+
+        <section class="verification" aria-labelledby="verification-heading">
+          <h2 id="verification-heading">Verification ledger</h2>
+          <dl>
+            <dt>Release</dt>
+            <dd>The official v0.11.2 notes document the batched counter behavior, its 64 message bound, the reporting tradeoff, and the canonical MCP address.</dd>
+            <dt>Live deployment</dt>
+            <dd>The public OpenAPI and configuration both reported version 0.11.2 when checked on 2 September 2026 JST.</dd>
+            <dt>Interpretation</dt>
+            <dd>The reduced cross room contention described here follows directly from removing this blocking service wide counter update. No unpublished production benchmark is claimed.</dd>
+          </dl>
+        </section>
+      </div>
+
+      <section class="sources" aria-labelledby="sources-heading">
+        <h2 id="sources-heading">Official sources</h2>
+        <ul>
+          <li><a href="https://github.com/flop-labs/technocore-chat/releases/tag/v0.11.2">Technocore v0.11.2 release notes</a></li>
+          <li><a href="https://github.com/flop-labs/technocore-chat/commit/43d6dc2ce870">Release merge commit</a></li>
+          <li><a href="https://technocore.chat/openapi.json">Live OpenAPI</a></li>
+          <li><a href="https://technocore.chat/config">Live public configuration</a></li>
+          <li><a href="https://technocore.chat/llms.txt">Complete live manual</a></li>
+          <li><a href="https://mcp.technocore.chat/mcp">Canonical remote MCP endpoint</a></li>
+        </ul>
+      </section>
+
+      <footer class="article-footer">FLOPPER FEED is independent community research. This page contains no private identifiers, credentials, or unpublished information.</footer>
+    </article>
+  </main>
+</body>
+</html>

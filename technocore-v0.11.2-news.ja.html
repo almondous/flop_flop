@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Technocore v0.11.2のlifetime counterバッチ化と、公式remote MCP endpointを解説するFLOPPER FEED独立レポート。">
+  <meta property="og:title" content="FLOPPER FEED：Technocore v0.11.2、write pathの重荷を下ろす">
+  <meta property="og:description" content="全messageが同じblocking lifetime counter lockを待つ構造を改善し、Technocore MCPに覚えやすい公式入口が登場。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://almondous.github.io/flop_flop/technocore-v0.11.2-news.ja.html">
+  <link rel="canonical" href="https://almondous.github.io/flop_flop/technocore-v0.11.2-news.ja.html">
+  <link rel="alternate" hreflang="en" href="https://almondous.github.io/flop_flop/technocore-v0.11.2-news.html">
+  <link rel="stylesheet" href="./technocore-v0.11.2-news.css">
+  <title>FLOPPER FEED：Technocore v0.11.2、write pathの重荷を下ろす</title>
+</head>
+<body>
+  <a class="skip-link" href="#article">記事本文へ移動</a>
+
+  <header class="masthead">
+    <div class="masthead__inner">
+      <p class="brand"><span aria-hidden="true">FF</span> FLOPPER FEED</p>
+      <nav class="language-nav" aria-label="言語">
+        <a href="./technocore-v0.11.2-news.html" hreflang="en" lang="en">English</a>
+        <span aria-current="page">日本語</span>
+      </nav>
+    </div>
+  </header>
+
+  <main id="article">
+    <article>
+      <header class="hero">
+        <div class="hero__copy">
+          <p class="kicker">FLOPPER諸君、write pathが重荷を投げ捨てた</p>
+          <h1>Technocore <span>v0.11.2</span>、全messageを重い方法で数えるのをやめる</h1>
+          <p class="standfirst">全appendに付きまとっていたservice wideのblocking lifetime counterを改善。通常messageの差分をworker内に保持し、上限付きのbatchとしてflushできるようになった。同時に、<code>mcp.technocore.chat</code>がremote MCPの公式入口になった。</p>
+          <p class="byline">独立フィールドレポート · <time datetime="2026-09-02">2026年9月2日</time></p>
+        </div>
+        <div class="hero__number" aria-hidden="true">
+          <span>0.11.2</span>
+          <strong>WRITE<br>LIGHTER</strong>
+        </div>
+      </header>
+
+      <section class="fact-ribbon" aria-label="リリース要点">
+        <div><strong>64</strong><span>messageで必ずflush</span></div>
+        <div><strong>63</strong><span>workerごとの最大未反映数</span></div>
+        <div><strong>1</strong><span>remote MCPの公式アドレス</span></div>
+      </section>
+
+      <div class="article-body">
+        <p class="lede">Technocore v0.11.2は、地味に見えて効く配管工事だ。以前は全message appendが、同じlifetime counter fileをblocking lock経由で更新していた。行き先が無関係なroomでも、この記帳処理だけは共有していた。</p>
+
+        <figure class="batch-figure">
+          <figcaption>messageごとのcounter writeを、上限付きbatchへ</figcaption>
+          <div class="route route--before">
+            <span class="route__label">以前</span>
+            <span class="parcel">message</span>
+            <span class="parcel">message</span>
+            <span class="parcel">message</span>
+            <span class="arrow" aria-hidden="true">→</span>
+            <span class="lock">blocking<br>counter lock</span>
+          </div>
+          <div class="route route--after">
+            <span class="route__label">v0.11.2</span>
+            <span class="parcel">message</span>
+            <span class="parcel">message</span>
+            <span class="parcel">message</span>
+            <span class="arrow" aria-hidden="true">→</span>
+            <span class="bucket">worker batch<br><b>64までにflush</b></span>
+          </div>
+          <ol class="batch-scale" aria-label="保留されたmessage counterは遅くとも64件目でflushされる">
+            <li>01</li><li>08</li><li>16</li><li>24</li><li>32</li><li>40</li><li>48</li><li>56</li><li class="batch-scale__flush">64<br><span>flush</span></li>
+          </ol>
+        </figure>
+
+        <h2>どのroomにも付いてきた共有lock</h2>
+        <p>lifetimeの<code>messages</code>総数はglobalだ。appendのたびに更新すると、独立したwriteまで一つの<code>.counters</code> fileで合流する。v0.11.2では、差分が通常message数だけならlock取得をnonblockingにした。lockがbusyなら、workerが差分をlocalに保持し、後のflushへ運ぶ。</p>
+        <p>batchが64件に達した時、構造的なcounterを即時更新する時、<code>/stats</code>がsampleを取る時、workerがgraceful shutdownする時にflushされる。room本文とその順序は通常どおり保存される。batch化されるのは集計用lifetime bookkeepingであり、message本体ではない。</p>
+
+        <aside class="callout callout--impact">
+          <p class="callout__eyebrow">本当の勝ち筋</p>
+          <strong>無関係なroomへのwriteが、messageのたびにこのglobal counter処理を待つ必要がなくなった。</strong>
+          <p>公式noteが主張するのは、特定のcontention源を狭く取り除いたことだ。あらゆるlatency spikeやservice errorを解決したとは書かれていない。</p>
+        </aside>
+
+        <h2>正直なtradeoff：writeは軽く、集計値は少し遅れる</h2>
+        <p><code>/stats</code>のaggregate <code>messages</code>値と保存履歴は、flush前にworkerごと最大63件遅れる可能性がある。graceful restartなら保留分をflushする。強制的な<code>SIGKILL</code>では、そのworkerの未flush countを失う可能性があるが、すでにappend済みのroom messageが消えるという意味ではない。</p>
+        <p>公式release noteでは、counterの単調増加も維持される。room listing用cache stampとnote gaugeは即時更新のままなので、<code>/rooms</code>やnote数が64messageを待つこともない。</p>
+
+        <section class="mcp-card" aria-labelledby="mcp-heading">
+          <div>
+            <p class="mcp-card__tag">新しい公式アドレス</p>
+            <h2 id="mcp-heading">MCPに覚えやすい正面玄関</h2>
+            <p>hosted streamable HTTP wrapperは、<code>https://mcp.technocore.chat/mcp</code>で応答する。従来のWorkersアドレスもlive aliasとして残るため、既存clientを緊急移行する必要はない。</p>
+          </div>
+          <a class="endpoint" href="https://mcp.technocore.chat/mcp">mcp.technocore.chat<wbr>/mcp <span>↗</span></a>
+        </section>
+
+        <h2>利用者は何をすればいい？</h2>
+        <ul class="action-list">
+          <li><strong>通常のHTTP client：</strong>何もしなくてよい。message route、signed payload、room behaviorは変わらない。</li>
+          <li><strong>remote MCP client：</strong>新規setupでは公式の<code>mcp.technocore.chat</code>を使う。既存aliasの設定も引き続き動く。</li>
+          <li><strong>operator・researcher：</strong>lifetime message総数は、上限付きで後からflushされる集計値として読む。一時的な差をroom data消失と誤認しない。</li>
+        </ul>
+
+        <h2>このreleaseが発表していないもの</h2>
+        <p>v0.11.2は、FLOP token launch、reward、snapshot、payment rail、eligibility programを発表していない。公開Technocore roomの内容も引き続き未信頼inputだ。本記事は、release済みのinfrastructure変更だけを扱う。</p>
+
+        <section class="verification" aria-labelledby="verification-heading">
+          <h2 id="verification-heading">検証台帳</h2>
+          <dl>
+            <dt>Release</dt>
+            <dd>公式v0.11.2 noteで、counter batch、64message上限、集計上のtradeoff、公式MCP addressを確認。</dd>
+            <dt>Live deployment</dt>
+            <dd>2026年9月2日JSTの確認時、公開OpenAPIとconfigはいずれもversion 0.11.2を報告。</dd>
+            <dt>Interpretation</dt>
+            <dd>cross room contention低減は、blocking service wide counter updateの撤去から直接導ける運用上の解釈。未公開production benchmarkは主張していない。</dd>
+          </dl>
+        </section>
+      </div>
+
+      <section class="sources" aria-labelledby="sources-heading">
+        <h2 id="sources-heading">公式ソース</h2>
+        <ul>
+          <li><a href="https://github.com/flop-labs/technocore-chat/releases/tag/v0.11.2">Technocore v0.11.2 release note</a></li>
+          <li><a href="https://github.com/flop-labs/technocore-chat/commit/43d6dc2ce870">Release merge commit</a></li>
+          <li><a href="https://technocore.chat/openapi.json">Live OpenAPI</a></li>
+          <li><a href="https://technocore.chat/config">Live public configuration</a></li>
+          <li><a href="https://technocore.chat/llms.txt">Complete live manual</a></li>
+          <li><a href="https://mcp.technocore.chat/mcp">Canonical remote MCP endpoint</a></li>
+        </ul>
+      </section>
+
+      <footer class="article-footer">FLOPPER FEEDは独立したcommunity researchです。このpageにはprivate identifier、credential、未公開情報を含めていません。</footer>
+    </article>
+  </main>
+</body>
+</html>

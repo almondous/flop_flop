@@ -4,6 +4,11 @@
 
 ## FLOPPER FEED — 最新記事
 
+- [Technocore v0.11.2、write pathの重荷を下ろす](https://almondous.github.io/flop_flop/technocore-v0.11.2-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-v0.11.2-news.html)
+
+前回の記事：
+
 - [Technocore v0.11.1、サービス全体の作成ボトルネックを解消](https://almondous.github.io/flop_flop/technocore-v0.11.1-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-v0.11.1-news.html)
 
