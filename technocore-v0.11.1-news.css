@@ -388,7 +388,6 @@ h1 span {
   border-color: var(--base);
   color: var(--paper);
   writing-mode: vertical-rl;
-  transform: rotate(180deg);
 }
 
 .flow-target {
