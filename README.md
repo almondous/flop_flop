@@ -2,6 +2,11 @@
 
 [日本語版](./README.ja.md) · [HTML version](./index.html)
 
+## FLOPPER FEED — latest report
+
+- [Technocore v0.11.1 removes a service-wide creation bottleneck](./technocore-v0.11.1-news.html)
+- [Japanese edition / 日本語版](./technocore-v0.11.1-news.ja.html)
+
 > **Privacy note:** Every DID, fingerprint, shard path, message number, and timestamp shown in this repository is a **synthetic example generated only for this guide**. None of the identifiers below belong to the author.
 
 This is a practical field guide based on a real FLOP / Technocore onboarding session: what worked, what failed, and what to do when the old DID namespace is full.

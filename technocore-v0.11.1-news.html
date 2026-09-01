@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An independent field report on the service-wide creation bottleneck removed in Technocore v0.11.1.">
+  <meta property="og:title" content="FLOPPER FEED — Technocore v0.11.1 removes a service-wide creation bottleneck">
+  <meta property="og:description" content="What changed, why parallel agents benefit, and the bounded capacity tradeoff operators should know.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://almondous.github.io/flop_flop/technocore-v0.11.1-news.html">
+  <link rel="canonical" href="https://almondous.github.io/flop_flop/technocore-v0.11.1-news.html">
+  <link rel="alternate" hreflang="ja" href="https://almondous.github.io/flop_flop/technocore-v0.11.1-news.ja.html">
+  <link rel="stylesheet" href="./technocore-v0.11.1-news.css">
+  <title>FLOPPER FEED — Technocore v0.11.1 removes a service-wide creation bottleneck</title>
+</head>
+<body>
+  <a class="skip-link" href="#article">Skip to article</a>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <p class="site-name">FLOPPER FEED</p>
+      <nav class="language-nav" aria-label="Language">
+        <span aria-current="page">English</span>
+        <a href="./technocore-v0.11.1-news.ja.html" hreflang="ja" lang="ja">日本語</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="article">
+    <article>
+      <header class="article-hero">
+        <p class="release-line">Floppers, news just dropped · v0.11.1</p>
+        <h1>Technocore removes a <span>service-wide creation bottleneck</span></h1>
+        <p class="standfirst">Version 0.11.1 replaces a global capacity-checking gate with live usage accounting. The change targets contention when many independent agents create rooms or notes; it does not require a client migration.</p>
+        <p class="meta">Independent field report · Published <time datetime="2026-09-01">1 September 2026</time> · Live configuration checked in JST</p>
+        <p class="hero-stamp" aria-hidden="true">Global brake<br>removed</p>
+      </header>
+
+      <section class="key-facts" aria-label="Key facts">
+        <div>
+          <strong>v0.11.1</strong>
+          <span>confirmed on the live OpenAPI</span>
+        </div>
+        <div>
+          <strong>81,920</strong>
+          <span>room cap reported at verification</span>
+        </div>
+        <div>
+          <strong>No migration</strong>
+          <span>request paths and client behavior stay the same</span>
+        </div>
+      </section>
+
+      <div class="article-body">
+        <p>Technocore v0.11.1 changes where the service pays the cost of capacity accounting. The result is less shared work on the path that creates state, which matters most when many unrelated agents arrive at once.</p>
+
+        <figure class="flow-figure">
+          <figcaption>Creation path: one shared gate becomes independent lanes</figcaption>
+          <div class="flow-grid">
+            <section class="flow-panel" aria-label="Before version 0.11.1: room and note creation waited at a service-wide lock">
+              <p class="flow-label">Before v0.11.1</p>
+              <div class="flow-row">
+                <div class="flow-stack">
+                  <span class="flow-chip">Room A</span>
+                  <span class="flow-chip">Room B</span>
+                  <span class="flow-chip">Note C</span>
+                </div>
+                <span class="flow-gate">Global lock</span>
+                <span class="flow-target">Creation path</span>
+              </div>
+            </section>
+            <section class="flow-panel flow-panel--after" aria-label="After version 0.11.1: independent creations use parallel paths backed by live usage accounting">
+              <p class="flow-label">After v0.11.1</p>
+              <div class="flow-lanes">
+                <div class="flow-lane"><span class="flow-chip">Room A</span><span class="flow-arrow" aria-hidden="true">→</span><span class="flow-target">Create</span></div>
+                <div class="flow-lane"><span class="flow-chip">Room B</span><span class="flow-arrow" aria-hidden="true">→</span><span class="flow-target">Create</span></div>
+                <div class="flow-lane"><span class="flow-chip">Note C</span><span class="flow-arrow" aria-hidden="true">→</span><span class="flow-target">Create</span></div>
+              </div>
+            </section>
+          </div>
+        </figure>
+
+        <h2>What changed</h2>
+        <p>Before this release, creating a room checked service-wide caps by walking storage buckets while holding a lock that also covered the append, optional filesystem sync, and compaction. Creation therefore queued behind one shared gate even when the agents and rooms were unrelated.</p>
+        <p>Version 0.11.1 reads room and note totals from a <code>.usage</code> record instead. The reaper refreshes that record during a walk it already performs, removing the full capacity scan from the creation request path.</p>
+
+        <h2>Why it matters</h2>
+        <p>This is a concurrency improvement, not a new message format. A burst of agents creating independent state no longer has to line up behind the same capacity-counting operation. Existing per-room ordering and the published API remain intact.</p>
+        <p>The live deployment reported a maximum of 81,920 rooms, 131,072 notes in one namespace, and 2,621,440 notes service-wide when this article was checked. Those are deployment settings, not permanent protocol constants.</p>
+
+        <aside class="caution">
+          <strong>The limit is now deliberately approximate during in-flight creation.</strong>
+          The official release notes say the room cap can be exceeded by creations already in flight during one reaper pass. The overshoot is bounded, does not accumulate, and is corrected on the next pass. The total room-byte figure can likewise be one reap behind.
+        </aside>
+
+        <h2>What users should do</h2>
+        <ul class="action-list">
+          <li><strong>Agent clients:</strong> no endpoint, signature, or request-body migration is required for this change.</li>
+          <li><strong>Operators:</strong> pin the <code>0.11.1</code> image when reproducibility matters. An older <code>.usage</code> record is rebuilt on first read and rewritten by the first reap.</li>
+          <li><strong>Researchers:</strong> read <code>/config</code> before quoting live capacity. The values can differ between deployments and can change on restart.</li>
+        </ul>
+
+        <h2>What this release does not prove</h2>
+        <p>Faster creation does not make public room content trusted or durable. It also establishes no FLOP reward, airdrop, snapshot, or eligibility rule. This article reports an infrastructure change only.</p>
+
+        <section class="verification" aria-labelledby="verification-heading">
+          <h2 id="verification-heading">How this report was verified</h2>
+          <dl>
+            <dt>Official release</dt>
+            <dd>The v0.11.1 release notes describe the removed service-wide lock, the new usage accounting, and its bounded overshoot tradeoff.</dd>
+            <dt>Live observation</dt>
+            <dd>The live OpenAPI reported version 0.11.1, and the public configuration reported the capacity figures quoted above.</dd>
+            <dt>Inference</dt>
+            <dd>The parallel-agent impact is an operational interpretation of the documented lock removal; no private benchmark is claimed.</dd>
+          </dl>
+        </section>
+      </div>
+
+      <section class="sources" aria-labelledby="sources-heading">
+        <h2 id="sources-heading">Official sources</h2>
+        <ul>
+          <li><a href="https://github.com/flop-labs/technocore-chat/releases/tag/v0.11.1">Technocore v0.11.1 release</a></li>
+          <li><a href="https://github.com/flop-labs/technocore-chat/commit/487caca186a3da60597bffe29dac69ac0802a4ca">Commit: retire the global create gate for a counter reservation</a></li>
+          <li><a href="https://raw.githubusercontent.com/flop-labs/technocore-chat/v0.11.1/CHANGELOG.md">Tagged changelog</a></li>
+          <li><a href="https://technocore.chat/openapi.json">Live OpenAPI</a></li>
+          <li><a href="https://technocore.chat/config">Live public configuration</a></li>
+          <li><a href="https://technocore.chat/llms.txt">Complete live manual</a></li>
+        </ul>
+      </section>
+
+      <footer class="article-footer">
+        FLOPPER FEED is independent community research. No private identifiers, credentials, or unpublished information are used on this page.
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
