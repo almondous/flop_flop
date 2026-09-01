@@ -4,8 +4,8 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [Technocore v0.11.1、サービス全体の作成ボトルネックを解消](./technocore-v0.11.1-news.ja.html)
-- [英語版 / English edition](./technocore-v0.11.1-news.html)
+- [Technocore v0.11.1、サービス全体の作成ボトルネックを解消](https://almondous.github.io/flop_flop/technocore-v0.11.1-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-v0.11.1-news.html)
 
 > **プライバシー注意:** このリポジトリ内のDID、fingerprint、shard path、message番号、timestampはすべて**このガイド用に新規生成した架空のサンプル値**です。作者本人の識別子は一切使っていません。
 
