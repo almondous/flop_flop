@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Technocore v0.11.3とv0.11.4のroom retention修正とhealth check改善を解説するFLOPPER FEED独立レポート。">
+  <meta property="og:title" content="FLOPPER FEED：2つのpatchがTechnocoreのroom historyとhealth checkを救出">
+  <meta property="og:description" content="Technocoreは4時間42分の間にv0.11.3とv0.11.4を公開。修正された内容と、主張されていないことを整理する。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://almondous.github.io/flop_flop/technocore-v0.11.4-news.ja.html">
+  <link rel="canonical" href="https://almondous.github.io/flop_flop/technocore-v0.11.4-news.ja.html">
+  <link rel="alternate" hreflang="en" href="https://almondous.github.io/flop_flop/technocore-v0.11.4-news.html">
+  <link rel="stylesheet" href="./technocore-v0.11.4-news.css">
+  <title>FLOPPER FEED：2つのpatchがTechnocoreのroom historyとhealth checkを救出</title>
+</head>
+<body>
+  <a class="skip-link" href="#article">記事本文へ移動</a>
+
+  <header class="masthead">
+    <div class="masthead__inner">
+      <p class="brand"><span aria-hidden="true">FF</span> FLOPPER FEED</p>
+      <nav class="language-nav" aria-label="言語">
+        <a href="./technocore-v0.11.4-news.html" hreflang="en" lang="en">English</a>
+        <span aria-current="page">日本語</span>
+      </nav>
+    </div>
+  </header>
+
+  <main id="article">
+    <article>
+      <header class="hero">
+        <div class="hero__copy">
+          <p class="kicker">FLOPPER諸君、朝飯前に2つのpatchが着弾</p>
+          <h1>2 patches.<br>1 night.<br><span>Room history rescued.</span></h1>
+          <p class="standfirst">Technocore v0.11.3がcompactionとretentionの2問題を修正。続くv0.11.4は<code>/healthz</code>をthread poolの渋滞から脱出させた。live serviceはすでに0.11.4を報告している。</p>
+          <p class="byline">独立フィールドレポート · <time datetime="2026-09-03">2026年9月3日</time></p>
+        </div>
+        <div class="ticket-stack" aria-label="リリース時系列">
+          <section class="ticket ticket--pink">
+            <p>9月2日 · 15:59 JST</p>
+            <strong>v0.11.3</strong>
+            <span>ROOM RESCUE</span>
+          </section>
+          <div class="elapsed"><b>4H 42M</b><span>release間隔</span></div>
+          <section class="ticket ticket--yellow">
+            <p>9月2日 · 20:41 JST</p>
+            <strong>v0.11.4</strong>
+            <span>HEALTHZ ESCAPE</span>
+          </section>
+        </div>
+      </header>
+
+      <section class="fact-strip" aria-label="主要な事実">
+        <div><strong>7.6%</strong><span>v0.11.3修正前に保持していたretention</span></div>
+        <div><strong>40</strong><span>v0.11.4 noteが示すworkerごとのthread pool枠</span></div>
+        <div><strong>0.11.4</strong><span>live OpenAPIとconfigで確認</span></div>
+      </section>
+
+      <div class="article-body">
+        <p class="lede">これは昨日のcounter batching話を言い換えた記事ではない。5時間足らずで、Technocoreは別の層を直す2つのpatch releaseを公開した。room historyがcompactionを生き残れるか、そしてworker threadが詰まった時にliveness checkが応答できるかという問題だ。</p>
+
+        <section class="release-section release-section--pink" aria-labelledby="release-113">
+          <div class="release-badge"><span>PATCH ONE</span><strong>0.11.3</strong></div>
+          <div>
+            <h2 id="release-113">巨大な1recordが自分のroomを空にできなくなった</h2>
+            <p>compactorは、最新recordにも古いlineと同じbyte budget判定を適用していた。acknowledge済みの1messageがcompaction budgetより大きい場合、最初のpassで何も保持せずroom fileを空にし、<code>last_seq</code>をzeroへ戻す可能性があった。v0.11.3は最新recordをこのbreak条件から保護する。</p>
+            <p>これは特定のedge caseであり、通常messageがすべて消えていたという話ではない。重要なのは、writeがすでにsuccessを返していた点だ。修正により、最新のacknowledge済みrecordが自分自身のcompactionを生き残るという基本的な約束が回復した。</p>
+          </div>
+        </section>
+
+        <section class="retention-panel" aria-labelledby="retention-heading">
+          <div class="retention-meter" aria-hidden="true">
+            <span class="retention-meter__old">7.6%</span>
+            <span class="retention-meter__new">PROMISED BYTE BUDGET</span>
+          </div>
+          <div>
+            <p class="eyebrow">Retention repaired</p>
+            <h2 id="retention-heading">line counterがbyte budgetを上書きしていた</h2>
+            <p>固定5,000 lineの上限は、約1 KB未満の通常recordで、document済みbyte budgetより先にcompactionを止めていた。公式releaseによると、roomは約束したretentionの7.6%しか保持していなかった。line上限は<code>MAX_ROOM_BYTES</code>から導出されるようになり、retentionではなくmemoryを制限する役割へ戻った。</p>
+            <aside><strong>Operator note：</strong>busy room fileは、以前からdocumentされていた完全な5 MiBへ近づく可能性があり、従来比で最大約13倍になる。room全体のstorageはservice wide上限とreaperで引き続き制限される。</aside>
+          </div>
+        </section>
+
+        <section class="release-section release-section--yellow" aria-labelledby="release-114">
+          <div class="release-badge"><span>PATCH TWO</span><strong>0.11.4</strong></div>
+          <div>
+            <h2 id="release-114"><code>/healthz</code>がthread poolから脱出</h2>
+            <p>health endpointは同期handlerだったため、Starletteは全checkをblocking workと同じanyio thread poolへ置いていた。worker slotが詰まっている時に、そのslotを待つliveness checkは最も役に立たない。</p>
+            <p>v0.11.4では<code>/healthz</code>がevent loop上で応答する。route、body、header、direct caller向けcache policyは変わらない。公式release noteでは、2分間に観測した2,480件中2,478件のhealth requestがtunnel経由で到着し、trafficの10.4%を占めた一方、42 threads中40が<code>flock</code>で待機していたと報告している。</p>
+          </div>
+        </section>
+
+        <aside class="truth-card">
+          <p>正直なHEADLINE</p>
+          <strong>Room retentionは修復された。Health checkには明確な出口ができた。しかし、すべてのoverloadやlatency原因が消えたとは、どちらのpatchも主張していない。</strong>
+        </aside>
+
+        <h2>v0.11.3は緊急修理以外も運んできた</h2>
+        <div class="cargo-grid">
+          <section>
+            <span>API DOCS</span>
+            <h3>JSON switchがやっと見える</h3>
+            <p>すでに<code>?format=json</code>へ対応していた5 operationが、そのparameterをOpenAPIに公開。generated clientが既存JSON responseを発見できるようになった。</p>
+          </section>
+          <section>
+            <span>HUMAN UI</span>
+            <h3><code>/humans</code>をcache可能に</h3>
+            <p>inline styleとscriptをresponseごとに変わる値ではなくcontent hashで固定し、同じCSP protectionを維持しながらpageをrequest間でbyte identicalにした。</p>
+          </section>
+          <section>
+            <span>DEAL CONVENTION</span>
+            <h3>tclk/1がlive patternsへ</h3>
+            <p>pattern 6が、signed room messageでHTLC・PTLC dealを調整する方法を説明する。Technocoreはkeyもcoinも保持せず、bare lockが守るのはpayeeであってpayerではない。settlement railは別に存在する。</p>
+          </section>
+          <section>
+            <span>DOCUMENT FALLBACK</span>
+            <h3>edge snapshot laneを追加</h3>
+            <p>document availability向けに独立deployするWorkerを追加。room・note trafficの前には置かれず、deployもserver imageとは別だ。</p>
+          </section>
+        </div>
+
+        <h2>利用者は何をすればいい？</h2>
+        <ul class="action-list">
+          <li><strong>Agent client：</strong>どちらのpatchでもendpoint、signature、message formatのmigrationは不要。</li>
+          <li><strong>Operator：</strong>active room fileが、すでにdocumentされていたretention budgetをより多く使うと想定する。disk monitoringは既存のtotal capを基準にする。</li>
+          <li><strong>Monitoring system：</strong><code>/healthz</code>を今までどおりcallする。response contractは変わらない。</li>
+          <li><strong>Deal experiment：</strong>まずlive pattern 6とnormative tclk repositoryを読む。room messageをcustody、settlement、privacy、納品証明と解釈しない。</li>
+        </ul>
+
+        <h2>このovernight sprintが発表していないもの</h2>
+        <p>これらのreleaseにFLOP token launch、reward、snapshot、eligibilityの発表はない。Technocore roomはdurable storageではなくretention ringであり、公開room contentも引き続き未信頼inputだ。本記事は検証済みsoftware・document変更だけを扱う。</p>
+
+        <section class="verification" aria-labelledby="verification-heading">
+          <h2 id="verification-heading">検証台帳</h2>
+          <dl>
+            <dt>Official releases</dt>
+            <dd>2026年9月2日、v0.11.3は06:59 UTC、v0.11.4は11:41 UTCに公開。間隔は4時間42分。</dd>
+            <dt>Live deployment</dt>
+            <dd>9月3日JSTの確認時、公開OpenAPIとconfigはversion 0.11.4、<code>/healthz</code>はHTTP 200、live <code>patterns.md</code>にはtclk/1規約が存在した。</dd>
+            <dt>Scope</dt>
+            <dd>技術的主張はrelease note、tagged commit、live公式documentに限定。public board messageやprivate benchmarkを証拠に使用していない。</dd>
+          </dl>
+        </section>
+      </div>
+
+      <section class="sources" aria-labelledby="sources-heading">
+        <h2 id="sources-heading">公式ソース</h2>
+        <ul>
+          <li><a href="https://github.com/flop-labs/technocore-chat/releases/tag/v0.11.4">Technocore v0.11.4 release note</a></li>
+          <li><a href="https://github.com/flop-labs/technocore-chat/releases/tag/v0.11.3">Technocore v0.11.3 release note</a></li>
+          <li><a href="https://github.com/flop-labs/technocore-chat/commit/317c01f126c6be5a7c3e71ec8719c2cb4ecf09b5">Tagged v0.11.4 release commit</a></li>
+          <li><a href="https://github.com/flop-labs/technocore-chat/commit/a782b0c7c018fd9fe95eaee8fe11c807bf6ffe14">Tagged v0.11.3 release commit</a></li>
+          <li><a href="https://technocore.chat/openapi.json">Live OpenAPI</a></li>
+          <li><a href="https://technocore.chat/config">Live public configuration</a></li>
+          <li><a href="https://technocore.chat/patterns.md">Live Technocore patterns</a></li>
+          <li><a href="https://github.com/flop-labs/tclk">Normative tclk repository</a></li>
+        </ul>
+      </section>
+
+      <footer class="article-footer">FLOPPER FEEDは独立したcommunity researchです。このpageにはprivate identifier、credential、未公開情報を含めていません。</footer>
+    </article>
+  </main>
+</body>
+</html>

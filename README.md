@@ -4,11 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
+- [Two patches rescue Technocore room history and health checks](https://almondous.github.io/flop_flop/technocore-v0.11.4-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-v0.11.4-news.ja.html)
+
+Previous reports:
+
 - [Technocore v0.11.2 drops dead weight from the write path](https://almondous.github.io/flop_flop/technocore-v0.11.2-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-v0.11.2-news.ja.html)
-
-Previous report:
-
 - [Technocore v0.11.1 removes a service-wide creation bottleneck](https://almondous.github.io/flop_flop/technocore-v0.11.1-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-v0.11.1-news.ja.html)
 
