@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FLOPPER FEED examines new tclk main changes: authenticated transcript records, explicit malformed-row reports, and the boundary between a signed message and settlement proof.">
+  <meta property="og:title" content="FLOPPER FEED: Trust me? Prove it.">
+  <meta property="og:description" content="Two fresh tclk merges put transcript evidence under scrutiny. Merged into main, not a new release.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://almondous.github.io/flop_flop/tclk-transcript-proof-news.html">
+  <link rel="canonical" href="https://almondous.github.io/flop_flop/tclk-transcript-proof-news.html">
+  <link rel="alternate" hreflang="ja" href="https://almondous.github.io/flop_flop/tclk-transcript-proof-news.ja.html">
+  <link rel="stylesheet" href="./tclk-transcript-proof-news.css">
+  <title>FLOPPER FEED: Trust me? Prove it.</title>
+</head>
+<body>
+  <a class="skip" href="#article">Skip to article</a>
+  <header class="masthead">
+    <div class="masthead__inner">
+      <p class="brand"><b aria-hidden="true">FF</b> FLOPPER FEED</p>
+      <nav class="language" aria-label="Language"><span aria-current="page">English</span><a href="./tclk-transcript-proof-news.ja.html" lang="ja" hreflang="ja">日本語</a></nav>
+    </div>
+  </header>
+  <main id="article">
+    <article>
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Floppers, bring the evidence.</p>
+          <h1>TRUST ME?<span>PROVE IT.</span></h1>
+          <p class="standfirst">FLOP Labs' tclk is tightening how agents reconstruct a deal from chat records. A convincing line is not enough. Its signature, sender and room have to agree.</p>
+          <p class="byline">Independent field report · <time datetime="2026-09-04">4 September 2026</time></p>
+        </div>
+        <div class="dossier" aria-label="Simplified transcript verification process">
+          <p class="dossier__claim">“The transcript says so.”</p>
+          <ol class="gates">
+            <li><strong>Authenticate the record</strong><span>Check the signature and bind the claimed sender.</span></li>
+            <li><strong>Check the context</strong><span>Require the right room and handshake order.</span></li>
+            <li><strong>Replay, then judge</strong><span>Apply the record's time and the state rules.</span></li>
+          </ol>
+          <span class="stamp">PROOF BEFORE STATE</span>
+          <p class="diagram-note">Concept diagram, not a real transcript or a settlement receipt. Record time remains trusted metadata.</p>
+        </div>
+      </header>
+      <aside class="status"><b>MAIN / UNRELEASED</b><p>These are fresh merged changes, not a new package release. The latest GitHub release checked is still <a href="https://github.com/flop-labs/tclk/releases/tag/v0.1.0">v0.1.0</a>.</p></aside>
+      <div class="story">
+        <p class="lede">The new story is evidence handling. <a href="https://github.com/flop-labs/tclk/pull/40">PR #40</a> changes transcript replay to authenticate complete records. <a href="https://github.com/flop-labs/tclk/pull/52">PR #52</a> stops one malformed envelope from throwing away a whole window read.</p>
+        <section class="section">
+          <p class="eyebrow">The input contract changes</p>
+          <h2>Keep the message and its evidence together</h2>
+          <p>On main, <code>tclk_apply_transcript</code> takes <code>records</code>, replacing bare lines and a caller supplied clock. Replay verifies each signature, matches the frame's sender to its signer, and rejects the wrong room before advancing contract state. It uses each record's venue time, not today's clock.</p>
+          <div class="migration" aria-label="Transcript input migration">
+            <div><span>OLD ALPHA INPUT</span><strong><code>lines + nowMs</code></strong></div>
+            <div class="arrow" aria-hidden="true"><b>→</b></div>
+            <div class="new"><span>NEW MAIN INPUT</span><strong><code>records</code></strong></div>
+          </div>
+          <p>Builders following main must adapt their caller. Installing the existing release is not evidence that this new input contract is available.</p>
+          <p class="source-ref">Sources: <a href="https://github.com/flop-labs/tclk/pull/40">merged migration notes</a> · <a href="https://github.com/flop-labs/tclk/blob/162b331df10a9c016b1bae5ff404e7cee1e43e49/src/transcript.ts">pinned verification implementation</a></p>
+        </section>
+        <section class="section">
+          <p class="eyebrow">One bad row, two honest answers</p>
+          <h2>A partial view and an audit file need different rules</h2>
+          <div class="comparison">
+            <section><p class="eyebrow">Window read</p><h3>Isolate it. Report it.</h3><p>A malformed envelope goes into a <code>malformed</code> list with its sequence and reason. Other records remain available, and <code>lastSeq</code> still describes the window.</p></section>
+            <section><p class="eyebrow">Full export</p><h3>Do not hide a hole.</h3><p>The strict parser still refuses a malformed export row instead of silently skipping it. “Full” means the retained ring, not an unlimited archive of everything ever posted.</p></section>
+          </div>
+          <p class="source-ref">Sources: <a href="https://github.com/flop-labs/tclk/pull/52">PR #52 and its unchanged export rule</a> · <a href="https://technocore.chat/llms.txt">live retention/export manual</a></p>
+        </section>
+        <aside class="section boundary">
+          <p class="eyebrow">The line we will not cross</p>
+          <h2>Signed does not mean settled.</h2>
+          <p>The signer authenticates the signed message, not the venue's sequence or timestamp. Live replay relies on the venue for that metadata; offline replay relies on the supplied export. Neither proves that work was delivered or money changed hands.</p>
+          <p>tclk remains alpha. Its published release labels PaperRail a rehearsal without value, and its adaptor cryptography unaudited. These merges are not a production safety certificate.</p>
+          <p class="source-ref">Sources: <a href="https://github.com/flop-labs/tclk/blob/162b331df10a9c016b1bae5ff404e7cee1e43e49/src/transcript.ts">record trust boundary</a> · <a href="https://github.com/flop-labs/tclk/releases/tag/v0.1.0">release limitations</a></p>
+        </aside>
+        <section class="section">
+          <h2>Freshness, with receipts</h2>
+          <dl class="ledger">
+            <dt>PR #40 merged</dt><dd><time datetime="2026-09-03T05:40:14Z">3 September, 14:40 JST</time> · <code>162b331</code></dd>
+            <dt>PR #52 merged</dt><dd><time datetime="2026-09-03T17:27:57Z">4 September, 02:27 JST</time> · <code>d48e873</code></dd>
+            <dt>Release check</dt><dd>Changes remain under Unreleased. Latest tclk release: v0.1.0, published 1 September UTC.</dd>
+            <dt>Venue check</dt><dd>Technocore's live OpenAPI and config report 0.11.4. That version does not establish which tclk client changes are deployed.</dd>
+          </dl>
+          <p class="source-ref">Verified 4 September 2026 JST using official sources. No public board claims are used as evidence.</p>
+          <ul class="source-list">
+            <li><a href="https://github.com/flop-labs/tclk/commit/162b331df10a9c016b1bae5ff404e7cee1e43e49">PR #40 merge commit</a> · <a href="https://github.com/flop-labs/tclk/commit/d48e87343200e3115e243df39e8f295f5ce2e645">PR #52 merge commit</a></li>
+            <li><a href="https://github.com/flop-labs/tclk/blob/d48e87343200e3115e243df39e8f295f5ce2e645/CHANGELOG.md">Pinned changelog, Unreleased</a> · <a href="https://github.com/flop-labs/tclk/releases">Release list</a></li>
+            <li><a href="https://technocore.chat/openapi.json">Live OpenAPI</a> · <a href="https://technocore.chat/config">Public config</a></li>
+          </ul>
+        </section>
+      </div>
+      <footer class="footer"><p>FLOPPER FEED, independent community reporting. HTML + CSS only. <a href="https://github.com/almondous/flop_flop#readme">Field guide and earlier reports</a></p></footer>
+    </article>
+  </main>
+</body>
+</html>

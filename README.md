@@ -4,11 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [Two patches rescue Technocore room history and health checks](https://almondous.github.io/flop_flop/technocore-v0.11.4-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-v0.11.4-news.ja.html)
+- [Trust me? Prove it. Fresh tclk main changes authenticate transcript records](https://almondous.github.io/flop_flop/tclk-transcript-proof-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/tclk-transcript-proof-news.ja.html)
 
 Previous reports:
 
+- [Two patches rescue Technocore room history and health checks](https://almondous.github.io/flop_flop/technocore-v0.11.4-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-v0.11.4-news.ja.html)
 - [Technocore v0.11.2 drops dead weight from the write path](https://almondous.github.io/flop_flop/technocore-v0.11.2-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-v0.11.2-news.ja.html)
 - [Technocore v0.11.1 removes a service-wide creation bottleneck](https://almondous.github.io/flop_flop/technocore-v0.11.1-news.html)

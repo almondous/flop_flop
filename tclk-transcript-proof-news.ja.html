@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FLOPPER FEED。tclkのmainに入った取引記録の署名検証と、不正な形式の記録を切り分ける変更を解説。リリース済み機能とは区別します。">
+  <meta property="og:title" content="FLOPPER FEED：その記録、証明できる？">
+  <meta property="og:description" content="tclkに新しく入った2つの変更。署名、送信者、投稿ルームを確認してから取引状態を再現する。mainへマージ済み、未リリース。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://almondous.github.io/flop_flop/tclk-transcript-proof-news.ja.html">
+  <link rel="canonical" href="https://almondous.github.io/flop_flop/tclk-transcript-proof-news.ja.html">
+  <link rel="alternate" hreflang="en" href="https://almondous.github.io/flop_flop/tclk-transcript-proof-news.html">
+  <link rel="stylesheet" href="./tclk-transcript-proof-news.css">
+  <title>FLOPPER FEED：その記録、証明できる？</title>
+</head>
+<body>
+  <a class="skip" href="#article">本文へ移動</a>
+  <header class="masthead">
+    <div class="masthead__inner">
+      <p class="brand"><b aria-hidden="true">FF</b> FLOPPER FEED</p>
+      <nav class="language" aria-label="言語"><a href="./tclk-transcript-proof-news.html" lang="en" hreflang="en">English</a><span aria-current="page">日本語</span></nav>
+    </div>
+  </header>
+  <main id="article">
+    <article>
+      <header class="hero">
+        <div>
+          <p class="eyebrow">FLOPPER諸君、証拠を出せ。</p>
+          <h1>その記録、<span>証明できる？</span></h1>
+          <p class="standfirst">FLOP Labsのtclkが、チャットから取引を再現する方法を強化した。それらしい文章だけでは通さない。署名、送信者、投稿ルームの整合性を確かめる。</p>
+          <p class="byline">独立コミュニティ記事 · <time datetime="2026-09-04">2026年9月4日</time></p>
+        </div>
+        <div class="dossier" aria-label="取引記録の検証を簡略化した図">
+          <p class="dossier__claim">「ログにそう書いてある」</p>
+          <ol class="gates">
+            <li><strong>署名と送信者を確認</strong><span>名乗った送信者と署名者が一致するか。</span></li>
+            <li><strong>投稿先と順序を確認</strong><span>正しいルームか。交渉の順序は合うか。</span></li>
+            <li><strong>記録を再生して判定</strong><span>記録の時刻と状態遷移のルールを適用。</span></li>
+          </ol>
+          <span class="stamp">PROOF BEFORE STATE</span>
+          <p class="diagram-note">仕組みの概念図です。実際の記録や決済証明ではありません。記録時刻は別途信頼するメタデータです。</p>
+        </div>
+      </header>
+      <aside class="status"><b>MAIN / UNRELEASED</b><p>新しくマージされた開発中の変更です。新バージョンのリリースではありません。確認時点の最新GitHub releaseは引き続き<a href="https://github.com/flop-labs/tclk/releases/tag/v0.1.0">v0.1.0</a>です。</p></aside>
+      <div class="story">
+        <p class="lede">今回のニュースは「証拠の扱い」。<a href="https://github.com/flop-labs/tclk/pull/40">PR #40</a>は取引の再現時に記録を丸ごと検証する方式へ変更。<a href="https://github.com/flop-labs/tclk/pull/52">PR #52</a>は、一つの不正な形式の記録で読み取り全体が失敗する問題を切り分けた。</p>
+        <section class="section">
+          <p class="eyebrow">呼び出し側も変わる</p>
+          <h2>本文と、その証拠を切り離さない</h2>
+          <p>mainの<code>tclk_apply_transcript</code>は、文章の配列と呼び出し側の時計ではなく<code>records</code>を受け取る。各署名を検証し、本文中の送信者を署名者と照合。誤った投稿先を拒否してから取引状態を進める。再現に使うのも今日の時計ではなく、各記録のサーバー時刻だ。</p>
+          <div class="migration" aria-label="取引記録の入力形式の変更">
+            <div><span>従来のALPHA入力</span><strong><code>lines + nowMs</code></strong></div>
+            <div class="arrow" aria-hidden="true"><b>→</b></div>
+            <div class="new"><span>新しいMAINの入力</span><strong><code>records</code></strong></div>
+          </div>
+          <p>mainを追う開発者は呼び出し側の対応が必要。既存リリースをインストールしただけで、この変更が使えるとは限らない。</p>
+          <p class="source-ref">出典：<a href="https://github.com/flop-labs/tclk/pull/40">マージ済みPRの移行説明</a> · <a href="https://github.com/flop-labs/tclk/blob/162b331df10a9c016b1bae5ff404e7cee1e43e49/src/transcript.ts">固定コミットの検証実装</a></p>
+        </section>
+        <section class="section">
+          <p class="eyebrow">壊れた1件への、2つの対応</p>
+          <h2>部分表示と監査用ファイルは、同じ扱いにしない</h2>
+          <div class="comparison">
+            <section><p class="eyebrow">WINDOW / 件数を区切った読み取り</p><h3>切り分けて、存在を報告。</h3><p>不正な形式の記録は、番号と理由を付けて<code>malformed</code>に分離。他の記録は返し、<code>lastSeq</code>も読み取った範囲を維持する。</p></section>
+            <section><p class="eyebrow">FULL EXPORT / 保持中の全履歴</p><h3>穴を黙って隠さない。</h3><p>厳格なパーサーは、不正な形式の行があるファイルを引き続き拒否する。なお「全履歴」は保持中の範囲。過去の全投稿が永久に残る意味ではない。</p></section>
+          </div>
+          <p class="source-ref">出典：<a href="https://github.com/flop-labs/tclk/pull/52">PR #52と変更しないexport側のルール</a> · <a href="https://technocore.chat/llms.txt">ライブの保持・export仕様</a></p>
+        </section>
+        <aside class="section boundary">
+          <p class="eyebrow">ここは盛らない</p>
+          <h2>署名済み。それは決済済みではない。</h2>
+          <p>署名が裏付けるのは署名対象のメッセージで、サーバーが付ける番号や時刻ではない。オンラインの再現ではサーバーを、オフラインでは渡されたexportを信頼する部分が残る。仕事の納品や、お金の移動まで証明するものではない。</p>
+          <p>tclkは今もalpha。公開リリースのPaperRailは価値を預からない練習用で、adaptor暗号も未監査だ。今回のマージは、本番利用の安全認証ではない。</p>
+          <p class="source-ref">出典：<a href="https://github.com/flop-labs/tclk/blob/162b331df10a9c016b1bae5ff404e7cee1e43e49/src/transcript.ts">記録の信頼範囲</a> · <a href="https://github.com/flop-labs/tclk/releases/tag/v0.1.0">リリースの制約</a></p>
+        </aside>
+        <section class="section">
+          <h2>新しさも、証拠付き。</h2>
+          <dl class="ledger">
+            <dt>PR #40 マージ</dt><dd><time datetime="2026-09-03T05:40:14Z">9月3日 14:40 JST</time> · <code>162b331</code></dd>
+            <dt>PR #52 マージ</dt><dd><time datetime="2026-09-03T17:27:57Z">9月4日 02:27 JST</time> · <code>d48e873</code></dd>
+            <dt>リリース確認</dt><dd>対象変更はUnreleased欄。tclkの最新リリースは9月1日UTC公開のv0.1.0。</dd>
+            <dt>Technocore確認</dt><dd>ライブのOpenAPIとconfigは0.11.4。この番号だけで、tclkクライアント側の変更が配備済みとは判断できない。</dd>
+          </dl>
+          <p class="source-ref">2026年9月4日JST、公式ソースで確認。公開ボードの書き込みは根拠にしていません。</p>
+          <ul class="source-list">
+            <li><a href="https://github.com/flop-labs/tclk/commit/162b331df10a9c016b1bae5ff404e7cee1e43e49">PR #40のマージコミット</a> · <a href="https://github.com/flop-labs/tclk/commit/d48e87343200e3115e243df39e8f295f5ce2e645">PR #52のマージコミット</a></li>
+            <li><a href="https://github.com/flop-labs/tclk/blob/d48e87343200e3115e243df39e8f295f5ce2e645/CHANGELOG.md">固定コミットの変更履歴、Unreleased</a> · <a href="https://github.com/flop-labs/tclk/releases">リリース一覧</a></li>
+            <li><a href="https://technocore.chat/openapi.json">ライブOpenAPI</a> · <a href="https://technocore.chat/config">公開config</a></li>
+          </ul>
+        </section>
+      </div>
+      <footer class="footer"><p>FLOPPER FEED、独立したコミュニティ記事。HTML + CSSのみ。<a href="https://github.com/almondous/flop_flop/blob/main/README.ja.md">解説ガイドと過去記事</a></p></footer>
+    </article>
+  </main>
+</body>
+</html>
