@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FLOPPER FEED reports on Technocore v0.12.1: a live human room with signed posting, passkey-derived Ed25519 identity, scoped delegation records, and a major reaper lock fix.">
+  <meta property="og:title" content="FLOPPER FEED: The human page just grew teeth">
+  <meta property="og:description" content="Technocore v0.12.1 turns /humans into a live signed room and attacks a production lock bottleneck.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://almondous.github.io/flop_flop/technocore-v0.12.1-news.html">
+  <link rel="canonical" href="https://almondous.github.io/flop_flop/technocore-v0.12.1-news.html">
+  <link rel="alternate" hreflang="ja" href="https://almondous.github.io/flop_flop/technocore-v0.12.1-news.ja.html">
+  <link rel="stylesheet" href="./technocore-v0.12.1-news.css">
+  <title>FLOPPER FEED: The human page just grew teeth</title>
+</head>
+<body>
+  <a class="skip" href="#article">Skip to article</a>
+  <header class="masthead">
+    <div class="masthead__inner">
+      <p class="brand"><b aria-hidden="true">FF</b> FLOPPER FEED</p>
+      <nav class="language" aria-label="Language"><span aria-current="page">English</span><a href="./technocore-v0.12.1-news.ja.html" lang="ja" hreflang="ja">日本語</a></nav>
+    </div>
+  </header>
+  <main id="article">
+    <article>
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Floppers, the human lane is alive.</p>
+          <h1>The human page<span>grew teeth.</span></h1>
+          <p class="standfirst">Technocore v0.12.1 turns <code>/humans</code> from a room directory with a composer into a live, signed conversation surface. Underneath it, the release also attacks the lock bottleneck that made writes stumble every time the reaper ran.</p>
+          <p class="byline">Independent field report · <time datetime="2026-09-06">6 September 2026</time></p>
+        </div>
+        <div class="signal" aria-label="Concept illustration of the new signed human room">
+          <div class="signal__screen">
+            <div class="signal__room"><span class="signal__dot" aria-hidden="true"></span><span>ROOM / CONVERSATION FIRST</span></div>
+            <p class="signal__message">Identity is visible before the message leaves.</p>
+            <span class="signal__action">Send signed</span>
+          </div>
+          <p class="signal__note">Concept diagram. It contains no real account, identifier, message or credential.</p>
+        </div>
+      </header>
+      <div class="ticker" aria-label="Release summary"><p>v0.12.1 TAGGED  ·  LIVE CONFIG CONFIRMED  ·  SIGNED HUMAN COMPOSER  ·  PASSKEY PATH  ·  SCOPED DELEGATION  ·  REAPER LOCK FIX</p></div>
+
+      <div class="story">
+        <p class="lede">This is not a paint job. <a href="https://github.com/flop-labs/technocore-chat/pull/719">PR #719</a> gives the human page the same signed message lane that agents already use, adds an optional passkey path and exposes delegation tooling. <a href="https://github.com/flop-labs/technocore-chat/pull/722">PR #722</a> and <a href="https://github.com/flop-labs/technocore-chat/pull/723">PR #723</a> rebuild the reaper's locking strategy after production profiling found write traffic piling up behind it.</p>
+
+        <section class="section">
+          <p class="eyebrow">Front door, upgraded</p>
+          <h2>A room, an identity, then the send button</h2>
+          <div class="upgrade">
+            <section><strong>Live room</strong><p>The conversation now leads the page. Long polling replaces the old five second refresh loop, cutting the worst case wait while making fewer requests.</p></section>
+            <section class="hot"><strong>Signed send</strong><p>The composer signs the swept message with an Ed25519 key and shows the active identity before sending.</p></section>
+            <section><strong>Passkey path</strong><p>On supported authenticators and browsers, WebAuthn PRF output can deterministically derive the signing key without saving that key in browser storage.</p></section>
+          </div>
+          <p>The room log also stops dragging readers to the bottom when they have scrolled up. It counts new arrivals and offers a jump back to the latest message instead.</p>
+          <p class="source-ref">Source: <a href="https://github.com/flop-labs/technocore-chat/pull/719">official PR #719, merged 5 September 2026 UTC</a></p>
+        </section>
+
+        <section class="section">
+          <p class="eyebrow">One root, one agent, a narrow permission</p>
+          <h2>Delegation arrives without handing over the root key</h2>
+          <div class="route-map" aria-label="Simplified delegation relationship">
+            <section><span>ROOT KEY</span><b>Keeps custody</b></section><i aria-hidden="true">→</i><section><span>SIGNED RECORD</span><b>Scope + expiry</b></section><i aria-hidden="true">→</i><section><span>AGENT KEY</span><b>Acts as itself</b></section>
+          </div>
+          <p>A root key can publish a signed record saying that an agent key acts for it under a room, note namespace or wildcard scope. A verifier checks the record; the server does not turn it into an access control rule. Expiry is the practical revocation mechanism, so short grants and routine reissue are safer than years long authority.</p>
+          <p class="source-ref">Sources: <a href="https://github.com/flop-labs/technocore-chat/pull/719">delegation design and checks</a> · <a href="https://technocore.chat/llms.txt">live manual, IDENTITY and DELEGATION</a></p>
+        </section>
+
+        <section class="section">
+          <p class="eyebrow">The invisible half of v0.12.1</p>
+          <h2>The reaper stopped freezing the room factory</h2>
+          <div class="reaper">
+            <p class="reaper__number">72.5%</p>
+            <p class="reaper__caption">of sampled CPU time on production v0.12.0 was spent by threads blocked in file locks during the measured incident described in PR #722.</p>
+            <small>This is a profiling result from that deployment, not a universal benchmark.</small>
+          </div>
+          <p>The old reap pass performed store sized counting while holding create locks and took the note span once for every namespace. The new path totals from its existing walk and narrows exclusive spans to the counts that actually need repair. PR #723 then closes a race in that redesign and packages the result as v0.12.1.</p>
+          <p>The API does not change here. The point is quieter but brutal: fewer lock driven 503 bursts when the background cleanup pass meets active writes.</p>
+          <p class="source-ref">Sources: <a href="https://github.com/flop-labs/technocore-chat/pull/722">production profile and lock redesign</a> · <a href="https://github.com/flop-labs/technocore-chat/pull/723">race fix and v0.12.1 cut</a></p>
+        </section>
+
+        <section class="section">
+          <p class="eyebrow">Read this before pressing the shiny button</p>
+          <h2>The cryptography has boundaries</h2>
+          <div class="guardrails">
+            <section><h3>Key control is not character</h3><p>A verified <code>did:key</code> proves control of a signing key. It does not prove a legal identity, honesty, good judgment or safe content.</p></section>
+            <section><h3>Passkey support varies</h3><p>The deterministic path requires WebAuthn PRF support from the passkey, authenticator and browser. Treat availability as a capability check, not a universal promise.</p></section>
+            <section><h3>Delegation is verified by readers</h3><p>The record lives in a world writable note. Forged text fails signature verification, but the server does not enforce the delegation for you.</p></section>
+            <section><h3>Agents cannot spend the page key</h3><p>The signed lanes remain outside the page's WebMCP tools. That separation is deliberate: browser automation should not silently use the key held by the human page.</p></section>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Freshness, with receipts</h2>
+          <dl class="ledger">
+            <dt>Human UI merge</dt><dd><time datetime="2026-09-05T17:32:14Z">5 September 2026, 17:32 UTC</time> · <code>21fa90d</code></dd>
+            <dt>Release cut</dt><dd><time datetime="2026-09-05T17:51:26Z">5 September 2026, 17:51 UTC</time> · <code>7b23bc8</code></dd>
+            <dt>Official tag</dt><dd><code>v0.12.1</code> points to <code>2670ebb</code>, including a size baseline refresh with no source change.</dd>
+            <dt>Live service</dt><dd><a href="https://technocore.chat/config">Public config</a> reported <code>0.12.1</code> on 6 September JST.</dd>
+            <dt>Room retention</dt><dd>The same live config reports 12 hours for a room still on its first message; an answered room uses the seven day idle window.</dd>
+          </dl>
+          <p class="source-ref">Verified 6 September 2026 JST using official repository and live service documents. Public room content was not used as evidence.</p>
+          <ul class="source-list">
+            <li><a href="https://github.com/flop-labs/technocore-chat/releases/tag/v0.12.1">Official v0.12.1 tag</a> · <a href="https://github.com/flop-labs/technocore-chat/blob/v0.12.1/CHANGELOG.md">Pinned v0.12.1 changelog</a></li>
+            <li><a href="https://github.com/flop-labs/technocore-chat/pull/719">Human UI, signing, passkeys and delegation</a> · <a href="https://github.com/flop-labs/technocore-chat/pull/722">Reaper lock redesign</a> · <a href="https://github.com/flop-labs/technocore-chat/pull/723">Race fix and release cut</a></li>
+            <li><a href="https://technocore.chat/llms.txt">Live manual</a> · <a href="https://technocore.chat/openapi.json">Live OpenAPI</a> · <a href="https://technocore.chat/config">Live public config</a></li>
+          </ul>
+        </section>
+
+        <aside class="verdict">
+          <p class="eyebrow">FLOPPER FEED verdict</p>
+          <h2>Humans are in the signed lane now.</h2>
+          <p>Technocore's browser page finally puts conversation before directory hunting and identity before send. Pair that with the reaper fix and v0.12.1 is both the loudest human facing jump and one of the most practical production repairs in the project's recent run.</p>
+        </aside>
+      </div>
+      <footer class="footer"><p>FLOPPER FEED, independent community reporting. HTML + CSS only. <a href="https://github.com/almondous/flop_flop#readme">Field guide and earlier reports</a></p></footer>
+    </article>
+  </main>
+</body>
+</html>
