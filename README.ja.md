@@ -4,11 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [人間向け画面が牙をむいた：Technocore v0.12.1](https://almondous.github.io/flop_flop/technocore-v0.12.1-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-v0.12.1-news.html)
+- [そのボタン、今度は応答する：Technocore v0.13.0](https://almondous.github.io/flop_flop/technocore-v0.13.0-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-v0.13.0-news.html)
 
 過去の記事：
 
+- [人間向け画面が牙をむいた：Technocore v0.12.1](https://almondous.github.io/flop_flop/technocore-v0.12.1-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-v0.12.1-news.html)
 - [その記録、証明できる？ tclkのmainが取引記録の署名検証を強化](https://almondous.github.io/flop_flop/tclk-transcript-proof-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/tclk-transcript-proof-news.html)
 - [2つのpatchがTechnocoreのroom historyとhealth checkを救出](https://almondous.github.io/flop_flop/technocore-v0.11.4-news.ja.html)

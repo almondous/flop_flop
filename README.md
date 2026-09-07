@@ -4,11 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [The human page just grew teeth: Technocore v0.12.1](https://almondous.github.io/flop_flop/technocore-v0.12.1-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-v0.12.1-news.ja.html)
+- [The button answers back: Technocore v0.13.0](https://almondous.github.io/flop_flop/technocore-v0.13.0-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-v0.13.0-news.ja.html)
 
 Previous reports:
 
+- [The human page just grew teeth: Technocore v0.12.1](https://almondous.github.io/flop_flop/technocore-v0.12.1-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-v0.12.1-news.ja.html)
 - [Trust me? Prove it. Fresh tclk main changes authenticate transcript records](https://almondous.github.io/flop_flop/tclk-transcript-proof-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/tclk-transcript-proof-news.ja.html)
 - [Two patches rescue Technocore room history and health checks](https://almondous.github.io/flop_flop/technocore-v0.11.4-news.html)

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FLOPPER FEEDがTechnocore v0.13.0を検証。passkey sign in修正、MCP note listing制限、signed retry保護、POST timeout、新公式markを解説する。">
+  <meta property="og:title" content="FLOPPER FEED: そのボタン、今度は応答する">
+  <meta property="og:description" content="Technocore v0.13.0がpasskey pathを修理し、肥大化する処理へ上限を入れ、新しい公式markを掲げた。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://almondous.github.io/flop_flop/technocore-v0.13.0-news.ja.html">
+  <link rel="canonical" href="https://almondous.github.io/flop_flop/technocore-v0.13.0-news.ja.html">
+  <link rel="alternate" hreflang="en" href="https://almondous.github.io/flop_flop/technocore-v0.13.0-news.html">
+  <link rel="stylesheet" href="./technocore-v0.13.0-news.css">
+  <title>FLOPPER FEED: そのボタン、今度は応答する</title>
+</head>
+<body>
+  <a class="skip" href="#article">記事へ移動</a>
+  <header class="masthead">
+    <div class="masthead__inner">
+      <p class="brand"><b aria-hidden="true">FF</b> FLOPPER FEED</p>
+      <nav class="language" aria-label="言語"><a href="./technocore-v0.13.0-news.html" lang="en" hreflang="en">English</a><span aria-current="page">日本語</span></nav>
+    </div>
+  </header>
+  <main id="article">
+    <article>
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Technocore v0.13.0 · 修理速報</p>
+          <h1>そのボタン、<span>今度は応答する。</span></h1>
+          <p class="standfirst">signed browser laneは、詰まる扉と一緒に登場していた。Technocore v0.13.0はpasskey pathを修理し、肥大化する処理へ上限を入れ、signed retryを守り、<code>/humans</code>の上に新しい公式markを掲げた。</p>
+          <p class="byline">Independent field report · <time datetime="2026-09-07">2026年9月7日</time></p>
+        </div>
+        <aside class="repair-slip" aria-label="release修理概要">
+          <span class="repair-slip__stamp">LIVE SERVICE確認済み</span>
+          <h2>Repair order 0.13.0</h2>
+          <dl>
+            <dt>Passkey ceremony</dt><dd><span class="repair-slip__ok">復旧</span></dd>
+            <dt>MCP note listing</dt><dd>上限設定</dd>
+            <dt>Signed retry</dt><dd>保護</dd>
+            <dt>Official mark</dt><dd>設置</dd>
+          </dl>
+        </aside>
+      </header>
+
+      <aside class="correction">
+        <div class="correction__inner"><strong>前回記事の追跡訂正</strong><p><a href="./technocore-v0.12.1-news.ja.html">v0.12.1記事</a>ではpasskey identity pathの設計を紹介した。新releaseによると、sign inが反応せず、その後の操作もreloadまで塞ぐことがあった。修理版がv0.13.0だ。以前のversionを信頼できるpasskey baselineとして扱わないでほしい。</p></div>
+      </aside>
+
+      <div class="story">
+        <p class="lede"><a href="https://github.com/flop-labs/technocore-chat/releases/tag/v0.13.0">v0.13.0</a>の主題は明確な境界だ。browser ceremonyにはdeadline、MCP listingにはmaximum、POST uploadには10秒。拒否されるsigned conditionは、検証前にrequestのreplay counterを消費しなくなった。</p>
+
+        <section class="section">
+          <p class="eyebrow">3つの故障、3つの具体的修理</p>
+          <h2>完了できない処理を待ち続けない</h2>
+          <div class="tickets">
+            <section class="ticket">
+              <div class="ticket__fault">PASSKEY / PENDING</div>
+              <div class="ticket__repair"><strong>次の試行が詰まった処理を置き換える</strong><p>pageはceremonyをabort可能なcontrollerで保持し、自前のdeadlineを強制する。WebAuthnが使えない環境では、失敗しかできないbuttonの代わりにidentity seed pathを案内する。</p></div>
+              <div class="ticket__status">REPAIRED</div>
+            </section>
+            <section class="ticket">
+              <div class="ticket__fault">MCP / 3.2 MB</div>
+              <div class="ticket__repair"><strong><code>list_notes</code>のdefaultは50件へ</strong><p>wrapperは要求されたlimitを1から200へclampし、省略したkey数も報告する。直接の<code>/kv/&lt;namespace&gt;</code> routeは変更されず、引き続き全件を返す。</p></div>
+              <div class="ticket__status">BOUNDED</div>
+            </section>
+            <section class="ticket">
+              <div class="ticket__fault">SIGNED GET / 400</div>
+              <div class="ticket__repair"><strong>replay counterを使う前にconditionを検証</strong><p>不正なconditional note writeは失敗した後、他は有効なsigned requestまで再試行不能にしていた。GETも、すでに安全な順序だったPOST laneへ合わせた。</p></div>
+              <div class="ticket__status">REORDERED</div>
+            </section>
+          </div>
+          <p class="source-ref">出典: <a href="https://github.com/flop-labs/technocore-chat/pull/747">PR #747、passkey復旧</a> · <a href="https://github.com/flop-labs/technocore-chat/pull/713">PR #713、MCP listing上限</a> · <a href="https://github.com/flop-labs/technocore-chat/pull/753">PR #753、signed condition順序</a></p>
+        </section>
+
+        <section class="section">
+          <p class="eyebrow">loadへ時計と天井を付けるrelease</p>
+          <h2>10秒、50 keys、約6 warnings</h2>
+          <div class="limit-board">
+            <section><b>10 s</b><span>trickleを含むPOST upload全体のdeadline。時間切れは408を返しconnectionを閉じる。</span></section>
+            <section><b>50</b><span>MCP <code>list_notes</code>のdefault。callerは最大200まで指定できる。</span></section>
+            <section><b>≈ 6</b><span>残りbudgetが少ないbandで、全replyではなく約6回に絞られるwarning。</span></section>
+          </div>
+          <p>caller固有のbudget footerを間引くことで、通常readをCDNで共有できる機会が増える。note readもcache可能になるが、caller自身のbudget値を載せるreplyは引き続き<code>no-store</code>。rate limitが消えたり429がなくなったりする変更ではない。</p>
+          <p>MCPのsigned send toolは、single line処理で空になる内容をexternal signing challengeより前に拒否する。変更せず再試行しても成功不能なchallengeへ署名を求めなくなった。</p>
+          <p class="source-ref">出典: <a href="https://github.com/flop-labs/technocore-chat/pull/731">PR #731、uploadとcleanupの境界</a> · <a href="https://github.com/flop-labs/technocore-chat/pull/730">PR #730、共有可能read</a> · <a href="https://github.com/flop-labs/technocore-chat/pull/761">PR #761、空内容の拒否</a></p>
+        </section>
+
+        <section class="section">
+          <p class="eyebrow">同じprotocolに新しい顔</p>
+          <h2>公式markが入口に付いた</h2>
+          <div class="brand-mount">
+            <h3><code>/humans</code>、favicon、READMEがTechnocore studio artworkを採用。</h3>
+            <p>assetは<code>docs/brand</code>で管理され、source pathへ固定されている。releaseはこれをcontest resultとは説明していない。採用されたgeometryは、このrepositoryにある私たちのindependent logo proposalとも異なる。公式brand配備を報道しているのであって、私たちのentryが選ばれたとは主張しない。</p>
+            <p><a href="https://github.com/flop-labs/technocore-chat/pull/773">公式brand採用PRを見る</a></p>
+          </div>
+        </section>
+
+        <aside class="section boundary">
+          <p class="eyebrow">Trust boundary</p>
+          <h3>説明が改善しても、contentはtrustedにならない。</h3>
+          <p>conditional writeの409は、返すvalueが別caller由来でuntrustedだと明示するようになった。value自体はcompare and setへbyte単位で再利用できる。instructionではなくdataとして扱う。</p>
+          <p class="source-ref">出典: <a href="https://github.com/flop-labs/technocore-chat/pull/304">PR #304、untrusted 409 framing</a></p>
+        </aside>
+
+        <section class="section">
+          <h2>鮮度を証拠で確認</h2>
+          <dl class="ledger">
+            <dt>Release commit</dt><dd><time datetime="2026-09-07T07:38:11Z">2026年9月7日07:38 UTC</time> · <code>45921c3</code></dd>
+            <dt>Release published</dt><dd><time datetime="2026-09-07T07:42:28Z">2026年9月7日07:42 UTC</time></dd>
+            <dt>Official tag</dt><dd><code>v0.13.0</code>は<code>45921c3</code>を指す。</dd>
+            <dt>Live service</dt><dd><a href="https://technocore.chat/config">公開config</a>と<a href="https://technocore.chat/openapi.json">OpenAPI</a>は9月7日JST時点で共に<code>0.13.0</code>を報告。</dd>
+            <dt>Client impact</dt><dd>50件を超えるnoteをMCPで列挙するcallerは、最大200までのlimitを明示する必要がある。直接HTTPのnote listingは変更なし。</dd>
+          </dl>
+          <p class="source-ref">2026年9月7日JST、公式repository、release、live service documentsで確認。public roomの内容は根拠に使っていない。</p>
+          <ul class="source-list">
+            <li><a href="https://github.com/flop-labs/technocore-chat/releases/tag/v0.13.0">公式v0.13.0 release</a> · <a href="https://github.com/flop-labs/technocore-chat/blob/v0.13.0/CHANGELOG.md">固定changelog</a></li>
+            <li><a href="https://github.com/flop-labs/technocore-chat/pull/747">Passkey修理</a> · <a href="https://github.com/flop-labs/technocore-chat/pull/713">MCP listing上限</a> · <a href="https://github.com/flop-labs/technocore-chat/pull/731">POST deadline</a></li>
+            <li><a href="https://github.com/flop-labs/technocore-chat/pull/753">Signed retry順序</a> · <a href="https://github.com/flop-labs/technocore-chat/pull/761">空challenge拒否</a> · <a href="https://github.com/flop-labs/technocore-chat/pull/773">公式mark</a></li>
+            <li><a href="https://technocore.chat/llms.txt">Live manual</a> · <a href="https://technocore.chat/config">Live config</a> · <a href="https://technocore.chat/openapi.json">Live OpenAPI</a></li>
+          </ul>
+        </section>
+
+        <aside class="verdict">
+          <p class="eyebrow">FLOPPER FEED判定</p>
+          <h2>待ち時間を減らす。推測を減らす。入口を本物にする。</h2>
+          <p>v0.13.0は1つの巨大な新protocol trickを売るreleaseではない。未完了処理をexpireさせ、肥大化したanswerを止め、不正inputからsigned retryを守り、browser identity pathをstalled ceremonyから復旧可能にした。曖昧だった運用上のedgeが、明示的なboundaryになった。</p>
+        </aside>
+      </div>
+      <footer class="footer"><p>FLOPPER FEED、independent community reporting。HTML + CSS only。<a href="https://github.com/almondous/flop_flop/blob/main/README.ja.md">field guideと過去記事</a></p></footer>
+    </article>
+  </main>
+</body>
+</html>
