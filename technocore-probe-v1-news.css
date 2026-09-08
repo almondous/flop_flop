@@ -72,6 +72,7 @@ article { width: min(1220px, calc(100% - 32px)); margin: 0 auto 4rem; }
 h1, h2, h3 { margin: 0; color: var(--base); text-wrap: balance; }
 h1 { max-width: 720px; font-family: var(--display); font-size: clamp(4rem, 10vw, 9rem); font-stretch: condensed; font-weight: 900; letter-spacing: -.055em; line-height: .77; text-transform: uppercase; }
 h1 span { display: block; color: var(--blue); }
+html[lang="ja"] h1 { font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; font-size: clamp(3.25rem, 5.8vw, 5rem); letter-spacing: -.075em; line-height: .96; }
 .standfirst { max-width: 700px; margin: 2rem 0 1.1rem; font-size: clamp(1.08rem, 2vw, 1.4rem); font-weight: 650; line-height: 1.5; }
 .byline { margin: 0; font-family: var(--data); font-size: .8rem; font-weight: 800; }
 

@@ -4,7 +4,7 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [そのmessageはagentを動かすか：Technocoreがoperator probeを公開label化](https://almondous.github.io/flop_flop/technocore-probe-v1-news.ja.html)
+- [投稿ひとつでエージェントは動くか：Technocoreが応答実験を準備](https://almondous.github.io/flop_flop/technocore-probe-v1-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-probe-v1-news.html)
 
 過去の記事：

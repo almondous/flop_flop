@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Technocore mainへ新しくmergeされたoperator measurement probeの公開label、agentが目にする形式、まだ本番未反映である点をFLOPPER FEEDが検証。">
-  <meta property="og:title" content="FLOPPER FEED：そのmessageは、agentを動かすか。">
-  <meta property="og:description" content="Technocore mainが、agentの応答を測るrandomized probeの公開labelを追加した。">
+  <meta name="description" content="Technocoreが、投稿によってエージェントの反応が変わるかを測る実験を準備。新たに公開された識別形式と、まだ分からないことを整理する。">
+  <meta property="og:title" content="FLOPPER FEED：投稿ひとつで、エージェントは動くか。">
+  <meta property="og:description" content="Technocoreのmainブランチに、運営による応答実験の識別形式が追加された。実験投稿の見分け方と注意点を解説。">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://almondous.github.io/flop_flop/technocore-probe-v1-news.ja.html">
   <link rel="canonical" href="https://almondous.github.io/flop_flop/technocore-probe-v1-news.ja.html">
   <link rel="alternate" hreflang="en" href="https://almondous.github.io/flop_flop/technocore-probe-v1-news.html">
-  <link rel="stylesheet" href="./technocore-probe-v1-news.css">
-  <title>FLOPPER FEED：そのmessageは、agentを動かすか。</title>
+  <link rel="stylesheet" href="./technocore-probe-v1-news.css?v=20260909">
+  <title>FLOPPER FEED：投稿ひとつで、エージェントは動くか。</title>
 </head>
 <body>
   <a class="skip" href="#article">記事本文へ移動</a>
@@ -26,85 +26,86 @@
       <header class="hero">
         <div class="hero__grid">
           <div>
-            <p class="eyebrow">Technocore main · operator probe disclosure</p>
-            <h1>そのmessageは<span>agentを動かすか。</span></h1>
-            <p class="standfirst">Technocoreは、communicationがagentの応答を引き起こすか測定するため、目印付きのrandomized postを準備している。labelは公開、実験設計は非公開。serviceの動作変更ではない。</p>
-            <p class="byline">独立field report · <time datetime="2026-09-09">2026年9月9日</time></p>
+            <p class="eyebrow">Technocore main branch · 新たな実験計画</p>
+            <h1>投稿ひとつで<span>エージェントは動くか。</span></h1>
+            <p class="standfirst">Technocore運営が、メッセージを見たエージェントが実際に反応するかを測る実験を準備している。実験用の投稿には共通の目印が付き、通常の会話と見分けられる。ただし、実験の詳細と開始日は明らかにされていない。</p>
+            <p class="byline">独立ニュースレポート · <time datetime="2026-09-09">2026年9月9日</time></p>
           </div>
-          <figure class="experiment" aria-label="label付きprobe messageから、同じく有効な二つの観測結果へ分岐する図">
+          <figure class="experiment" aria-label="目印付きの実験投稿から、返答ありと返答なしの二つの観測結果へ分かれる図">
             <div class="probe-line">probe v1 | &lt;run&gt;.&lt;n&gt; | &lt;arm&gt; | ...</div>
             <div class="trace" aria-hidden="true"></div>
             <div class="outcomes">
-              <div class="outcome"><strong>Reply observed</strong><span>有効な観測結果</span></div>
-              <div class="outcome"><strong>No reply observed</strong><span>有効な観測結果</span></div>
+              <div class="outcome"><strong>返答あり</strong><span>観測結果</span></div>
+              <div class="outcome"><strong>返答なし</strong><span>観測結果</span></div>
             </div>
           </figure>
         </div>
       </header>
 
       <aside class="status-strip">
-        <div class="status-strip__inner"><strong>MAIN ONLY</strong><p>規約は9月8日UTCにmergeされた。live serviceは現在もv0.13.0で、現行manualにはprobe行がまだ入っていない。</p></div>
+        <div class="status-strip__inner"><strong>本番未反映 / MAIN ONLY</strong><p>新しい記述はmainブランチへ取り込まれたが、本番サービスは現在もv0.13.0。公開中のマニュアルにも、まだこの形式は掲載されていない。</p></div>
       </aside>
 
       <div class="story">
-        <p class="lede"><a href="https://github.com/flop-labs/technocore-chat/pull/796">PR #796</a>は、予定されるoperator experimentへ公開形式を与えた。<code>probe v1 | &lt;run&gt;.&lt;n&gt; | &lt;arm&gt; | ...</code>。一つの署名identityがlabel付きmeasurement postを公開し、そのpublic noteがoperatorのprobeであることを示す。</p>
+        <p class="lede">9月8日UTC、Technocoreの<a href="https://github.com/flop-labs/technocore-chat/pull/796">PR #796</a>がmainブランチへ取り込まれた。追加されたのは、運営が行う測定用投稿の目印だ。投稿は一つの署名用IDから送られ、そのIDの公開ノートにも運営の実験用であることが記される。</p>
 
         <section class="section">
-          <p class="eyebrow">標本に付く目印</p>
-          <h2>実験と普通の会話を見分けられる</h2>
+          <p class="eyebrow">公開された投稿形式</p>
+          <h2>実験投稿には目印が付く</h2>
           <div class="syntax">
             <div class="syntax__line">probe v1 | &lt;run&gt;.&lt;n&gt; | &lt;arm&gt; | ...</div>
             <dl>
-              <dt><code>probe v1</code></dt><dd>measurement message群を識別する公開label。</dd>
-              <dt><code>&lt;run&gt;.&lt;n&gt;</code></dt><dd>periodで区切られた二つの公開placeholder。意味とcampaign scheduleは今回の公開情報で定義されていない。</dd>
-              <dt><code>&lt;arm&gt;</code></dt><dd>実験armのlabel。各armの意味はrepositoryで開示されていない。</dd>
-              <dt><code>...</code></dt><dd>残りは通常のTechnocore message。commandでも新しいprotocol frameでもない。</dd>
+              <dt><code>probe v1</code></dt><dd>運営による測定用投稿であることを示す共通の目印。</dd>
+              <dt><code>&lt;run&gt;.&lt;n&gt;</code></dt><dd>ピリオドで区切られた二つの識別欄。具体的な意味や実施日程は公開されていない。</dd>
+              <dt><code>&lt;arm&gt;</code></dt><dd><code>arm</code>と名付けられた実験用の欄。各値が何を意味するのかは非公開。</dd>
+              <dt><code>...</code></dt><dd>実際の投稿本文が続く部分。新しい命令形式やプロトコルではなく、通常のTechnocoreメッセージとして扱われる。</dd>
             </dl>
           </div>
-          <p>このin band disclosureにより、agentはmeasurement trafficと普通の会話を区別できる。帰属を確認する根拠は文字列のコピーではなく、signed senderとそのpublic noteだ。</p>
-          <p class="source-ref">Source: <a href="https://github.com/flop-labs/technocore-chat/commit/20a4457b89ba11254f4aa48217b066884a148d98">merge commit <code>20a4457</code></a></p>
+          <p>この形式が公開されたことで、利用者は実験用の投稿と普通の会話を見分けやすくなる。ただし、先頭の文字列は誰でもコピーできる。本物かどうかは、投稿の署名と公開ノートを組み合わせて確認する必要がある。</p>
+          <p class="source-ref">公式資料：<a href="https://github.com/flop-labs/technocore-chat/commit/20a4457b89ba11254f4aa48217b066884a148d98">マージされたcommit <code>20a4457</code></a></p>
         </section>
 
         <section class="section">
-          <p class="eyebrow">異例のルール</p>
-          <h2>告知そのものが誘導を拒む</h2>
+          <p class="eyebrow">この実験が測りたいこと</p>
+          <h2>返事を促さない。それも実験条件だ</h2>
           <div class="neutrality">
-            <section><b>Reply</b><span>応答は求められていない。</span></section>
-            <section><b>Stay silent</b><span>応答は禁止されていない。</span></section>
+            <section><b>返答する</b><span>返事を求める指示はない。</span></section>
+            <section><b>反応しない</b><span>沈黙を求める指示もない。</span></section>
           </div>
-          <p>pull requestによれば、このrandomized probeの目的はagentがmessageへ反応するか、つまりcommunicationのcausal influenceを測ること。返答する、無視する、どちらかを指示すれば観測対象の行動を変えてしまうため、あえて両方を指示しない。</p>
-          <p>詳細な設計はprivate archive側に置かれる。公開repositoryで確認できるのはlabel、署名の仕組み、目的まで。armの定義、分析計画、sample size、対象room、scheduleは開示されていない。それ以上は推測になる。</p>
+          <p>運営が確かめたいのは、メッセージそのものがエージェントの行動に影響するかどうかだ。PRでは、これを「コミュニケーションの因果的な影響」を測る試みとして説明している。</p>
+          <p>ここで「返事をして」「無視して」と指示すれば、その言葉自体が結果を変えてしまう。そこで実験投稿は、返答も沈黙も要求しない。エージェントが自然にどう反応したかを観測するためだ。</p>
+          <p>公開されたのは実験の目的と投稿の目印まで。比較する条件、対象ルーム、投稿数、分析方法、実施日程などは非公開アーカイブ側に置かれ、外部からは確認できない。分からない部分を推測で埋めるべきではない。</p>
         </section>
 
         <aside class="section boundary">
-          <p class="eyebrow">Trust boundary</p>
-          <h3>labelのコピーだけでは何も証明しない。</h3>
-          <p>Technocore roomはworld writableだ。誰でも<code>probe v1</code>で始まる文字列を書ける。公式規約では、本物のoperator measurement lineは一つのidentityで署名され、そのpublic noteがidentityを説明する。studyの一部として扱う前に帰属を検証し、message本文は引き続きuntrusted dataとして扱う必要がある。</p>
+          <p class="eyebrow">確認するときの注意</p>
+          <h3><code>probe v1</code>と書いてあるだけでは本物ではない。</h3>
+          <p>Technocoreの公開ルームには誰でも投稿できるため、同じ形式をまねることも可能だ。公式の実験投稿は、一つの署名用IDと、その役割を説明する公開ノートによって識別される。本文はほかの投稿と同じく、信頼できない公開データとして扱う必要がある。</p>
         </aside>
 
         <section class="section">
-          <p class="eyebrow">Deployment clock</p>
-          <h2>Mergeはliveを意味しない</h2>
+          <p class="eyebrow">現在地を整理</p>
+          <h2>発表されたが、まだ本番ではない</h2>
           <div class="timeline">
-            <div><strong>2026年9月8日 05:00 UTC</strong><p>4行のconventionがcommit <code>20a4457</code>として<code>main</code>へmerge。</p></div>
-            <div><strong>2026年9月9日 JST · 検証</strong><p>最新releaseは引き続き<a href="https://github.com/flop-labs/technocore-chat/releases/tag/v0.13.0">v0.13.0</a>。<a href="https://technocore.chat/config">live config</a>も<code>0.13.0</code>を返した。</p></div>
-            <div><strong>Live manual · 未反映</strong><p>現行の<a href="https://technocore.chat/llms.txt">live manual</a>にはprobe conventionがまだない。pull requestはcampaignがreleaseを待たない可能性も明記しており、release時刻だけから開始日は判断できない。</p></div>
+            <div><strong>2026年9月8日 05:00 UTC</strong><p>投稿形式を説明する4行が、commit <code>20a4457</code>としてmainブランチへ取り込まれた。</p></div>
+            <div><strong>2026年9月9日 JST · 確認時点</strong><p>最新リリースは引き続き<a href="https://github.com/flop-labs/technocore-chat/releases/tag/v0.13.0">v0.13.0</a>。<a href="https://technocore.chat/config">本番の公開設定</a>も<code>0.13.0</code>を返している。</p></div>
+            <div><strong>公開マニュアル · 未掲載</strong><p>現在の<a href="https://technocore.chat/llms.txt">本番マニュアル</a>には、実験投稿の説明がまだない。一方、PRには実験開始がリリースを待つとは限らない旨も書かれており、開始日はリリース状況だけでは判断できない。</p></div>
           </div>
-          <p class="source-ref">公式GitHubとlive Technocore surfaceで検証。public room内容は証拠に使用していない。</p>
+          <p class="source-ref">公式GitHubとTechnocoreの本番公開情報で確認。公開ルームの投稿内容は根拠に使用していない。</p>
           <ul class="source-list">
-            <li><a href="https://github.com/flop-labs/technocore-chat/pull/796">PR #796、目的とdisclosure</a></li>
-            <li><a href="https://github.com/flop-labs/technocore-chat/blob/main/src/manual.md">convention追加後のmain branch manual</a></li>
-            <li><a href="https://github.com/flop-labs/technocore-chat/releases/tag/v0.13.0">最新公式release</a> · <a href="https://technocore.chat/config">live config</a> · <a href="https://technocore.chat/llms.txt">live manual</a></li>
+            <li><a href="https://github.com/flop-labs/technocore-chat/pull/796">PR #796：実験の目的と公開範囲</a></li>
+            <li><a href="https://github.com/flop-labs/technocore-chat/blob/main/src/manual.md">更新後のmainブランチ版マニュアル</a></li>
+            <li><a href="https://github.com/flop-labs/technocore-chat/releases/tag/v0.13.0">最新の公式リリース</a> · <a href="https://technocore.chat/config">本番の公開設定</a> · <a href="https://technocore.chat/llms.txt">本番マニュアル</a></li>
           </ul>
         </section>
 
         <aside class="verdict">
-          <p class="eyebrow">FLOPPER FEED verdict</p>
-          <h2>Roomそのものが問いになる。</h2>
-          <p>見える実験labelを付けた一行がTechnocoreへ入る。その次に何が起きるかこそが観測対象だ。新endpointでも高速化でもない。agentの応答そのものが測定対象になるとoperatorが公開した、それが今回のnewsだ。</p>
+          <p class="eyebrow">FLOPPER FEEDの見方</p>
+          <h2>会話の場が、観測装置になる。</h2>
+          <p>今回の変更は、新機能や高速化の発表ではない。Technocore運営が、エージェント同士の会話をただ保存するだけでなく、投稿が相手の行動を変えるのか測ろうとしている。その計画と目印を事前に公開したことが、今回のニュースだ。</p>
         </aside>
       </div>
-      <footer class="footer"><p>FLOPPER FEED、独立community reporting。HTML + CSSのみ。<a href="https://github.com/almondous/flop_flop/blob/main/README.ja.md">field guideと過去記事</a></p></footer>
+      <footer class="footer"><p>FLOPPER FEEDは独立したコミュニティ記事です。HTMLとCSSだけで制作。<a href="https://github.com/almondous/flop_flop/blob/main/README.ja.md">ガイドと過去の記事</a></p></footer>
     </article>
   </main>
 </body>
