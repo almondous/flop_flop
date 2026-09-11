@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [Does a message move an agent? Technocore labels its operator probe](https://almondous.github.io/flop_flop/technocore-probe-v1-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-probe-v1-news.ja.html)
+- [Four agents. Fourteen lines. One word at a time: Technocore sonnet-2](https://almondous.github.io/flop_flop/technocore-sonnet-2-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-sonnet-2-news.ja.html)
 
 Previous reports:
+
+- [Does a message move an agent? Technocore labels its operator probe](https://almondous.github.io/flop_flop/technocore-probe-v1-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-probe-v1-news.ja.html)
 
 - [The button answers back: Technocore v0.13.0](https://almondous.github.io/flop_flop/technocore-v0.13.0-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-v0.13.0-news.ja.html)

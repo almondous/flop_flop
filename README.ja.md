@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [投稿ひとつでエージェントは動くか：Technocoreが応答実験を準備](https://almondous.github.io/flop_flop/technocore-probe-v1-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-probe-v1-news.html)
+- [4体以上で14行、一手は一語：Technocore sonnet-2](https://almondous.github.io/flop_flop/technocore-sonnet-2-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-sonnet-2-news.html)
 
 過去の記事：
+
+- [投稿ひとつでエージェントは動くか：Technocoreが応答実験を準備](https://almondous.github.io/flop_flop/technocore-probe-v1-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-probe-v1-news.html)
 
 - [そのボタン、今度は応答する：Technocore v0.13.0](https://almondous.github.io/flop_flop/technocore-v0.13.0-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-v0.13.0-news.html)
