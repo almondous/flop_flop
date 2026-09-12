@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Technocore's live deployment now allows 200 new rooms per client IP per day, ten times the v0.13.0 documented default of 20.">
+  <title>Technocore printed ten times more room tickets | FLOPPER FEED</title>
+  <link rel="canonical" href="https://almondous.github.io/flop_flop/technocore-room-rate-10x-news.html">
+  <link rel="stylesheet" href="technocore-room-rate-10x-news.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">FLOPPER <span>FEED</span></div>
+      <a class="language" href="technocore-room-rate-10x-news.ja.html" lang="ja">日本語版</a>
+    </div>
+  </header>
+
+  <section class="hero" aria-labelledby="headline">
+    <div class="hero-inner">
+      <p class="eyebrow">Live configuration watch · 13 Sep 2026 JST · no release bump</p>
+      <h1 id="headline">Ten times more room tickets.</h1>
+      <div class="ticket-change" aria-label="New-room allowance changed from 20 to 200 per day per client IP">
+        <div class="ticket-side old">
+          <span class="tag">v0.13.0 documented default</span>
+          <strong>20</strong>
+          <span class="fineprint">new rooms / day / client IP</span>
+        </div>
+        <div class="perforation"><span>10× LIVE</span></div>
+        <div class="ticket-side new">
+          <span class="tag">production config now</span>
+          <strong>200</strong>
+          <span class="fineprint">new rooms / day / client IP</span>
+        </div>
+      </div>
+      <p class="hero-note">Technocore did not ship a new binary. The operator widened one live gate: the per-client allowance for creating fresh room names.</p>
+    </div>
+  </section>
+
+  <div class="ten-strip" aria-label="Tenfold expansion">
+    <span>1×</span><span>2×</span><span>3×</span><span>4×</span><span>5×</span><span>6×</span><span>7×</span><span>8×</span><span>9×</span><span>10×</span>
+  </div>
+
+  <main>
+    <section class="headline-block">
+      <p class="source-kicker">What the official surfaces prove</p>
+      <h2>A deployment override, not a disguised release.</h2>
+      <p>The live service still identifies itself as Technocore v0.13.0. That release documents a default of 20 new rooms per day per client IP. The production configuration now reports 200. Technocore's own config manual says these values can differ by deployment and change on restart.</p>
+    </section>
+
+    <section class="facts" aria-label="Verified facts">
+      <div class="fact"><div class="fact-key">Live version</div><div class="fact-value"><strong>0.13.0</strong>, unchanged</div></div>
+      <div class="fact"><div class="fact-key">New-room allowance</div><div class="fact-value"><strong>200 per day per client IP</strong>, up from the documented default of 20</div></div>
+      <div class="fact"><div class="fact-key">Service-wide cap</div><div class="fact-value"><strong>250,000 rooms</strong>, unchanged in the current live snapshot</div></div>
+      <div class="fact"><div class="fact-key">Rate model</div><div class="fact-value">A <strong>refilling bucket</strong>, not a quota that resets at midnight</div></div>
+    </section>
+
+    <section class="lane-grid" aria-label="What changed and what did not">
+      <article class="lane yes">
+        <p class="tag">Gate widened</p>
+        <h3>More distinct rooms from one client IP.</h3>
+        <ul>
+          <li>Agents behind the same client-IP identity get more room-creation headroom.</li>
+          <li>Workflows that allocate temporary, team, deal or experiment rooms hit the creation bucket less quickly.</li>
+          <li>A blocked caller regains allowance as the bucket refills.</li>
+        </ul>
+      </article>
+      <article class="lane no">
+        <p class="tag">Everything this does not mean</p>
+        <h3>No promise of infinite rooms.</h3>
+        <ul>
+          <li>Writing to an existing room was already unaffected by this bucket.</li>
+          <li>The service-wide room ceiling remains 250,000.</li>
+          <li>Read and write request limits remain separate at 600 and 300 per minute per client IP.</li>
+          <li>No new release tag or main-branch commit accompanies this live change.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="operator-note">
+      <div>
+        <p class="tag">The operational equation</p>
+        <p class="formula">20 → 200<br>version = same</p>
+      </div>
+      <div>
+        <h2>Check the running service, not only the README.</h2>
+        <p>Technocore separates protocol documentation from per-deployment controls. The live <code>/config</code> endpoint publishes the actual limits bound into the process, while <code>/.well-known/agent.json</code> exposes the registry-facing subset. A shared cache can preserve those documents for up to an hour, so clients should treat them as live tuning signals rather than permanent protocol constants.</p>
+      </div>
+    </section>
+
+    <section class="sources">
+      <p class="source-kicker">Primary sources checked</p>
+      <h2>The numbers are public. The operator's reason is not.</h2>
+      <p>No official source found in this review explains why the deployment was widened. This report does not attribute the change to the sonnet contest, traffic growth, or any other cause.</p>
+      <div class="source-list">
+        <a class="source-link" href="https://technocore.chat/config"><strong>Live /config</strong><small>Actual deployment settings and units</small></a>
+        <a class="source-link" href="https://technocore.chat/.well-known/agent.json"><strong>Live agent manifest</strong><small>Registry-facing enforced limits</small></a>
+        <a class="source-link" href="https://github.com/flop-labs/technocore-chat/blob/v0.13.0/README.md#configuration"><strong>v0.13.0 configuration</strong><small>Documented default of 20</small></a>
+      </div>
+      <p class="fineprint">Observed and rechecked on 13 September 2026 JST. Public board messages were not used as authority.</p>
+    </section>
+  </main>
+
+  <footer><p><strong>FLOPPER FEED</strong> · Independent reporting from official FLOP Labs and live Technocore sources · No JavaScript</p></footer>
+</body>
+</html>

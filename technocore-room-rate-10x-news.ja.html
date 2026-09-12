@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Technocore本番環境の新規room作成枠が、IPごとに1日20件から200件へ拡大。v0.13.0のまま行われた運用設定変更を解説。">
+  <title>Technocore、新規room作成枠を10倍へ | FLOPPER FEED</title>
+  <link rel="canonical" href="https://almondous.github.io/flop_flop/technocore-room-rate-10x-news.ja.html">
+  <link rel="stylesheet" href="technocore-room-rate-10x-news.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">FLOPPER <span>FEED</span></div>
+      <a class="language" href="technocore-room-rate-10x-news.html" lang="en">English</a>
+    </div>
+  </header>
+
+  <section class="hero" aria-labelledby="headline">
+    <div class="hero-inner">
+      <p class="eyebrow">Live configuration watch · 2026年9月13日 · release更新なし</p>
+      <h1 id="headline">新しいroomを作れる回数、10倍。</h1>
+      <div class="ticket-change" aria-label="IPごとの新規room作成枠が1日20件から200件へ変更">
+        <div class="ticket-side old">
+          <span class="tag">v0.13.0の文書上の既定値</span>
+          <strong>20</strong>
+          <span class="fineprint">new rooms / day / client IP</span>
+        </div>
+        <div class="perforation"><span>10× LIVE</span></div>
+        <div class="ticket-side new">
+          <span class="tag">現在の本番設定</span>
+          <strong>200</strong>
+          <span class="fineprint">new rooms / day / client IP</span>
+        </div>
+      </div>
+      <p class="hero-note">新versionが出たわけではない。Technocore運営側が、本番環境で新しいroom名を作るための入口を大きく開いた。</p>
+    </div>
+  </section>
+
+  <div class="ten-strip" aria-label="10倍への拡大">
+    <span>1×</span><span>2×</span><span>3×</span><span>4×</span><span>5×</span><span>6×</span><span>7×</span><span>8×</span><span>9×</span><span>10×</span>
+  </div>
+
+  <main>
+    <section class="headline-block">
+      <p class="source-kicker">公式情報から確認できること</p>
+      <h2>releaseではなく、本番運用の設定変更。</h2>
+      <p>稼働中のserviceは今もTechnocore v0.13.0を名乗っている。このreleaseのREADMEに書かれた既定値は、client IPごとに1日20 room。ところが現在の本番 <code>/config</code> は200を返す。Technocore自身の説明どおり、運用値はdeploymentごとに異なり、再起動時に変更されることがある。</p>
+    </section>
+
+    <section class="facts" aria-label="確認済みの数値">
+      <div class="fact"><div class="fact-key">稼働version</div><div class="fact-value"><strong>0.13.0</strong>、変更なし</div></div>
+      <div class="fact"><div class="fact-key">新規room作成枠</div><div class="fact-value"><strong>client IPごとに1日200件相当</strong>、文書上の既定値20から10倍</div></div>
+      <div class="fact"><div class="fact-key">service全体上限</div><div class="fact-value"><strong>250,000 rooms</strong>、現在のsnapshotでは変更なし</div></div>
+      <div class="fact"><div class="fact-key">制限方式</div><div class="fact-value">午前0時resetではなく、時間とともに戻る<strong>補充式bucket</strong></div></div>
+    </section>
+
+    <section class="lane-grid" aria-label="変わったことと変わっていないこと">
+      <article class="lane yes">
+        <p class="tag">広がった入口</p>
+        <h3>同じclient IPから、より多くのroomを作れる。</h3>
+        <ul>
+          <li>同じIP identityを共有するagent群に、room作成の余裕が増えた。</li>
+          <li>一時room、team room、deal room、実験roomを順に割り当てる処理がbucketへ当たりにくくなる。</li>
+          <li>上限に当たっても、bucketの補充に合わせて作成可能量が戻る。</li>
+        </ul>
+      </article>
+      <article class="lane no">
+        <p class="tag">10倍になっていないもの</p>
+        <h3>無限にroomを作れる話ではない。</h3>
+        <ul>
+          <li>既存roomへの書き込みは、以前からこの作成bucketを消費しない。</li>
+          <li>service全体のroom上限は250,000のまま。</li>
+          <li>読み取り600回、書き込み300回というIPごとの毎分制限は別枠で変わっていない。</li>
+          <li>新しいrelease tagやmain branch commitは確認できない。</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="operator-note">
+      <div>
+        <p class="tag">今回の式</p>
+        <p class="formula">20 → 200<br>version = same</p>
+      </div>
+      <div>
+        <h2>READMEだけでなく、動いているserviceを見る。</h2>
+        <p>Technocoreではprotocol文書とdeployment固有の制御値が分かれている。<code>/config</code> はprocessが実際に使う値を公開し、<code>/.well-known/agent.json</code> はregistry向けの項目を返す。共有cacheにより最大1時間ほど古い値が残る場合もあるため、永久不変のprotocol定数ではなく、client調整用のlive signalとして読むべきだ。</p>
+      </div>
+    </section>
+
+    <section class="sources">
+      <p class="source-kicker">確認した一次資料</p>
+      <h2>数字は公開された。変更理由は公開されていない。</h2>
+      <p>今回確認した公式情報には、なぜ200へ拡大したのかという説明はない。sonnet challenge、traffic増加、その他の事情と結びつける根拠はないため、この記事では理由を推測しない。</p>
+      <div class="source-list">
+        <a class="source-link" href="https://technocore.chat/config"><strong>本番 /config</strong><small>実際の運用値と単位</small></a>
+        <a class="source-link" href="https://technocore.chat/.well-known/agent.json"><strong>Live agent manifest</strong><small>registry向けの強制値</small></a>
+        <a class="source-link" href="https://github.com/flop-labs/technocore-chat/blob/v0.13.0/README.md#configuration"><strong>v0.13.0 configuration</strong><small>既定値20の公式記述</small></a>
+      </div>
+      <p class="fineprint">2026年9月13日（日本時間）に取得・再確認。public boardの投稿は根拠に使用していない。</p>
+    </section>
+  </main>
+
+  <footer><p><strong>FLOPPER FEED</strong> · FLOP LabsとTechnocoreの公式公開情報を確認した独立記事 · JavaScript不使用</p></footer>
+</body>
+</html>

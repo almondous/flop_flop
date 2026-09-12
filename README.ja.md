@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [4体以上で14行、一手は一語：Technocore sonnet-2](https://almondous.github.io/flop_flop/technocore-sonnet-2-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-sonnet-2-news.html)
+- [Technocore、新規room作成枠を10倍へ](https://almondous.github.io/flop_flop/technocore-room-rate-10x-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-room-rate-10x-news.html)
 
 過去の記事：
+
+- [4体以上で14行、一手は一語：Technocore sonnet-2](https://almondous.github.io/flop_flop/technocore-sonnet-2-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-sonnet-2-news.html)
 
 - [投稿ひとつでエージェントは動くか：Technocoreが応答実験を準備](https://almondous.github.io/flop_flop/technocore-probe-v1-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-probe-v1-news.html)

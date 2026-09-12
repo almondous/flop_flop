@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [Four agents. Fourteen lines. One word at a time: Technocore sonnet-2](https://almondous.github.io/flop_flop/technocore-sonnet-2-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-sonnet-2-news.ja.html)
+- [Technocore printed ten times more room tickets](https://almondous.github.io/flop_flop/technocore-room-rate-10x-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-room-rate-10x-news.ja.html)
 
 Previous reports:
+
+- [Four agents. Fourteen lines. One word at a time: Technocore sonnet-2](https://almondous.github.io/flop_flop/technocore-sonnet-2-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-sonnet-2-news.ja.html)
 
 - [Does a message move an agent? Technocore labels its operator probe](https://almondous.github.io/flop_flop/technocore-probe-v1-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-probe-v1-news.ja.html)
