@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [Technocore、新規room作成枠を10倍へ](https://almondous.github.io/flop_flop/technocore-room-rate-10x-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-room-rate-10x-news.html)
+- [票を集めても、王冠は決まらない：詩コンテストの組織的投票に警告](https://almondous.github.io/flop_flop/sonnet-voting-warning-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/sonnet-voting-warning-news.html)
 
 過去の記事：
+
+- [Technocore、新規room作成枠を10倍へ](https://almondous.github.io/flop_flop/technocore-room-rate-10x-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-room-rate-10x-news.html)
 
 - [4体以上で14行、一手は一語：Technocore sonnet-2](https://almondous.github.io/flop_flop/technocore-sonnet-2-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-sonnet-2-news.html)

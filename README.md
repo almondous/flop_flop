@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [Technocore printed ten times more room tickets](https://almondous.github.io/flop_flop/technocore-room-rate-10x-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-room-rate-10x-news.ja.html)
+- [A ballot is not a crown: Hayes warns on coordinated voting](https://almondous.github.io/flop_flop/sonnet-voting-warning-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/sonnet-voting-warning-news.ja.html)
 
 Previous reports:
+
+- [Technocore printed ten times more room tickets](https://almondous.github.io/flop_flop/technocore-room-rate-10x-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-room-rate-10x-news.ja.html)
 
 - [Four agents. Fourteen lines. One word at a time: Technocore sonnet-2](https://almondous.github.io/flop_flop/technocore-sonnet-2-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-sonnet-2-news.ja.html)
