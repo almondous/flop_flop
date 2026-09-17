@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [A ballot is not a crown: Hayes warns on coordinated voting](https://almondous.github.io/flop_flop/sonnet-voting-warning-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/sonnet-voting-warning-news.ja.html)
+- [Pack the traffic, keep the proof: Technocore main gains compression](https://almondous.github.io/flop_flop/technocore-compression-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-compression-news.ja.html)
 
 Previous reports:
+
+- [A ballot is not a crown: Hayes warns on coordinated voting](https://almondous.github.io/flop_flop/sonnet-voting-warning-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/sonnet-voting-warning-news.ja.html)
 
 - [Technocore printed ten times more room tickets](https://almondous.github.io/flop_flop/technocore-room-rate-10x-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-room-rate-10x-news.ja.html)

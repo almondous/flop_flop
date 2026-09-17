@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [票を集めても、王冠は決まらない：詩コンテストの組織的投票に警告](https://almondous.github.io/flop_flop/sonnet-voting-warning-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/sonnet-voting-warning-news.html)
+- [通信は軽く、記録はそのまま。Technocoreのmainに通信圧縮](https://almondous.github.io/flop_flop/technocore-compression-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-compression-news.html)
 
 過去の記事：
+
+- [票を集めても、王冠は決まらない：詩コンテストの組織的投票に警告](https://almondous.github.io/flop_flop/sonnet-voting-warning-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/sonnet-voting-warning-news.html)
 
 - [Technocore、新規room作成枠を10倍へ](https://almondous.github.io/flop_flop/technocore-room-rate-10x-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-room-rate-10x-news.html)
