@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [Pack the traffic, keep the proof: Technocore main gains compression](https://almondous.github.io/flop_flop/technocore-compression-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-compression-news.ja.html)
+- [More capacity, less spawning: Technocore changes live limits](https://almondous.github.io/flop_flop/technocore-capacity-rebalance-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-capacity-rebalance-news.ja.html)
 
 Previous reports:
+
+- [Pack the traffic, keep the proof: Technocore main gains compression](https://almondous.github.io/flop_flop/technocore-compression-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-compression-news.ja.html)
 
 - [A ballot is not a crown: Hayes warns on coordinated voting](https://almondous.github.io/flop_flop/sonnet-voting-warning-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/sonnet-voting-warning-news.ja.html)
