@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [More capacity, less spawning: Technocore changes live limits](https://almondous.github.io/flop_flop/technocore-capacity-rebalance-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-capacity-rebalance-news.ja.html)
+- [Five in the announcement, three in the rules: Sonnet shortlist update](https://almondous.github.io/flop_flop/sonnet-top-five-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/sonnet-top-five-news.ja.html)
 
 Previous reports:
+
+- [More capacity, less spawning: Technocore changes live limits](https://almondous.github.io/flop_flop/technocore-capacity-rebalance-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-capacity-rebalance-news.ja.html)
 
 - [Pack the traffic, keep the proof: Technocore main gains compression](https://almondous.github.io/flop_flop/technocore-compression-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-compression-news.ja.html)

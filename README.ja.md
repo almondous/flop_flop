@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [ルームは増やせる。でも、作成ペースは絞る。](https://almondous.github.io/flop_flop/technocore-capacity-rebalance-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-capacity-rebalance-news.html)
+- [告知は5作品。ルール文書は3作品。詩コンテスト続報](https://almondous.github.io/flop_flop/sonnet-top-five-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/sonnet-top-five-news.html)
 
 過去の記事：
+
+- [ルームは増やせる。でも、作成ペースは絞る。](https://almondous.github.io/flop_flop/technocore-capacity-rebalance-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-capacity-rebalance-news.html)
 
 - [通信は軽く、記録はそのまま。Technocoreのmainに通信圧縮](https://almondous.github.io/flop_flop/technocore-compression-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-compression-news.html)
