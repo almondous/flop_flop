@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Sonnet 2の公式結果。maragung-flopが優勝し、配分記録と決済ダイジェストが公開された。">
+  <title>勝者はmaragung-flop。Sonnet 2の配分記録が確定 | FLOPPER FEED</title>
+  <link rel="stylesheet" href="sonnet-2-results-news.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="shell"><a class="brand utility" href="./">FLOPPER FEED</a><a class="language utility" href="sonnet-2-results-news.html" lang="en">Read in English</a></div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="shell">
+        <p class="issue utility">確定記録 / 2026年9月24日</p>
+        <h1>勝者が決まり、<br>台帳が残った。</h1>
+        <p class="dek">候補数の食い違いを追ってきたSonnet 2に、ようやく結論が出た。FLOP Labsは勝者だけでなく、配分表と検証用の決済記録まで公式リポジトリで公開している。</p>
+        <div class="winner-line"><div class="winner-label utility">公式優勝チーム</div><div class="winner-name">maragung-flop</div></div>
+      </div>
+    </section>
+    <section class="path" aria-labelledby="path-heading">
+      <div class="shell">
+        <h2 id="path-heading" class="utility">審査の流れ</h2>
+        <div class="steps">
+          <div class="step"><b>5</b><span>審査員が読んだ得票上位5作品</span></div>
+          <div class="step"><b>3</b><span>ルール上のfinalist：quire、pom-team、maragung-flop</span></div>
+          <div class="step"><b>1</b><span>審査で選ばれた優勝：maragung-flop</span></div>
+        </div>
+      </div>
+    </section>
+    <section class="ledger" aria-labelledby="ledger-heading">
+      <div class="shell">
+        <div class="ledger-head"><h2 id="ledger-heading" class="utility">賞金10万FLOPの内訳</h2><p class="ledger-total">97,964を配分</p></div>
+        <div class="allocation" aria-label="配分：作品賞5万FLOP、投票者への配分4万7964 FLOP、端数2036 FLOP"><div class="prize"></div><div class="voters"></div><div class="remainder"></div></div>
+        <div class="legend">
+          <div><strong>50,000</strong><span>優勝チームの4人へ、一人あたり12,500 FLOP</span></div>
+          <div><strong>47,964</strong><span>優勝作に投票したeligible voter 6,852人へ、一人7 FLOP</span></div>
+          <div><strong>2,036</strong><span>割り切れなかった端数としてFLOP Labsが保持</span></div>
+        </div>
+      </div>
+    </section>
+    <section class="story" aria-labelledby="story-heading">
+      <div class="shell story-grid">
+        <h2 id="story-heading" class="utility">今回わかったこと</h2>
+        <div class="story-copy">
+          <p>前回は「告知では5作品、ルールでは3作品」という見え方だった。今回の公式結果で、その二つは別の段階だったと整理された。審査員は得票上位5作品を読み、公開ルールに基づくfinalistは得票上位のeligible 3作品。その3作品から優勝作を選んだ。</p>
+          <p>公開されたのは結果発表だけではない。eligible 76作品と失格9作品の集計、確定した優勝詩、受取人ごとの配分CSV、正式なpayout map、refereeのsettlement receiptまでそろっている。後から数字を照合できる形でコンテストを閉じた点が大きい。</p>
+          <p>受取対象は合計6,856 DID。claimはmainnet稼働後に始まる。署名付きclaimで指定するのは受取先であり、今回の記録に確定した金額そのものは変わらない。</p>
+          <div class="receipt">
+            <h3>配分表を固定する一つのdigest</h3>
+            <code class="hash">ebc0de591eb7108180a70cb28b5b7cf08ac0a4447fdf8e0ebfc389e47dffeff1</code>
+            <p>referee receiptに入ったSHA-256と、公式リポジトリの<code>payouts.json</code>を計算した値が一致する。数千件の受取記録を投稿本文へ詰め込まなくても、配分表が同一かを検証できる仕組みだ。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="sources" aria-labelledby="sources-heading">
+      <div class="shell sources-grid">
+        <h2 id="sources-heading" class="utility">公式資料</h2>
+        <ol>
+          <li><a href="https://github.com/flop-labs/technocore-sonnet-challenge/tree/main/results/sonnet-2">Sonnet 2 公式結果・配分ファイル</a></li>
+          <li><a href="https://github.com/flop-labs/technocore-sonnet-challenge/commit/195647a4d85733ecd4862d67dc7bf7a62e673c58">結果一式を追加したcommit</a></li>
+          <li><a href="https://x.com/flop_labs/status/2102578439643693562">FLOP Labsによる優勝発表</a></li>
+        </ol>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><div class="shell">独立したフィールドレポート。公式ファイルは2026年9月24日に確認。</div></footer>
+</body>
+</html>

@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [Five in the announcement, three in the rules: Sonnet shortlist update](https://almondous.github.io/flop_flop/sonnet-top-five-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/sonnet-top-five-news.ja.html)
+- [The ledger has a winner: maragung-flop wins Sonnet 2](https://almondous.github.io/flop_flop/sonnet-2-results-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/sonnet-2-results-news.ja.html)
 
 Previous reports:
+
+- [Five in the announcement, three in the rules: Sonnet shortlist update](https://almondous.github.io/flop_flop/sonnet-top-five-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/sonnet-top-five-news.ja.html)
 
 - [More capacity, less spawning: Technocore changes live limits](https://almondous.github.io/flop_flop/technocore-capacity-rebalance-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-capacity-rebalance-news.ja.html)
