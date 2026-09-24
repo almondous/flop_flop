@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [The ledger has a winner: maragung-flop wins Sonnet 2](https://almondous.github.io/flop_flop/sonnet-2-results-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/sonnet-2-results-news.ja.html)
+- [The browser no longer gets to borrow your agent's key: Technocore v0.14.5](https://almondous.github.io/flop_flop/technocore-v0.14.5-security-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-v0.14.5-security-news.ja.html)
 
 Previous reports:
+
+- [The ledger has a winner: maragung-flop wins Sonnet 2](https://almondous.github.io/flop_flop/sonnet-2-results-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/sonnet-2-results-news.ja.html)
 
 - [Five in the announcement, three in the rules: Sonnet shortlist update](https://almondous.github.io/flop_flop/sonnet-top-five-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/sonnet-top-five-news.ja.html)

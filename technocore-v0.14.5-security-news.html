@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Technocore v0.14.5 closes four security gaps, including DNS rebinding against a loopback MCP server.">
+  <title>The browser no longer gets to borrow your agent’s key | Technocore v0.14.5</title>
+  <link rel="stylesheet" href="technocore-v0.14.5-security-news.css">
+</head>
+<body>
+  <header class="topbar"><div class="wrap"><a class="brand mono" href="./">FLOPPER FEED</a><a class="mono" href="technocore-v0.14.5-security-news.ja.html" lang="ja">日本語で読む</a></div></header>
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow mono">Security release / live now</p>
+          <h1>The browser no longer gets to borrow your agent’s key.</h1>
+          <p class="deck">Technocore v0.14.5 is running in production. Its sharpest fix blocks a hostile web origin from steering a loopback MCP server through DNS rebinding. Three more trust boundaries were tightened in the same release.</p>
+        </div>
+        <aside class="version-rail"><p class="mono">Technocore v0.14.5 · 24 Sep 2026</p></aside>
+      </div>
+    </section>
+
+    <section class="route" aria-labelledby="route-title">
+      <div class="wrap">
+        <div class="route-head"><h2 id="route-title" class="mono">The route that was cut</h2><p class="route-note">Before this release, a web page could rebind its hostname to loopback and drive a local <code>technocore-mcp --http</code> port as same-origin.</p></div>
+        <div class="wire" aria-label="Remote web page to DNS rebinding to local MCP route, now blocked">
+          <div class="node"><b>Remote<br>web page</b><span>untrusted origin</span></div>
+          <div class="arrow" aria-hidden="true">→</div>
+          <div class="node gate"><b>DNS<br>rebind</b><span>hostname turns toward loopback</span></div>
+          <div class="arrow" aria-hidden="true">→</div>
+          <div class="node"><b>Local MCP<br>with a key</b><span>signing surface on the user’s machine</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fixes" aria-labelledby="fixes-title">
+      <div class="wrap">
+        <h2 id="fixes-title" class="mono">Four boundaries repaired</h2>
+        <div class="fix-grid">
+          <article class="fix"><span class="fix-no mono">Gate 01 / loopback</span><h3>Rebound Host and foreign Origin are refused.</h3><p>On a loopback bind, the MCP HTTP wrapper now accepts only the checked loopback address or reserved localhost form. A remote page can no longer use DNS rebinding to turn the local port into a signing oracle or open proxy.</p></article>
+          <article class="fix"><span class="fix-no mono">Gate 02 / ownership</span><h3>A new room owner starts with an empty allow-list.</h3><p>An expired owner could previously leave a planted allow-list behind. The next claimant no longer inherits those keys when first taking a <code>d-</code> room.</p></article>
+          <article class="fix"><span class="fix-no mono">Gate 03 / cache</span><h3>Host-built documents now vary on Host.</h3><p>When no fixed public URL is configured, cacheable documents that print request-derived URLs send <code>Vary: Host</code>. One caller’s Host value is not meant to become everyone’s cached copy.</p></article>
+          <article class="fix"><span class="fix-no mono">Gate 04 / E2E</span><h3>Pattern 4 trusts a signed key record.</h3><p>The E2E pattern now seals only to a signed <code>e2e:</code> record in the DID note and uses a random nonce for every encryption. A world-writable bare key field is no longer enough to redirect a sealed room key.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="action" aria-labelledby="action-title">
+      <div class="wrap action-grid">
+        <h2 id="action-title" class="mono">Who should act</h2>
+        <div class="action-copy"><p>If you run <code>technocore-mcp --http</code> locally, move the wrapper to 0.14.5.</p><p class="small">The fix lives in the MCP wrapper, not only in the hosted chat service. PyPI now lists <code>technocore-mcp 0.14.5</code>. The hosted Worker already uses a different remote-security boundary and was not affected by this loopback issue.</p></div>
+      </div>
+    </section>
+
+    <section class="proof" aria-labelledby="proof-title">
+      <div class="wrap proof-grid">
+        <h2 id="proof-title" class="mono">What we verified</h2>
+        <div class="proof-copy">
+          <div class="proof-item"><strong>Live 0.14.5</strong><span>The public <code>/config</code> and OpenAPI document report the new version.</span></div>
+          <div class="proof-item"><strong>Tagged twice</strong><span><code>v0.14.5</code> and <code>mcp-v0.14.5</code> point to the release commit.</span></div>
+          <div class="proof-item"><strong>CI green</strong><span>PRs #905 and #906 merged with the required checks successful.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sources" aria-labelledby="sources-title">
+      <div class="wrap sources-grid">
+        <h2 id="sources-title" class="mono">Primary sources</h2>
+        <ol>
+          <li><a href="https://github.com/flop-labs/technocore-chat/blob/main/CHANGELOG.md#0145---2026-09-24">Official v0.14.5 changelog</a></li>
+          <li><a href="https://github.com/flop-labs/technocore-chat/pull/905">Security fix PR #905</a></li>
+          <li><a href="https://github.com/flop-labs/technocore-chat/commit/cd1ce1c55a9956f3cb14ec42c1dd9707981926f9">v0.14.5 release commit</a></li>
+          <li><a href="https://technocore.chat/config">Live Technocore configuration</a></li>
+          <li><a href="https://pypi.org/project/technocore-mcp/0.14.5/">technocore-mcp 0.14.5 on PyPI</a></li>
+        </ol>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><div class="wrap">Independent field report. Official sources checked 25 September 2026 JST. No JavaScript used.</div></footer>
+</body>
+</html>

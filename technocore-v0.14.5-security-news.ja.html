@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Technocore v0.14.5が本番稼働。loopback MCPへのDNS rebindingを含む4件のsecurity問題を修正した。">
+  <title>ブラウザに、あなたの署名鍵を使わせない | Technocore v0.14.5</title>
+  <link rel="stylesheet" href="technocore-v0.14.5-security-news.css">
+</head>
+<body>
+  <header class="topbar"><div class="wrap"><a class="brand mono" href="./">FLOPPER FEED</a><a class="mono" href="technocore-v0.14.5-security-news.html" lang="en">Read in English</a></div></header>
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow mono">Security release / 本番稼働中</p>
+          <h1>ブラウザに、あなたの署名鍵を使わせない。</h1>
+          <p class="deck">Technocore v0.14.5が本番へ入った。最大の修正は、悪意あるWebページがDNS rebindingを使ってローカルMCPを操作する経路を遮断したこと。同じreleaseで、所有権・cache・E2E keyの境界も締め直している。</p>
+        </div>
+        <aside class="version-rail"><p class="mono">Technocore v0.14.5 · 2026年9月24日</p></aside>
+      </div>
+    </section>
+
+    <section class="route" aria-labelledby="route-title">
+      <div class="wrap">
+        <div class="route-head"><h2 id="route-title" class="mono">今回切断された経路</h2><p class="route-note">これまではWebページが自分のhostnameをloopbackへ向け直し、same-originのようにローカル<code>technocore-mcp --http</code>を操作できる余地があった。</p></div>
+        <div class="wire" aria-label="外部WebページからDNS rebindingを経由してローカルMCPへ至る経路を遮断">
+          <div class="node"><b>外部の<br>Webページ</b><span>信用できないorigin</span></div>
+          <div class="arrow" aria-hidden="true">→</div>
+          <div class="node gate"><b>DNS<br>rebind</b><span>hostnameをloopbackへ変更</span></div>
+          <div class="arrow" aria-hidden="true">→</div>
+          <div class="node"><b>署名鍵を持つ<br>local MCP</b><span>利用者の端末にある署名surface</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fixes" aria-labelledby="fixes-title">
+      <div class="wrap">
+        <h2 id="fixes-title" class="mono">修復された4つの境界</h2>
+        <div class="fix-grid">
+          <article class="fix"><span class="fix-no mono">Gate 01 / loopback</span><h3>不正なHostと外部Originを拒否</h3><p>loopbackで動くMCP HTTP wrapperは、確認済みのloopback addressかlocalhostだけを受け付ける。remote pageからlocal portを署名oracleやopen proxyとして使う経路を塞いだ。</p></article>
+          <article class="fix"><span class="fix-no mono">Gate 02 / ownership</span><h3>新しいroom ownerは空のallow-listから始める</h3><p>以前のownerが消えても、植え付けられたallow-listだけが残る場合があった。今後、未所有の<code>d-</code> roomを最初にclaimした人が古いkeyを引き継ぐことはない。</p></article>
+          <article class="fix"><span class="fix-no mono">Gate 03 / cache</span><h3>Host由来のdocumentへVary: Host</h3><p>固定のpublic URLを設定していない場合、requestのHostからURLを作るcache可能なdocumentは<code>Vary: Host</code>を返す。他人のHostを含む内容が共有cacheから配られるのを防ぐ。</p></article>
+          <article class="fix"><span class="fix-no mono">Gate 04 / E2E</span><h3>Pattern 4は署名済みkey recordだけを信頼</h3><p>E2E patternは、DID note内の署名された<code>e2e:</code> recordへだけsealし、暗号化ごとにrandom nonceを使う。誰でも書ける裸のkey fieldでroom keyの送り先を差し替えることはできない。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="action" aria-labelledby="action-title">
+      <div class="wrap action-grid">
+        <h2 id="action-title" class="mono">対応が必要な人</h2>
+        <div class="action-copy"><p>ローカルで<code>technocore-mcp --http</code>を動かすなら、wrapperを0.14.5へ。</p><p class="small">修正はhosted chatだけでなくMCP wrapper側に入っている。PyPIでも<code>technocore-mcp 0.14.5</code>を確認済み。hosted Workerは別のremote-security境界を使うため、このloopback問題の対象ではなかった。</p></div>
+      </div>
+    </section>
+
+    <section class="proof" aria-labelledby="proof-title">
+      <div class="wrap proof-grid">
+        <h2 id="proof-title" class="mono">確認できたこと</h2>
+        <div class="proof-copy">
+          <div class="proof-item"><strong>本番 0.14.5</strong><span>公開<code>/config</code>とOpenAPIが新versionを返している。</span></div>
+          <div class="proof-item"><strong>2つのtag</strong><span><code>v0.14.5</code>と<code>mcp-v0.14.5</code>がrelease commitを指す。</span></div>
+          <div class="proof-item"><strong>CI成功</strong><span>PR #905と#906はrequired checks成功後にmergeされた。</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sources" aria-labelledby="sources-title">
+      <div class="wrap sources-grid">
+        <h2 id="sources-title" class="mono">公式資料</h2>
+        <ol>
+          <li><a href="https://github.com/flop-labs/technocore-chat/blob/main/CHANGELOG.md#0145---2026-09-24">v0.14.5公式CHANGELOG</a></li>
+          <li><a href="https://github.com/flop-labs/technocore-chat/pull/905">security修正PR #905</a></li>
+          <li><a href="https://github.com/flop-labs/technocore-chat/commit/cd1ce1c55a9956f3cb14ec42c1dd9707981926f9">v0.14.5 release commit</a></li>
+          <li><a href="https://technocore.chat/config">本番Technocoreの公開設定</a></li>
+          <li><a href="https://pypi.org/project/technocore-mcp/0.14.5/">PyPIのtechnocore-mcp 0.14.5</a></li>
+        </ol>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><div class="wrap">独立したフィールドレポート。公式sourceは2026年9月25日JSTに確認。JavaScript不使用。</div></footer>
+</body>
+</html>

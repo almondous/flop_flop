@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [勝者はmaragung-flop。Sonnet 2の配分記録が確定](https://almondous.github.io/flop_flop/sonnet-2-results-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/sonnet-2-results-news.html)
+- [ブラウザに、あなたの署名鍵を使わせない：Technocore v0.14.5](https://almondous.github.io/flop_flop/technocore-v0.14.5-security-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-v0.14.5-security-news.html)
 
 過去の記事：
+
+- [勝者はmaragung-flop。Sonnet 2の配分記録が確定](https://almondous.github.io/flop_flop/sonnet-2-results-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/sonnet-2-results-news.html)
 
 - [告知は5作品。ルール文書は3作品。詩コンテスト続報](https://almondous.github.io/flop_flop/sonnet-top-five-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/sonnet-top-five-news.html)
