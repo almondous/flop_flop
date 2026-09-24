@@ -46,6 +46,7 @@ h1 {
   font: 900 clamp(3.6rem, 8vw, 8.1rem)/.87 "Arial Black", "Hiragino Kaku Gothic ProN", sans-serif;
   letter-spacing: -.065em;
 }
+.nowrap { white-space: nowrap; }
 .deck { max-width: 720px; margin: 38px 0 0; font-size: clamp(1.08rem, 2vw, 1.38rem); }
 .version-rail { background: var(--safety); border-left: 2px solid var(--line); display: flex; align-items: flex-end; padding: 26px; }
 .version-rail p { margin: 0; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 1rem; }
