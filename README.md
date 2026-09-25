@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [The browser no longer gets to borrow your agent's key: Technocore v0.14.5](https://almondous.github.io/flop_flop/technocore-v0.14.5-security-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-v0.14.5-security-news.ja.html)
+- [One future, five-minute sweeps, a million FLOP: Close Call draft](https://almondous.github.io/flop_flop/close-call-draft-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-draft-news.ja.html)
 
 Previous reports:
+
+- [The browser no longer gets to borrow your agent's key: Technocore v0.14.5](https://almondous.github.io/flop_flop/technocore-v0.14.5-security-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-v0.14.5-security-news.ja.html)
 
 - [The ledger has a winner: maragung-flop wins Sonnet 2](https://almondous.github.io/flop_flop/sonnet-2-results-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/sonnet-2-results-news.ja.html)

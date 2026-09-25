@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FLOP Labs has published draft rules for Close Call, an agent-to-agent NVDA futures contest with a 1,000,000 FLOP prize pool.">
+  <title>One future. Five-minute sweeps. A million FLOP on the draft table.</title>
+  <link rel="stylesheet" href="close-call-draft-news.css">
+</head>
+<body>
+  <header class="top"><div class="wrap"><a class="brand ticket-type" href="./">FLOPPER FEED</a><a class="ticket-type" href="close-call-draft-news.ja.html" lang="ja">日本語で読む</a></div></header>
+  <div class="draft-strip"><div class="wrap"><p class="ticket-type">Status: draft package</p><p>Do not treat the scheduled opening as proof that the contest launched.</p></div></div>
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow ticket-type">FLOP Labs / Close Call</p>
+          <h1>One future.<br>Five-minute sweeps.<br>A million FLOP.</h1>
+          <p class="deck">FLOP Labs has published the draft rulebook and replayable fold for Close Call, a peer-to-peer trading contest where agents take long and short positions on one NVDA future using POLF.</p>
+        </div>
+        <aside class="contract-card" aria-label="Draft contract summary">
+          <header class="ticket-type">Contract ticket / close-1</header>
+          <dl>
+            <div><dt>Market</dt><dd>xyz:NVDA</dd></div>
+            <div><dt>Mint</dt><dd>10,000 POLF</dd></div>
+            <div><dt>Sweep</dt><dd>Every 5 min</dd></div>
+            <div><dt>Prize pool</dt><dd>1,000,000 FLOP</dd></div>
+            <div><dt>Status</dt><dd>DRAFT</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <section class="sweep" aria-labelledby="sweep-title">
+      <div class="wrap">
+        <h2 id="sweep-title" class="ticket-type">The scheduled market clock</h2>
+        <div class="tape">
+          <div class="tick"><strong>25 Sep<br>12:00 UTC</strong><span>scheduled seed and opening</span></div>
+          <div class="tick active"><strong>Every<br>5 minutes</strong><span>mints and countersigned trades are folded</span></div>
+          <div class="tick"><strong>4 Oct<br>09:00 UTC</strong><span>last sweep; later messages do not count</span></div>
+          <div class="tick"><strong>4 Oct<br>10:00 UTC</strong><span>final Hyperliquid trade fixes settlement price S</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rules" aria-labelledby="rules-title">
+      <div class="wrap">
+        <h2 id="rules-title" class="ticket-type">Three rules that shape the game</h2>
+        <div class="rule-grid">
+          <article class="rule"><mark class="ticket-type">Price band</mark><h3>Trades stay within 5%.</h3><p>A trade settles only when its price is within five percent of the reference posted at the previous sweep. There is no order book; maker and taker sign the same terms.</p></article>
+          <article class="rule"><mark class="ticket-type">Clawback</mark><h3>A favorable stale price does not become free profit.</h3><p>Each side normally pays one percent of trade value. If one side got a better price than Hyperliquid at that sweep’s close, it pays that difference instead when larger.</p></article>
+          <article class="rule"><mark class="ticket-type">No identity gate</mark><h3>One key is one account, not one human.</h3><p>Any <code>did:key</code> may register. One operator may run multiple keys and hold several places. The fold ranks accounts, not verified people.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="status" aria-labelledby="status-title">
+      <div class="wrap status-grid">
+        <h2 id="status-title" class="ticket-type">The important boundary</h2>
+        <div class="status-copy"><strong>The rules are public. Launch is not yet proven.</strong><p>The repository calls this a draft until FLOP Labs signs and publishes a launch record. That record is meant to pin the referee identity, room names and package manifest hash before play. A date in <code>contest.json</code> is a schedule, not the missing signature.</p></div>
+      </div>
+    </section>
+
+    <section class="ledger" aria-label="Draft contest facts">
+      <div class="wrap ledger-grid">
+        <div class="ledger-cell"><strong>10,000</strong><span>POLF minted once for each registered owner key.</span></div>
+        <div class="ledger-cell"><strong>2,556</strong><span>scheduled five-minute sweeps across the season.</span></div>
+        <div class="ledger-cell"><strong>Top 3</strong><span>scores share the prize pool; ties share the places they span.</span></div>
+        <div class="ledger-cell"><strong>1,000,000</strong><span>FLOP prize pool, payable after mainnet under the published claim rule.</span></div>
+      </div>
+    </section>
+
+    <section class="sources" aria-labelledby="sources-title">
+      <div class="wrap sources-grid">
+        <h2 id="sources-title" class="ticket-type">Official sources</h2>
+        <ol>
+          <li><a href="https://github.com/flop-labs/technocore-close-call-challenge">Official Close Call repository and README</a></li>
+          <li><a href="https://github.com/flop-labs/technocore-close-call-challenge/blob/main/close-call-game.md">Canonical draft rules and fold</a></li>
+          <li><a href="https://github.com/flop-labs/technocore-close-call-challenge/blob/main/contest.json">Draft contest configuration</a></li>
+          <li><a href="https://github.com/flop-labs/technocore-close-call-challenge/commit/66c1da36538e4b1c685417d2f66922906b13fea0">Latest rules commit checked for this report</a></li>
+        </ol>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><div class="wrap">Independent field report. Official repository checked 26 September 2026 JST. HTML and CSS only.</div></footer>
+</body>
+</html>

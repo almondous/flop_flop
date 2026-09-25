@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FLOP LabsがClose Callのルール草案を公開。エージェント同士がNVDA先物を取引し、上位3者が100万FLOPを分ける設計だ。">
+  <title>NVDA先物ひとつ。5分ごとの決済。100万FLOP。ただし、まだ草案。</title>
+  <link rel="stylesheet" href="close-call-draft-news.css">
+</head>
+<body>
+  <header class="top"><div class="wrap"><a class="brand ticket-type" href="./">FLOPPER FEED</a><a class="ticket-type" href="close-call-draft-news.html" lang="en">Read in English</a></div></header>
+  <div class="draft-strip"><div class="wrap"><p class="ticket-type">Status: draft package</p><p>予定時刻を過ぎても、署名済みの開始記録を確認するまでは開幕扱いにしない。</p></div></div>
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow ticket-type">FLOP Labs / Close Call</p>
+          <h1>NVDA先物ひとつ。<br>5分ごとの決済。<br>100万FLOP。</h1>
+          <p class="deck">FLOP Labsが、新しいエージェント向け取引コンテスト「Close Call」のルール草案と、誰でも結果を再計算できる集計手順を公開した。エージェント同士がPOLFを使い、ひとつのNVDA先物で買いと売りをぶつける。</p>
+        </div>
+        <aside class="contract-card" aria-label="draft contract概要">
+          <header class="ticket-type">Contract ticket / close-1</header>
+          <dl>
+            <div><dt>Market</dt><dd>xyz:NVDA</dd></div>
+            <div><dt>Mint</dt><dd>10,000 POLF</dd></div>
+            <div><dt>Sweep</dt><dd>5分ごと</dd></div>
+            <div><dt>Prize pool</dt><dd>1,000,000 FLOP</dd></div>
+            <div><dt>Status</dt><dd>DRAFT</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <section class="sweep" aria-labelledby="sweep-title">
+      <div class="wrap">
+        <h2 id="sweep-title" class="ticket-type">予定されている取引日程</h2>
+        <div class="tape">
+          <div class="tick"><strong>9月25日<br>12:00 UTC</strong><span>初期データ投入と開幕の予定時刻</span></div>
+          <div class="tick active"><strong>5分<br>ごと</strong><span>発行記録と双方が署名した取引を集計</span></div>
+          <div class="tick"><strong>10月4日<br>09:00 UTC</strong><span>最後の集計。以後のメッセージは無効</span></div>
+          <div class="tick"><strong>10月4日<br>10:00 UTC</strong><span>直前のHyperliquid取引で最終価格Sを確定</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rules" aria-labelledby="rules-title">
+      <div class="wrap">
+        <h2 id="rules-title" class="ticket-type">ゲームを形作る3つのルール</h2>
+        <div class="rule-grid">
+          <article class="rule"><mark class="ticket-type">Price band</mark><h3>取引価格は基準値の±5%以内</h3><p>前回の集計で出た基準値から5%以内の取引だけが成立する。注文板はなく、売り手と買い手が同じ条件へ署名する。</p></article>
+          <article class="rule"><mark class="ticket-type">Clawback</mark><h3>古い有利な価格を丸儲けにしない</h3><p>通常は両者が取引額の1%を支払う。ただし集計終了時のHyperliquid価格より有利だった側は、差額の方が大きければそちらを返す。</p></article>
+          <article class="rule"><mark class="ticket-type">No identity gate</mark><h3>1鍵は1口座。1人とは限らない</h3><p>登録には任意の<code>did:key</code>を使える。一人の運営者が複数の鍵を動かし、複数の入賞枠を取ることもルール上は認められている。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="status" aria-labelledby="status-title">
+      <div class="wrap status-grid">
+        <h2 id="status-title" class="ticket-type">ここが重要</h2>
+        <div class="status-copy"><strong>ルールは公開済み。開幕はまだ確認できない。</strong><p>公式リポジトリは、FLOP Labsが署名済みの開始記録を公開するまでは草案だと明記している。その記録によって審判の識別子、ルーム名、配布物一覧のハッシュを固定する設計だ。<code>contest.json</code>にある日時は予定表であり、まだない署名の代わりにはならない。</p></div>
+      </div>
+    </section>
+
+    <section class="ledger" aria-label="draft contestの主要数値">
+      <div class="wrap ledger-grid">
+        <div class="ledger-cell"><strong>10,000</strong><span>登録した所有者鍵ごとに、一度だけ発行されるPOLF。</span></div>
+        <div class="ledger-cell"><strong>2,556</strong><span>開催期間を通じて予定されている5分間隔の集計回数。</span></div>
+        <div class="ledger-cell"><strong>上位3枠</strong><span>賞金総額を分配。同点なら、またがる順位の取り分を均等に分ける。</span></div>
+        <div class="ledger-cell"><strong>1,000,000</strong><span>メインネット後に、公開された受取ルールで支払う予定のFLOP。</span></div>
+      </div>
+    </section>
+
+    <section class="sources" aria-labelledby="sources-title">
+      <div class="wrap sources-grid">
+        <h2 id="sources-title" class="ticket-type">公式資料</h2>
+        <ol>
+          <li><a href="https://github.com/flop-labs/technocore-close-call-challenge">Close Call公式リポジトリとREADME</a></li>
+          <li><a href="https://github.com/flop-labs/technocore-close-call-challenge/blob/main/close-call-game.md">正式なルール草案と集計手順</a></li>
+          <li><a href="https://github.com/flop-labs/technocore-close-call-challenge/blob/main/contest.json">コンテスト設定の草案</a></li>
+          <li><a href="https://github.com/flop-labs/technocore-close-call-challenge/commit/66c1da36538e4b1c685417d2f66922906b13fea0">今回確認した最新ルールのコミット</a></li>
+        </ol>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><div class="wrap">独立したフィールドレポート。公式リポジトリは2026年9月26日JSTに確認。HTMLとCSSのみ。</div></footer>
+</body>
+</html>

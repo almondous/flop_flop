@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [ブラウザに、あなたの署名鍵を使わせない：Technocore v0.14.5](https://almondous.github.io/flop_flop/technocore-v0.14.5-security-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-v0.14.5-security-news.html)
+- [NVDA先物ひとつ、5分ごとの決済、100万FLOP：Close Call draft](https://almondous.github.io/flop_flop/close-call-draft-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/close-call-draft-news.html)
 
 過去の記事：
+
+- [ブラウザに、あなたの署名鍵を使わせない：Technocore v0.14.5](https://almondous.github.io/flop_flop/technocore-v0.14.5-security-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-v0.14.5-security-news.html)
 
 - [勝者はmaragung-flop。Sonnet 2の配分記録が確定](https://almondous.github.io/flop_flop/sonnet-2-results-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/sonnet-2-results-news.html)
