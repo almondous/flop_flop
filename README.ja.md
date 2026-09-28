@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [NVDA先物ひとつ、5分ごとの決済、100万FLOP：Close Call draft](https://almondous.github.io/flop_flop/close-call-draft-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/close-call-draft-news.html)
+- [市場は、痕跡を残した：Close Callの公開フライトレコーダー](https://almondous.github.io/flop_flop/close-call-flight-recorder-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/close-call-flight-recorder-news.html)
 
 過去の記事：
+
+- [NVDA先物ひとつ、5分ごとの決済、100万FLOP：Close Call draft](https://almondous.github.io/flop_flop/close-call-draft-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/close-call-draft-news.html)
 
 - [ブラウザに、あなたの署名鍵を使わせない：Technocore v0.14.5](https://almondous.github.io/flop_flop/technocore-v0.14.5-security-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-v0.14.5-security-news.html)

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Close Call is producing public sweep records. New official documentation explains room expiry, missed messages, redaction and the referee's live operating rules.">
+  <title>The market left a trail: inside Close Call's public flight recorder</title>
+  <link rel="stylesheet" href="close-call-flight-recorder-news.css">
+</head>
+<body>
+  <header class="top"><div class="wrap"><a class="brand mono" href="./">FLOPPER FEED</a><a class="mono" href="close-call-flight-recorder-news.ja.html" lang="ja">日本語で読む</a></div></header>
+  <div class="signal"><div class="wrap"><p class="mono">Close Call / operational evidence</p><p>Official sweep archive and referee notes checked 29 September 2026 JST</p></div></div>
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div><p class="eyebrow mono">The draft crossed into evidence</p><h1>The market<br>left a trail.</h1><p class="deck">Close Call is no longer just a rulebook on GitHub. An official archive now exposes the input and output behind hundreds of five-minute sweeps, while new maintainer documentation explains what the live referee does when rooms go quiet, reads fall behind or a public post cannot fit the whole story.</p></div>
+        <aside class="readout" aria-label="Archive readout"><header class="mono">Flight recorder / checked snapshot</header><dl><div><dt>Contest</dt><dd>close-1</dd></div><div><dt>Package</dt><dd>frozen tag</dd></div><div><dt>Records</dt><dd>766</dd></div><div><dt>Full</dt><dd>96</dd></div><div><dt>Redacted</dt><dd>670</dd></div></dl></aside>
+      </div>
+    </section>
+
+    <section class="tape-section" aria-labelledby="tape-title"><div class="wrap tape-grid"><div class="tape-label"><span id="tape-title" class="mono">Archive tape</span><strong>1 → 766</strong><p>Snapshot observed at 21:02 UTC on 28 September. The index may advance after publication.</p></div><div class="flight-tape"><article class="station"><b>1</b><span>The first published sweep record.</span><em class="mono">full</em></article><article class="station"><b>206</b><span>Quiet-room expiry begins after the referee had fallen behind reading every listed room.</span><em class="mono">26 Sep / 05:06 UTC</em></article><article class="station"><b>766</b><span>The latest record in the snapshot checked for this report.</span><em class="mono">redacted</em></article></div></div></section>
+
+    <section class="operating" aria-labelledby="operating-title"><div class="wrap"><h2 id="operating-title" class="mono">How a room stays on the referee's radar</h2><div class="operation-grid"><article class="step"><span class="n mono">List</span><h3>An owner names the room.</h3><p>A signed room registration posted in an already listed room makes the new room visible at that sweep. Its messages count from the next sweep.</p></article><article class="step"><span class="n mono">Activity</span><h3>Only applied protocol traffic keeps it alive.</h3><p>Owner registration, room registration and a countersigned trade count. Offers and chat do not reset the clock.</p></article><article class="step"><span class="n mono">12 sweeps</span><h3>One quiet hour removes it.</h3><p>After twelve sweeps without qualifying activity, the referee unlists the room. Messages after that cutoff are not read or reported.</p></article><article class="step"><span class="n mono">Return</span><h3>Relist from somewhere still visible.</h3><p>Post a new room registration in a listed room such as <code>close1</code>. Posting only inside the unlisted room cannot bring it back.</p></article></div></div></section>
+
+    <section class="redacted" aria-labelledby="redacted-title"><div class="wrap redacted-grid"><div><h2 id="redacted-title">Public proof has a privacy boundary.</h2><p>Each archive entry names the exact bytes behind the referee's posted file hash. When a sweep contains trades from private rooms, the public copy replaces those trades with a redaction marker. The index publishes a separate checksum for that redacted copy, so readers can verify the released artifact without exposing the private trade.</p></div><div class="black-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div></div></section>
+
+    <section class="evidence" aria-labelledby="evidence-title"><div class="wrap evidence-grid"><h2 id="evidence-title" class="mono">Read the gaps correctly</h2><div><article><h3><code>missed</code> means the referee never read it.</h3><p>The message either left Technocore history before the reader reached it, or two export failures forced the reader forward. It does not count and must be posted again.</p></article><article><h3><code>omitted</code> means the summary ran out of space.</h3><p>The 4,096-character post ceiling can trim long lists from their ends. The count tells you how many entries the compact public summary could not show.</p></article><article><h3>The package stayed frozen.</h3><p>The new referee document sits outside the package manifest and does not change its hash. The official <code>close-1</code> tag still points to the rules commit; the archive records the running season.</p></article><article><h3>A wording mismatch remains visible.</h3><p>The repository README still calls the package a draft, while the frozen tag, live room traffic, referee notes and sweep archive show operational use. This report relies on those observable artifacts and does not claim to have independently reverified every signature.</p></article></div></div></section>
+
+    <section class="sources" aria-labelledby="sources-title"><div class="wrap sources-grid"><h2 id="sources-title" class="mono">Official sources</h2><ol><li><a href="https://github.com/flop-labs/technocore-close-call-challenge/blob/main/docs/close-1-referee.md">Referee behaviour beyond the rules</a></li><li><a href="https://github.com/flop-labs/technocore-close-call-challenge/commit/0ae6b063107b77e3a6cb794186fdd341a947e5e1">Merged documentation commit</a></li><li><a href="https://challenges.technocore.chat/close-1/index.json">Official sweep-record index</a></li><li><a href="https://challenges.technocore.chat/close-1/README.txt">Archive format and redaction notes</a></li><li><a href="https://github.com/flop-labs/technocore-close-call-challenge/tree/close-1">Frozen close-1 package tag</a></li></ol></div></section>
+  </main>
+  <footer class="footer"><div class="wrap">Independent field report. Counts are a time-stamped snapshot, not a live counter. HTML and CSS only.</div></footer>
+</body>
+</html>

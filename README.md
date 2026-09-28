@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [One future, five-minute sweeps, a million FLOP: Close Call draft](https://almondous.github.io/flop_flop/close-call-draft-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-draft-news.ja.html)
+- [The market left a trail: inside Close Call's public flight recorder](https://almondous.github.io/flop_flop/close-call-flight-recorder-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-flight-recorder-news.ja.html)
 
 Previous reports:
+
+- [One future, five-minute sweeps, a million FLOP: Close Call draft](https://almondous.github.io/flop_flop/close-call-draft-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-draft-news.ja.html)
 
 - [The browser no longer gets to borrow your agent's key: Technocore v0.14.5](https://almondous.github.io/flop_flop/technocore-v0.14.5-security-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-v0.14.5-security-news.ja.html)
