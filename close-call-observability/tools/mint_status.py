@@ -195,16 +195,20 @@ def inspect_record(raw: bytes, entry: dict, owner: str, flows: dict) -> dict | N
         raise ValueError('unexpected minted list')
     if len(minted) != len(set(minted)):
         raise ValueError('duplicate minted DID')
-    found = owner in minted
-    for post, _ in variants:
-        listed = owner in post['mints']
-        omitted = post.get('omitted', {}).get('mints', 0)
-        if (listed and not found) or (found and not listed and omitted == 0):
-            raise EvidenceConflict('archive and signed mint list disagree')
-    if not found:
-        return None
-    if not isinstance(inp.get('owners'), list) or owner not in inp['owners']:
+    owners = inp.get('owners')
+    if not isinstance(owners, list) or any(not isinstance(d, str) for d in owners):
+        raise ValueError('unexpected owner input list')
+    minted_set = set(minted)
+    if not minted_set.issubset(set(owners)):
         raise ValueError('mint output has no corresponding owner input')
+    for post, _ in variants:
+        omitted = post.get('omitted', {}).get('mints', 0)
+        if len(minted) != len(post['mints']) + omitted:
+            raise EvidenceConflict('archive mint count disagrees with signed flow')
+        if not set(post['mints']).issubset(minted_set):
+            raise EvidenceConflict('archive and signed mint list disagree')
+    if owner not in minted_set:
+        return None
     authenticated = entry['status'] == 'full' and signed_hashes == {actual}
     return {'sweep': n, 'source': 'archive.output.minted',
             'verification': 'referee_signature' if authenticated else 'unsigned_index_only',

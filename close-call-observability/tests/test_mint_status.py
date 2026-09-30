@@ -184,8 +184,41 @@ class RecordTests(unittest.TestCase):
 
     def test_unlisted_with_omissions_is_not_conflict(self):
         raw, entry = record()
-        found = m.inspect_record(raw, entry, OWNER, {12: [(flow(file=entry['file'], omitted=100), {})]})
+        found = m.inspect_record(raw, entry, OWNER, {12: [(flow(file=entry['file'], omitted=1), {})]})
         self.assertEqual(found['verification'], 'referee_signature')
+
+    def test_signed_mint_count_mismatch_with_or_without_target(self):
+        for owners in ([OWNER], [OTHER]):
+            with self.subTest(owners=owners):
+                raw, entry = record(owners=owners, redacted=True)
+                f = flow(file=entry['file'], omitted=2)
+                with self.assertRaises(m.EvidenceConflict):
+                    m.inspect_record(raw, entry, OWNER, {12: [(f, {})]})
+
+    def test_other_listed_mint_missing_from_archive_is_conflict(self):
+        raw, entry = record(owners=[OWNER, REF], redacted=True)
+        f = flow(file=entry['file'], mints=[OTHER], omitted=1)
+        with self.assertRaises(m.EvidenceConflict):
+            m.inspect_record(raw, entry, OWNER, {12: [(f, {})]})
+
+    def test_other_minted_owner_must_be_in_input(self):
+        raw, entry = record(owners=[OWNER, OTHER], redacted=True)
+        obj = json.loads(raw)
+        obj['input']['owners'] = [OWNER]
+        raw = enc(obj)
+        entry.update(bytes=len(raw), sha256=hashlib.sha256(raw).hexdigest())
+        with self.assertRaises(ValueError):
+            m.inspect_record(raw, entry, OWNER, {})
+
+    def test_duplicate_owner_requests_may_mint_once(self):
+        raw, entry = record(redacted=True)
+        obj = json.loads(raw)
+        obj['input']['owners'] = [OWNER, OWNER]
+        raw = enc(obj)
+        entry.update(bytes=len(raw), sha256=hashlib.sha256(raw).hexdigest())
+        f = flow(file=entry['file'], omitted=1)
+        self.assertEqual(m.inspect_record(raw, entry, OWNER, {12: [(f, {})]})['verification'],
+                         'unsigned_index_only')
 
     def test_disagreement_with_complete_signed_list(self):
         raw, entry = record(redacted=True)
@@ -291,6 +324,30 @@ class LookupTests(unittest.TestCase):
         getter = FakeGetter(enc(envelope(flow(file='2' * 64))), [entry], {m.ARCHIVE + entry['path']: raw})
         result, files = run(getter)
         self.assertEqual(result['mint_status'], 'conflicting_evidence')
+        self.assertIn('archive-12.json', files)
+
+    def test_mint_count_conflict_is_preserved_in_lookup(self):
+        raw, entry = record(redacted=True)
+        f = enc(envelope(flow(file=entry['file'], omitted=2)))
+        getter = FakeGetter(f, [entry], {m.ARCHIVE + entry['path']: raw})
+        result, files = run(getter)
+        self.assertEqual(result['mint_status'], 'conflicting_evidence')
+        self.assertEqual(result['lookup_status'], 'conflict')
+        self.assertEqual(result['evidence'], [])
+        self.assertIn('archive-12.json', files)
+
+    def test_invalid_other_mint_does_not_report_target_minted(self):
+        raw, entry = record(owners=[OWNER, OTHER], redacted=True)
+        obj = json.loads(raw)
+        obj['input']['owners'] = [OWNER]
+        raw = enc(obj)
+        entry.update(bytes=len(raw), sha256=hashlib.sha256(raw).hexdigest())
+        f = enc(envelope(flow(file=entry['file'], omitted=2)))
+        getter = FakeGetter(f, [entry], {m.ARCHIVE + entry['path']: raw})
+        result, files = run(getter)
+        self.assertEqual(result['mint_status'], 'unknown')
+        self.assertEqual(result['lookup_status'], 'incomplete')
+        self.assertEqual(result['not_checked_archive_sweeps'], [12])
         self.assertIn('archive-12.json', files)
 
     def test_signed_mint_survives_index_fetch_failure(self):

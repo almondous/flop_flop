@@ -100,6 +100,14 @@ noncanonical signatures, malformed fields and contradictory signed variants
 are rejected or flagged. Re-publications of an identical signed payload are not
 conflicts. Evidence is retained for independent review.
 
+Before accepting an archive hit or recording a checked absence, the client
+checks the whole mint list: each minted owner must be in the sweep input, the
+mint count must equal the signed listed-plus-omitted count, and every signed
+listed owner must appear in the archive. These checks also cover other owners
+in that sweep. Repeated owner requests in the input are permitted; repeated
+allocations in the output are not. Structural failures leave the lookup
+incomplete, while disagreements with signed assertions report a conflict.
+
 A full record is authenticated only when its exact-byte SHA-256 matches the
 signed flow's `file`. For a redacted record, a checksum in an unsigned index is
 not a signature, even when the original unredacted hash is signed. Adding another
@@ -115,14 +123,19 @@ python -m unittest discover -s tests -v
 The tests use synthetic Ed25519 keys, mock GET responses and temporary output
 directories. No participant identifiers, private keys, accounts or requests are
 included. The review log records 52 passing tests, including timestamp boundaries, duplicate
-signed mint entries, sparse indexes and truncated HTTP responses. These tests are of this
+signed mint entries, sparse indexes and truncated HTTP responses. Follow-up review
+adds six regression tests for mint-count/list disagreements, invalid owner input
+relationships, preserving conflict evidence and repeated owner requests; all 58
+tests pass. These tests are of this
 standalone tool, not of the upstream repository or the production referee.
 
-During preparation, this environment could not resolve github.com for `git
-clone`, and its web fetcher could not retrieve the live archive. The implementation
-was checked against retrieved source and the documented record shapes; the revised
-tool has not been end-to-end tested against live endpoints here. Real-server
-acceptance testing remains necessary before an official release.
+The initial preparation environment could not resolve the public endpoints.
+Follow-up checks on 2026-09-30 UTC successfully executed the CLI against the
+real flow export, index and a redacted archive record, including after the
+consistency fix. The result distinguished an archive-reported mint from signature
+authentication and detected the archive publication lag. See `../VERIFICATION.md`
+for exact observations. This verifies a bounded historical lookup, not every
+participant, current account state, or the production ingestion/mint service.
 
 ## Sources reviewed
 
