@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [The market left a trail: inside Close Call's public flight recorder](https://almondous.github.io/flop_flop/close-call-flight-recorder-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-flight-recorder-news.ja.html)
+- [The referee kept moving. The receipts stopped at 1119](https://almondous.github.io/flop_flop/close-call-archive-freeze-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-archive-freeze-news.ja.html)
 
 Previous reports:
+
+- [The market left a trail: inside Close Call's public flight recorder](https://almondous.github.io/flop_flop/close-call-flight-recorder-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-flight-recorder-news.ja.html)
 
 - [One future, five-minute sweeps, a million FLOP: Close Call draft](https://almondous.github.io/flop_flop/close-call-draft-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-draft-news.ja.html)

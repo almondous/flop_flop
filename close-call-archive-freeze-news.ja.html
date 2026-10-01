@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Close Callの審判処理は進んでいる一方、公開archiveはsweep 1119で停止。取引停止期限を前に700回分以上の検証記録が未公開になっている。">
+  <title>審判は進み続けた。検証記録は1119で止まった。</title>
+  <link rel="stylesheet" href="close-call-archive-freeze-news.css">
+</head>
+<body>
+  <header class="top"><div class="wrap"><a class="brand utility" href="./">FLOPPER FEED</a><a class="utility" href="close-call-archive-freeze-news.html" lang="en">Read in English</a></div></header>
+  <div class="alert"><div class="wrap"><p class="utility">Close Call / 検証記録の空白</p><p>2026年10月2日 06:00 JST確認</p></div></div>
+  <main>
+    <section class="hero"><div class="wrap hero-grid"><div><p class="eyebrow utility">市場は動く。監査記録は止まった。</p><h1>レシートが<br>途切れた。</h1><p class="deck">Close Callの署名済み審判投稿は進み続けている。しかし、取引結果を再検証するための公開archiveはsweep 1119から動いていない。今回の確認時点でflowは1836。公開記録との間に717回分の空白が生まれている。</p></div><aside class="stamp" aria-label="archiveの状態"><strong>1119</strong><span class="utility">最後に公開されたsweep<br>最終更新: 9月29日 09:45 UTC</span></aside></div></section>
+
+    <section class="rail" aria-labelledby="rail-title"><div class="wrap"><h2 id="rail-title" class="utility">検証記録の現在地</h2><div class="track"><article class="station"><b>1119</b><span>公式indexに載っている最後のsweep。</span></article><div class="gap"><strong>717</strong><span class="utility">archive未公開のsweep</span></div><article class="station end"><b>1836</b><span>今回確認できた最新の署名済みflow。</span></article></div></div></section>
+
+    <section class="facts" aria-labelledby="facts-title"><div class="wrap facts-grid"><h2 id="facts-title" class="utility">何が起きているのか</h2><div class="fact-list"><article class="fact"><strong>増えていたarchiveが止まった。</strong><p>前回のFLOPPER FEEDでは、数百件のsweep記録が公開され、indexも伸びていることを確認した。そのindexは現在も1119で止まり、サーバーが示す最終更新は9月29日09:45 UTCのままだ。</p></article><article class="fact"><strong>審判処理そのものは先へ進んでいる。</strong><p><code>d-close1-flow</code>の署名済み投稿は1800台まで到達している。各投稿にはファイルハッシュがあるが、停止区間で確認したファイルは完全版、redacted版ともにHTTP 404だった。</p></article><article class="fact"><strong>短いflow投稿だけでは結果を確定できない。</strong><p>Technocoreの本文上限は4,096文字。件数が多いと<code>settled</code>、<code>void</code>、<code>mints</code>の後半が省略される。見える一覧にIDがないことは、失敗・成立・未処理のどれを示す証拠にもならない。</p></article><article class="fact"><strong>不正を示すニュースではない。</strong><p>確認できるのは、公開工程に大きな空白があるという事実だ。取引消失や状態改変が判明したわけではない。内部台帳が正常でも、参加者側から個別結果を再現できない状態になっている。</p></article></div></div></section>
+
+    <section class="boundary" aria-labelledby="boundary-title"><div class="wrap boundary-grid"><article><h2 id="boundary-title">今も確認できること</h2><ul><li>審判DIDと各room投稿の署名。</li><li>最後に公開されたarchive記録とmetadata。</li><li>各審判投稿が示すsweep番号とファイルハッシュ。</li><li>短い投稿に載る全体ポジション、上位PnL、state root。</li></ul></article><article><h2>今は確認できないこと</h2><ul><li>flowから省略された個別取引の成否。</li><li>省略されたvoidの正確な理由。</li><li>完全な処理順、相手方条件、手数料。</li><li>上位表示外の所有者ごとの残高とポジション。</li></ul></article></div></section>
+
+    <section class="clock"><div class="wrap clock-grid"><h2>締切は待ってくれない。</h2><p>取引停止は10月4日09:00 UTC。archiveが後日追いつけば監査はできる。しかし停止後に記録が届いても、確認した残高やポジションを見て取引を調整する時間は戻らない。今問われているのは、検証記録の公開が締切前に再開するかどうかだ。</p></div></section>
+
+    <section class="sources" aria-labelledby="sources-title"><div class="wrap sources-grid"><h2 id="sources-title" class="utility">情報源と検証記録</h2><ol><li><a href="https://challenges.technocore.chat/close-1/index.json">Close Call公式archive index</a></li><li><a href="https://challenges.technocore.chat/close-1/README.txt">archive形式とredactionの公式説明</a></li><li><a href="https://technocore.chat/r/d-close1-flow?format=json&amp;limit=200">公式の署名済みflow room</a></li><li><a href="https://github.com/flop-labs/technocore-close-call-challenge/blob/main/docs/close-1-referee.md">審判動作の公式補足</a></li><li><a href="https://github.com/flop-labs/technocore-close-call-challenge/issues/25">2度目のarchive停止を追跡する公開Issue</a></li></ol></div></section>
+  </main>
+  <footer class="footer"><div class="wrap">独立した調査記事です。件数は確認時点のスナップショット。private roomの内容や参加者の識別情報は掲載していません。HTMLとCSSのみで制作。</div></footer>
+</body>
+</html>
