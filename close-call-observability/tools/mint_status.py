@@ -16,7 +16,7 @@ import sys
 import tempfile
 import time
 from datetime import datetime, timezone
-from http.client import HTTPException
+from http.client import HTTPException, IncompleteRead
 from pathlib import Path
 from urllib.parse import urlparse
 from urllib.request import HTTPRedirectHandler, Request, build_opener
@@ -239,8 +239,26 @@ class Getter:
         with self.opener.open(req, timeout=20) as response:
             if response.status != 200:
                 raise ValueError(f'HTTP {response.status}')
-            raw = response.read(limit + 1)
-        self.total += len(raw)
+            # read(amt) may return a short body without raising IncompleteRead.
+            # Chunked framing takes precedence over Content-Length (and the
+            # standard HTTP parser detects an incomplete chunked body itself).
+            length = response.getheader('Content-Length')
+            if response.getheader('Transfer-Encoding', '').lower() == 'chunked':
+                length = None
+            if length is not None:
+                if not re.fullmatch(r'[0-9]+', length):
+                    raise ValueError('invalid Content-Length')
+                length = int(length)
+                if length > limit:
+                    raise ValueError('response exceeds size limit')
+            try:
+                raw = response.read(limit + 1)
+            except IncompleteRead as exc:
+                self.total += len(exc.partial)
+                raise
+            self.total += len(raw)
+            if length is not None and len(raw) < length:
+                raise IncompleteRead(raw, length - len(raw))
         if len(raw) > limit:
             raise ValueError('response exceeds size limit')
         return raw
@@ -292,12 +310,24 @@ def check(owner: str, referee: str, start: int, count: int, getter, root: Path) 
               'evidence': [], 'errors': [], 'conflicts': []}
     flows = {}
     try:
-        raw = getter.get(FLOW_URL, 32 * MIB)
+        partial_flow = False
+        try:
+            raw = getter.get(FLOW_URL, 32 * MIB)
+        except IncompleteRead as exc:
+            # A verified historical statement remains evidence even if later
+            # rows were lost. Keep the partial bytes, but never hide the failed
+            # retrieval or claim completeness/conflict-free coverage.
+            raw = exc.partial
+            partial_flow = True
+            report['errors'].append({'source': 'flow', 'error': str(exc)})
         (root / 'flow-export.jsonl').write_bytes(raw)
         flows, bad, conflicts = verified_flows(raw, referee)
         report['invalid_export_rows'], report['signed_conflicting_sweeps'] = bad, conflicts
         report['latest_observed_signed_flow_sweep'] = max(flows, default=None)
-        report['flow_verification_status'] = 'verified_posts_found' if flows else 'no_matching_verified_posts'
+        report['flow_verification_status'] = (
+            'partial_verified_posts_found' if partial_flow and flows else
+            'unavailable' if partial_flow else
+            'verified_posts_found' if flows else 'no_matching_verified_posts')
         if bad:
             report['errors'].append({'source': 'flow', 'error': f'{bad} invalid/unverifiable rows'})
         for n, variants in sorted(flows.items()):

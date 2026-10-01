@@ -79,7 +79,12 @@ index, not a signed coverage promise. Neither authenticates archive completeness
 is the last consecutively indexed sweep starting at 1; it is also only an unsigned
 index observation. This is deliberately separate from the maximum entry number.
 `flow_verification_status` distinguishes an unavailable export, an export with no
-matching verified posts, and one containing verified posts.
+matching verified posts, and one containing verified posts. If a truncated export
+contains independently verified complete signed rows, those remain historical
+evidence and the status is `partial_verified_posts_found`. The lookup also records
+the transport error and remains `incomplete` (or `conflict` if already observed).
+Missing later rows may contain additional evidence or conflicts; a partial export
+does not establish complete coverage. Partial bytes are saved for review.
 
 Requested, checked, missing and not-checked archive sweeps are separate lists.
 After a positive hit, the tool stops fetching more archive records and reports
@@ -128,6 +133,14 @@ adds six regression tests for mint-count/list disagreements, invalid owner input
 relationships, preserving conflict evidence and repeated owner requests; all 58
 tests pass. These tests are of this
 standalone tool, not of the upstream repository or the production referee.
+
+A further transport review reproduced premature Content-Length EOF using the real
+Python HTTPResponse parser, which the earlier exception-injection tests missed.
+The bounded reader now detects that failure. Eleven additional synthetic tests
+cover fixed-length/chunked truncation, preservation of verified positive evidence,
+conflict precedence, limits, EOF-framed responses, and communication failures;
+all 69 tests pass. Without Content-Length or chunked framing, a normal EOF is the
+HTTP message boundary and cannot itself prove that the sender intended more data.
 
 The initial preparation environment could not resolve the public endpoints.
 Follow-up checks on 2026-09-30 UTC successfully executed the CLI against the

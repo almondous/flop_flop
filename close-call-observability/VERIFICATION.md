@@ -65,3 +65,44 @@ index-only evidence even when the original unredacted hash is signed. Neither
 this live check nor the synthetic tests verify current balance, every participant,
 the production referee's intake/persistence, or a deployment. No registrations
 or trades were sent. No CI pass or upstream package test run is claimed here.
+
+## Content-Length transport fix (2026-10-01)
+
+Independently checked PR head `e0f095b1f0d8842dd391b7b8e70bfa2f85d249e5`
+using Python 3.12.14 and cryptography 50.0.0: the existing 58 tests passed.
+Two added regressions failed against that exact source. The real Python
+`http.client.HTTPResponse` parser, fed synthetic HTTP wire bytes through an
+in-memory socket, silently returned a short Content-Length body when called with
+`read(limit + 1)`. Empty and valid-JSONL-prefix truncations both incorrectly
+reported `archive_gap` with no communication error. Existing tests injected
+`IncompleteRead` directly and therefore did not exercise this transport behavior.
+
+The reader now validates Content-Length within the existing size bound and
+raises IncompleteRead on premature EOF. Chunked framing retains precedence and
+its parser detects incomplete chunks. Partial received bytes count toward the
+download budget. Independently verified complete signed rows from a partial flow
+remain evidence, with `partial_verified_posts_found` and an explicit retrieval
+error; lookup status is `incomplete`, unless an observed conflict takes precedence.
+The partial export is saved. This does not certify that missing rows contain no
+conflicts, nor turn an absent mint into a rejection or queue status.
+
+Eleven added tests cover both original failures, valid-response control, signed
+and archive-positive preservation, conflict precedence, pre-read size bounds,
+real chunked truncation, EOF framing without Content-Length, late candidates
+beyond the archive watermark, and timeout/DNS/reset/disconnect/HTTP 429/503 errors.
+
+```text
+Python 3.12.14, cryptography 50.0.0
+python3 -m unittest discover -s tests -v
+Ran 69 tests
+OK
+python3 -m compileall -q tools tests
+# exit 0
+python3 tools/mint_status.py --help
+# exit 0
+```
+
+This review used synthetic identities and offline HTTP fixtures. It did not repeat
+the earlier live participant lookup, reproduce a production disconnect, or test
+the production mint service. The successful live observations above remain dated
+2026-09-30 and are not claims about this revision's live execution.
