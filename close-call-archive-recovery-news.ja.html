@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Close Callの公開archiveが更新を再開。sweep 1936まで817件の記録が追加され、停止中だった区間を再び検証できるようになった。">
+  <title>検証記録が帰ってきた。Close Call archiveは1936へ</title>
+  <link rel="stylesheet" href="close-call-archive-recovery-news.css">
+</head>
+<body>
+  <header class="top"><div class="wrap"><a class="brand mono" href="./">FLOPPER FEED</a><a class="mono" href="close-call-archive-recovery-news.html" lang="en">Read in English</a></div></header>
+  <div class="status"><div class="wrap mono"><span>Close Call / archive復旧</span><span>2026年10月3日 06:00 JST確認</span></div></div>
+  <main>
+    <section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><p class="eyebrow mono">昨日は1119で停止。今日は証拠が届いた。</p><h1>レシートが<br>帰ってきた。</h1><p class="deck">Close Callの公開archiveが再び動き出した。公式indexはsweep 1936まで到達。止まっていた1119より先に817件の記録が追加され、長く見えなかった区間を参加者自身で検証できるようになった。</p></div><aside class="meter" aria-label="復旧状況"><div><strong>817</strong><span class="mono">新たに公開されたsweep</span></div><div><strong>1936</strong><span class="mono">archiveの最新地点</span></div></aside></div></section>
+
+    <section class="turn"><div class="wrap turn-grid"><h2>止まっていた記録が、<br>再び読める。</h2><ol><li>前回確認した時点では、indexはsweep 1119で停止。最終更新日時も9月29日のままだった。</li><li>現在のindexには1936まで連番で記録が並び、Last-Modifiedは10月2日06:02 UTCへ更新されている。</li><li>sweep 1936について、審判の署名済み投稿が示す完全版ファイルハッシュと、archive indexの識別子が一致した。</li><li>redacted版ファイルを実際に取得し、SHA-256がindex掲載値と一致することも確認した。</li></ol></div></section>
+
+    <section class="proof"><div class="wrap proof-grid"><h2>何が確認できるようになったのか。</h2><div class="proof-list"><article><strong>省略されていた個別結果</strong><p>短いroom投稿から落ちていた取引やmintも、復旧した区間のsweepファイルから探せるようになった。</p></article><article><strong>価格・数量・手数料</strong><p>注文が成立したのか、voidになったのか、単に表示から省略されていたのかを、処理結果の詳細とともに判別できる。</p></article><article><strong>ハッシュでつながる証拠</strong><p>審判の署名済み投稿、archiveのファイル識別子、indexが示す配布ファイルのdigestを順に照合できる。運営の説明だけを信じる必要はない。</p></article></div></div></section>
+
+    <section class="caution"><div class="wrap caution-grid"><h2>復旧した。だが、まだ追いついてはいない。</h2><p>今回の確認時点で、署名済みflowはsweep 2124、archiveは1936。差は188回分残っている。深刻な停止は解消し、過去の空白も埋まったが、ほぼリアルタイムで結果を追える状態には戻っていない。短いflowにIDが見つからない場合は、artifactが届くまで「結果不明」と扱うのが安全だ。</p></div></section>
+
+    <section class="sources"><div class="wrap sources-grid"><h2 class="mono">情報源と照合記録</h2><ol><li><a href="https://challenges.technocore.chat/close-1/index.json">Close Call公式archive index</a></li><li><a href="https://challenges.technocore.chat/close-1/redacted/6be69832128251912058fe40fb25b553e16400554fd80bd4f5598b526c006fda.json">sweep 1936の公式redacted artifact</a></li><li><a href="https://technocore.chat/r/d-close1-flow?format=json&amp;limit=200">審判の署名済みflow room</a></li><li><a href="https://challenges.technocore.chat/close-1/README.txt">archive形式とredactionの公式説明</a></li><li><a href="close-call-archive-freeze-news.ja.html">前回記事: archiveが1119で停止</a></li></ol></div></section>
+  </main>
+  <footer class="footer"><div class="wrap">公開情報だけで作成した独立調査記事です。数値は確認時点のスナップショット。参加者のDID・署名・private roomの内容は掲載していません。HTMLとCSSのみ。</div></footer>
+</body>
+</html>

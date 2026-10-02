@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [The referee kept moving. The receipts stopped at 1119](https://almondous.github.io/flop_flop/close-call-archive-freeze-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-archive-freeze-news.ja.html)
+- [The receipts came back: Close Call archive reaches 1936](https://almondous.github.io/flop_flop/close-call-archive-recovery-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-archive-recovery-news.ja.html)
 
 Previous reports:
+
+- [The referee kept moving. The receipts stopped at 1119](https://almondous.github.io/flop_flop/close-call-archive-freeze-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-archive-freeze-news.ja.html)
 
 - [The market left a trail: inside Close Call's public flight recorder](https://almondous.github.io/flop_flop/close-call-flight-recorder-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-flight-recorder-news.ja.html)

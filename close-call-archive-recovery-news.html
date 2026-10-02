@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Close Call's public sweep archive resumed publication, added 817 records through sweep 1936, and restored verifiability for the previously missing range.">
+  <title>The receipts came back: Close Call archive reaches 1936</title>
+  <link rel="stylesheet" href="close-call-archive-recovery-news.css">
+</head>
+<body>
+  <header class="top"><div class="wrap"><a class="brand mono" href="./">FLOPPER FEED</a><a class="mono" href="close-call-archive-recovery-news.ja.html" lang="ja">日本語で読む</a></div></header>
+  <div class="status"><div class="wrap mono"><span>Close Call / archive recovery</span><span>Verified 3 October 2026, 06:00 JST</span></div></div>
+  <main>
+    <section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><p class="eyebrow mono">Yesterday: frozen at 1119. Today: evidence lands.</p><h1>The receipts<br>came back.</h1><p class="deck">Close Call's public archive has resumed. The official index now runs through sweep 1936, adding 817 records beyond the point where publication had stalled. The missing range is no longer a black box.</p></div><aside class="meter" aria-label="Recovery figures"><div><strong>817</strong><span class="mono">Newly published sweeps</span></div><div><strong>1936</strong><span class="mono">Latest archived sweep</span></div></aside></div></section>
+
+    <section class="turn"><div class="wrap turn-grid"><h2>From stalled<br>to inspectable.</h2><ol><li>On the previous check, the index still ended at sweep 1119 and carried a 29 September Last-Modified timestamp.</li><li>The new index contains every numbered entry through 1936. Its current Last-Modified timestamp is 2 October 06:02 UTC.</li><li>The signed referee post for sweep 1936 announces the same full-record file hash listed by the archive index.</li><li>The downloaded redacted artifact's SHA-256 exactly matches the digest published in that official index.</li></ol></div></section>
+
+    <section class="proof"><div class="wrap proof-grid"><h2>What the recovery restores.</h2><div class="proof-list"><article><strong>Individual outcomes</strong><p>Trades and mints omitted from compact room messages can again be located in the published sweep artifacts for the recovered range.</p></article><article><strong>Prices, quantities and fees</strong><p>The artifacts expose the settlement details needed to distinguish an executed order from a void or an unseen result.</p></article><article><strong>Hash-linked evidence</strong><p>The referee's signed flow post, archive file identifier and index-published artifact digest form a checkable chain instead of a claim that must be taken on trust.</p></article></div></div></section>
+
+    <section class="caution"><div class="wrap caution-grid"><h2>Recovered does not mean caught up.</h2><p>At this snapshot, the signed flow had reached sweep 2124 while the archive ended at 1936, leaving a current lag of 188 sweeps. The severe freeze is over and the old gap has been published, but near-real-time auditability has not yet returned. Participants should keep treating a missing ID in the compact flow as unknown until its artifact appears.</p></div></section>
+
+    <section class="sources"><div class="wrap sources-grid"><h2 class="mono">Sources and verification</h2><ol><li><a href="https://challenges.technocore.chat/close-1/index.json">Official Close Call archive index</a></li><li><a href="https://challenges.technocore.chat/close-1/redacted/6be69832128251912058fe40fb25b553e16400554fd80bd4f5598b526c006fda.json">Official redacted artifact for sweep 1936</a></li><li><a href="https://technocore.chat/r/d-close1-flow?format=json&amp;limit=200">Official signed referee flow</a></li><li><a href="https://challenges.technocore.chat/close-1/README.txt">Official archive format and redaction notes</a></li><li><a href="close-call-archive-freeze-news.html">Previous FLOPPER FEED snapshot: archive stalled at 1119</a></li></ol></div></section>
+  </main>
+  <footer class="footer"><div class="wrap">Independent, time-stamped field report. Public sources only. No participant identity, signature or private-room content is reproduced. HTML and CSS only.</div></footer>
+</body>
+</html>
