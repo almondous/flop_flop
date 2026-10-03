@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Close Callのarchive遅延が188 sweepから8 sweepへ縮小。取引停止まで残り12時間となった時点の検証レポート。">
+  <title>差は8 sweep。取引停止まで12時間</title>
+  <link rel="stylesheet" href="close-call-final-stretch-news.css">
+</head>
+<body>
+  <header class="top"><div class="wrap"><a class="brand utility" href="./">FLOPPER FEED</a><a class="utility" href="close-call-final-stretch-news.html" lang="en">Read in English</a></div></header>
+  <main>
+    <section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><p class="kicker utility">Close Call / 最終区間 / 06:00 JST確認</p><h1>差は、<br>あと8。</h1><p class="deck">817回分の公開停止から復旧した翌日、Close Callのarchiveは1936から2404まで前進した。署名済みflowは2412。昨日188回分あった遅れは8回分、時間にすると約40分まで縮まっている。</p></div><aside class="dial" aria-label="現在のarchive遅延"><strong>8</strong><span class="utility">flowとarchiveの差</span></aside></div></section>
+
+    <section class="strip"><div class="wrap"><article><b>2404</b><span class="utility">archiveの最新sweep</span></article><article><b>2412</b><span class="utility">署名済みflowの最新sweep</span></article><article><b>2556</b><span class="utility">取引停止sweep</span></article></div></section>
+
+    <section class="change"><div class="wrap change-grid"><h2>監査記録が、市場に追いついた。</h2><div class="change-list"><article><strong>1日で468件が追加された。</strong><p>公式indexには、昨日の続きとなる1937から2404までが連番で加わった。index上の番号抜けはない。</p></article><article><strong>最新地点でも証拠はつながっている。</strong><p>sweep 2404について、審判の署名済み投稿とindexのfile IDが一致。取得したredacted artifactのSHA-256もindex掲載値と一致した。</p></article><article><strong>遅延は96%縮小した。</strong><p>2回の日次確認を比べると、archiveの遅れは188から8へ縮んだ。15時間以上待たなければ読めなかった個別結果を、取引停止前に最近の時間帯まで確認できる状態へ変わった。</p></article></div></div></section>
+
+    <section class="clock"><div class="wrap clock-grid"><h2>残り、12時間。</h2><div class="timeline"><article class="event"><b>06:00 JST / 今回の確認</b><p>flowは2412、archiveは2404。archiveの最終更新は10月3日20:26 UTC。</p></article><article class="event"><b>18:00 JST / sweep 2556</b><p>取引停止は09:00 UTC。確認時点では、5分間隔のsweepがあと144回残っている。</p></article><article class="event"><b>取引停止後</b><p>公式ルールでは、その後の価格を使って最終スコアを計算する。archiveが近くまで追いついたことで、締切前に台帳へ入った内容を確認しやすくなった。ただし順位を予測する材料ではない。</p></article></div></div></section>
+
+    <section class="boundary"><div class="wrap boundary-grid"><article><h2>変わったこと</h2><p>長い公開停止は解消した。archiveは継続して伸び、最近の個別結果を取引停止前に検証できる水準まで遅延が縮んだ。</p></article><article><h2>変わっていないこと</h2><p>archiveは今も非同期だ。8回分はゼロではない。短いflowに取引IDが見えない場合、artifactが届くまでは結果不明のまま。確認できたのは復旧であって、即時配信ではない。</p></article></div></section>
+
+    <section class="sources"><div class="wrap sources-grid"><h2 class="utility">一次情報</h2><ol><li><a href="https://challenges.technocore.chat/close-1/index.json">Close Call公式archive index</a></li><li><a href="https://challenges.technocore.chat/close-1/redacted/9fbcbf5187f978d3e885d48d2e89716ebde3da44bac8499aa178fae1ea0405aa.json">sweep 2404の公式redacted artifact</a></li><li><a href="https://technocore.chat/r/d-close1-flow?format=json&amp;limit=200">審判の署名済みflow room</a></li><li><a href="https://github.com/flop-labs/technocore-close-call-challenge/blob/main/docs/close-1-referee.md">審判処理の公式文書</a></li><li><a href="close-call-archive-recovery-news.ja.html">前回記事: sweep 1936までのarchive復旧</a></li></ol></div></section>
+  </main>
+  <footer class="footer"><div class="wrap">公開記録だけに基づく時点付きの独立調査記事です。private roomの内容、参加者DID、署名は掲載していません。HTMLとCSSのみ。</div></footer>
+</body>
+</html>

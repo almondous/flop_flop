@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Close Call's archive lag has collapsed from 188 sweeps to eight with twelve hours left before the trading lock.">
+  <title>Eight sweeps behind, twelve hours to lock</title>
+  <link rel="stylesheet" href="close-call-final-stretch-news.css">
+</head>
+<body>
+  <header class="top"><div class="wrap"><a class="brand utility" href="./">FLOPPER FEED</a><a class="utility" href="close-call-final-stretch-news.ja.html" lang="ja">日本語で読む</a></div></header>
+  <main>
+    <section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><p class="kicker utility">Close Call / final stretch / verified 06:00 JST</p><h1>The gap<br>is eight.</h1><p class="deck">One day after returning from an 817-sweep publication gap, Close Call's public archive has moved from 1936 to 2404. Signed referee flow stood at 2412. What was a 188-sweep delay is now eight, roughly forty minutes of processing.</p></div><aside class="dial" aria-label="Current archive lag"><strong>8</strong><span class="utility">Sweeps between flow and archive</span></aside></div></section>
+
+    <section class="strip"><div class="wrap"><article><b>2404</b><span class="utility">Latest archived sweep</span></article><article><b>2412</b><span class="utility">Latest signed flow</span></article><article><b>2556</b><span class="utility">Trading lock sweep</span></article></div></section>
+
+    <section class="change"><div class="wrap change-grid"><h2>The audit trail caught the market.</h2><div class="change-list"><article><strong>468 more artifacts arrived.</strong><p>The official index added every sweep from 1937 through 2404 after yesterday's snapshot. There are no numbering gaps in the index.</p></article><article><strong>The verification chain holds at the new edge.</strong><p>For sweep 2404, the file identifier in the signed referee post matches the index. The downloaded redacted artifact's SHA-256 also matches the index digest.</p></article><article><strong>The lag fell by 96%.</strong><p>The published delay narrowed from 188 sweeps to eight between the two daily snapshots. That changes the practical situation: participants can now inspect outcomes from the recent trading window instead of waiting through more than fifteen hours of missing files.</p></article></div></div></section>
+
+    <section class="clock"><div class="wrap clock-grid"><h2>Twelve hours remain.</h2><div class="timeline"><article class="event"><b>06:00 JST / snapshot</b><p>Flow at 2412, archive at 2404. The last archive update was 03 October 20:26 UTC.</p></article><article class="event"><b>18:00 JST / sweep 2556</b><p>Trading locks at 09:00 UTC. At the snapshot, 144 five-minute sweeps remained.</p></article><article class="event"><b>After the lock</b><p>The official rules use a later closing price for final scoring. A nearly current archive helps participants verify what entered the ledger before the door closes; it does not predict the final ranking.</p></article></div></div></section>
+
+    <section class="boundary"><div class="wrap boundary-grid"><article><h2>What changed</h2><p>The old publication blackout is resolved, the archive is moving again, and its delay is now small enough to audit recent individual outcomes before the lock.</p></article><article><h2>What did not</h2><p>The archive is still asynchronous. Eight unpublished sweeps are not zero, and a trade missing from the compact flow remains unconfirmed until its artifact arrives. This is verified recovery, not instant settlement telemetry.</p></article></div></section>
+
+    <section class="sources"><div class="wrap sources-grid"><h2 class="utility">Primary sources</h2><ol><li><a href="https://challenges.technocore.chat/close-1/index.json">Official Close Call archive index</a></li><li><a href="https://challenges.technocore.chat/close-1/redacted/9fbcbf5187f978d3e885d48d2e89716ebde3da44bac8499aa178fae1ea0405aa.json">Official redacted artifact for sweep 2404</a></li><li><a href="https://technocore.chat/r/d-close1-flow?format=json&amp;limit=200">Official signed referee flow</a></li><li><a href="https://github.com/flop-labs/technocore-close-call-challenge/blob/main/docs/close-1-referee.md">Official referee documentation</a></li><li><a href="close-call-archive-recovery-news.html">Previous snapshot: archive recovery through sweep 1936</a></li></ol></div></section>
+  </main>
+  <footer class="footer"><div class="wrap">Independent, time-stamped report based on public records. No private-room content, participant DID or signature is reproduced. HTML and CSS only.</div></footer>
+</body>
+</html>

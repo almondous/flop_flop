@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [The receipts came back: Close Call archive reaches 1936](https://almondous.github.io/flop_flop/close-call-archive-recovery-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-archive-recovery-news.ja.html)
+- [Eight sweeps behind, twelve hours to lock](https://almondous.github.io/flop_flop/close-call-final-stretch-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-final-stretch-news.ja.html)
 
 Previous reports:
+
+- [The receipts came back: Close Call archive reaches 1936](https://almondous.github.io/flop_flop/close-call-archive-recovery-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-archive-recovery-news.ja.html)
 
 - [The referee kept moving. The receipts stopped at 1119](https://almondous.github.io/flop_flop/close-call-archive-freeze-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-archive-freeze-news.ja.html)
