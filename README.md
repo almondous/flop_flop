@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [Eight sweeps behind, twelve hours to lock](https://almondous.github.io/flop_flop/close-call-final-stretch-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-final-stretch-news.ja.html)
+- [Close Call closes: the signed final three](https://almondous.github.io/flop_flop/close-call-final-standings-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-final-standings-news.ja.html)
 
 Previous reports:
+
+- [Eight sweeps behind, twelve hours to lock](https://almondous.github.io/flop_flop/close-call-final-stretch-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-final-stretch-news.ja.html)
 
 - [The receipts came back: Close Call archive reaches 1936](https://almondous.github.io/flop_flop/close-call-archive-recovery-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-archive-recovery-news.ja.html)

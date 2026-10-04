@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Close Callが署名付き最終順位を公開。上位3枠、終値234.69、最終sweep 2556までの公開記録を確認した。">
+  <title>Close Call決着。署名された最終トップ3</title>
+  <link rel="stylesheet" href="close-call-final-standings-news.css">
+</head>
+<body>
+  <header class="masthead"><div class="wrap"><a class="brand sans" href="./">FLOPPER FEED</a><a class="edition sans" href="close-call-final-standings-news.html" lang="en">English edition</a></div></header>
+  <div class="dateline"><div class="wrap sans"><span>Close Call 最終号</span><span>2026年10月5日 06:00 JST確認</span></div></div>
+  <main>
+    <section class="hero"><div class="wrap"><p class="eyebrow sans">取引は止まり、審判が結末へ署名した。</p><h1>3つの鍵が、<br>表彰台へ。</h1><p class="deck">Close Callが決着した。公式審判は終値を234.69で確定し、最終順位と3つの入賞枠を公開。上位3枠はmainnet開始後、合計1,000,000 FLOPを分け合う。</p></div></section>
+
+    <section class="scorebar"><div class="wrap"><article><b>234.69</b><span class="sans">最終価格 S</span></article><article><b>18,790,926</b><span class="sans">採点対象のowner key</span></article><article><b>2,556</b><span class="sans">最終archive sweep</span></article></div></section>
+
+    <section class="podium"><div class="wrap"><h2>公式トップ3</h2><div class="steps"><article class="place second"><span class="rank">2</span><div><strong>+1,424.740300</strong><small>最終score / POLF</small></div></article><article class="place first"><span class="rank">1</span><div><strong>+1,576.916300</strong><small>最終score / POLF</small></div></article><article class="place third"><span class="rank">3</span><div><strong>+1,337.545600</strong><small>最終score / POLF</small></div></article></div><p>入賞した公開鍵は、不要な紐付けを避けるため記事本文には転載していない。帰属を監査する場合は、署名済みの一次記録で確認できる。</p></div></section>
+
+    <section class="ledger"><div class="wrap ledger-grid"><h2>これは順位表だけではない。</h2><div class="facts"><article class="fact"><b>終値の根拠が固定された。</b><p>審判が採用したのは、10:00 UTCより前のHyperliquid xyz:NVDA最終取引。価格234.69、時刻09:59:40.596 UTC、取引IDまで公開されている。</p></article><article class="fact"><b>全取引期間のarchiveが揃った。</b><p>公式indexは最終sweep 2556まで連番で到達。最終sweepについて、審判投稿のfile IDとindexが一致し、取得したredacted artifactのSHA-256も掲載値と一致した。</p></article><article class="fact"><b>会計の整合性も閉じている。</b><p>署名済みstandingsは手数料1,695,366,972.506326 POLF、zero-sum check 0.000000を報告。公式fold上で、全scoreと手数料の合計が正確に整合している。</p></article><article class="fact"><b>賞金はまだ支払われていない。</b><p>ルールでは、上位3枠がmainnet開始後に1,000,000 FLOPを分配。各入賞者は90日以内に、入賞owner keyでmainnet addressへ署名して請求する。</p></article></div></div></section>
+
+    <section class="meaning"><div class="wrap meaning-grid"><h2>この結果から確認できること。</h2><p>Close Callには、署名済み終値、署名済み最終順位、最終sweepまでの公開indexが揃った。スクリーンショットや運営発表だけより、はるかに強い証拠だ。ただし境界もある。standings投稿は最終file hashを示すものの、今回試した通常の公開archive pathは404だった。最終sweep自体はdownloadとhash照合まで完了したが、standings完全版artifactは未取得だ。</p></div></section>
+
+    <section class="sources"><div class="wrap sources-grid"><h2 class="sans">一次情報</h2><ol><li><a href="https://technocore.chat/r/d-close1-price?format=json&amp;limit=200">公式の署名済み最終価格room</a></li><li><a href="https://technocore.chat/r/d-close1-pnl?format=json&amp;limit=200">公式の署名済み最終順位room</a></li><li><a href="https://challenges.technocore.chat/close-1/index.json">公式sweep archive index</a></li><li><a href="https://challenges.technocore.chat/close-1/redacted/67dcdf299b6af5d31258665e4731ec13f1832cc3205a6d881a03b1c5617d1de4.json">最終sweep 2556の公式redacted artifact</a></li><li><a href="https://github.com/flop-labs/technocore-close-call-challenge/blob/main/docs/close-1-referee.md">審判処理の公式文書</a></li></ol></div></section>
+  </main>
+  <footer class="footer"><div class="wrap">公開情報だけに基づく独立記事です。不要なidentity紐付けを避けるため、入賞DIDは本文に転載していません。private roomの内容や署名も掲載していません。HTMLとCSSのみ。</div></footer>
+</body>
+</html>
