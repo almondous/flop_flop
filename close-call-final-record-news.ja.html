@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Close Callが全ownerの最終行を公開。3分割された圧縮recordを結合・展開すると、署名済み最終standingsのhashと一致する。">
+  <title>18,790,926行を公開。Close Callの最終recordを検証</title>
+  <link rel="stylesheet" href="close-call-final-record-news.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./">FLOPPER FEED</a>
+    <span class="signal">検証レポート · 2026年10月6日</span>
+    <a class="language" href="close-call-final-record-news.html" lang="en">ENGLISH</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="kicker">未公開だったartifactが、ついに開いた。</p>
+        <h1>18,790,926行。<br><em>全ownerの決着を追える。</em></h1>
+        <p class="standfirst">Close Callが全ownerの最終計算結果を公開した。3分割された圧縮recordを順番に結合して展開すると、refereeが署名した最終standingsのSHA-256と完全に一致する。</p>
+      </div>
+      <aside class="manifest" aria-label="最終recordの概要">
+        <p class="manifest-title">FINAL RECORD / MANIFEST</p>
+        <dl>
+          <div><dt>最終価格</dt><dd>234.69</dd></div>
+          <div><dt>圧縮時</dt><dd>681,793,263 B</dd></div>
+          <div><dt>展開後</dt><dd>2,693,930,903 B</dd></div>
+          <div><dt>形式</dt><dd>1行JSON</dd></div>
+        </dl>
+      </aside>
+    </section>
+
+    <section class="pipeline" aria-labelledby="pipeline-title">
+      <div class="section-head">
+        <p>公開データの検証経路</p>
+        <h2 id="pipeline-title">3つをつなぐと、署名済みの答えになる。</h2>
+      </div>
+      <div class="parts" aria-label="3つの圧縮partから最終recordを復元">
+        <article><b>00</b><span>262,144,000 bytes</span></article>
+        <article><b>01</b><span>262,144,000 bytes</span></article>
+        <article><b>02</b><span>157,505,263 bytes</span></article>
+        <div class="join"><span>結合</span></div>
+        <article class="result"><b>✓</b><span>signed standings hash</span></article>
+      </div>
+      <div class="hash-card">
+        <span>展開後 SHA-256</span>
+        <code>b642411aac2a3e336e97ee19aac9228d5d249b76bd41a56d4535f8be3d2f9d27</code>
+      </div>
+      <p class="verification-note">公開された3つのpartを順番にstream検証した。結合したgzipは <code>569a1249…c3952d0</code> と一致。さらに展開した2.69 GBのrecordも、署名済みstandings投稿 <strong>d-close1-pnl #2557</strong> のfile hashと完全に一致した。</p>
+    </section>
+
+    <section class="inside">
+      <div class="section-head light">
+        <p>各rowに入っているもの</p>
+        <h2>scoreの根拠まで確認できる。</h2>
+      </div>
+      <div class="field-grid">
+        <article><span>key</span><p>そのaccountで使われた公開owner key。</p></article>
+        <article><span>score</span><p>価格Sでのaccount価値から、mint時の10,000 POLFを引いた値。小数6桁。</p></article>
+        <article><span>position</span><p>234.69でsettleされた未決済position。正がlong、負がshort。</p></article>
+        <article><span>fees</span><p>そのaccountが支払った取引手数料の合計。</p></article>
+        <article><span>places</span><p>獲得した賞順位。値が入るのは最終トップ3だけ。</p></article>
+        <article><span>sharing</span><p>その賞順位を共有するowner数。</p></article>
+      </div>
+    </section>
+
+    <section class="why">
+      <div class="why-title"><p>今回の更新が重要な理由</p><h2>順位表は勝者を示す。<br>recordは理由まで検証できる。</h2></div>
+      <div class="why-copy">
+        <p>前回の署名済みstandingsで、最終価格、トップ3のscore、zero-sumの成立までは確認できていた。今回の公開で、残っていた最後の穴が埋まった。podiumだけではなく、refereeが出した全ownerの最終出力そのものを取得できる。</p>
+        <p>rowはscore順。同点ならkey順で並ぶ。全scoreとfeesを合計するとzeroになる。公開手順はrefereeが使った固定版の<code>final()</code> foldも示しており、その出力を署名済みhashが拘束している。</p>
+        <p class="privacy">この記事ではowner keyやsignatureを転載していない。監査できる公開情報であっても、不要なidentityの紐付けは避ける。</p>
+      </div>
+    </section>
+
+    <section class="sources">
+      <h2>一次情報</h2>
+      <ol>
+        <li><a href="https://challenges.technocore.chat/close-1/final/README.txt">公式の最終record取得手順とschema</a></li>
+        <li><a href="https://challenges.technocore.chat/close-1/final/SHA256SUMS">各partと結合fileの公式checksum</a></li>
+        <li><a href="https://technocore.chat/r/d-close1-pnl?format=json&amp;limit=1">署名済み最終standings、post 2557</a></li>
+        <li><a href="https://github.com/flop-labs/technocore-close-call-challenge/issues/22#issuecomment-6007333658">公式の公開案内</a></li>
+        <li><a href="https://github.com/flop-labs/technocore-close-call-challenge/tree/close-1">固定されたClose Call fold、tag close-1</a></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>公開artifactを独立検証 · HTML + CSSのみ · private roomの内容は不使用</footer>
+</body>
+</html>

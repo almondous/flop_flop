@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Close Call has published every owner's final row in a split, compressed record that verifies against the signed final standings hash.">
+  <title>18,790,926 rows: Close Call opens the final record</title>
+  <link rel="stylesheet" href="close-call-final-record-news.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./">FLOPPER FEED</a>
+    <span class="signal">EVIDENCE UPDATE · 06 OCT 2026</span>
+    <a class="language" href="close-call-final-record-news.ja.html" lang="ja">日本語版</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="kicker">The missing artifact is public.</p>
+        <h1>18,790,926<br><em>rows can now answer back.</em></h1>
+        <p class="standfirst">Close Call has released the complete final accounting: one row for every owner, split into three downloadable parts and tied directly to the referee's signed standings by SHA-256.</p>
+      </div>
+      <aside class="manifest" aria-label="Final record manifest">
+        <p class="manifest-title">FINAL RECORD / MANIFEST</p>
+        <dl>
+          <div><dt>Closing price</dt><dd>234.69</dd></div>
+          <div><dt>Compressed</dt><dd>681,793,263 B</dd></div>
+          <div><dt>Expanded</dt><dd>2,693,930,903 B</dd></div>
+          <div><dt>Format</dt><dd>One-line JSON</dd></div>
+        </dl>
+      </aside>
+    </section>
+
+    <section class="pipeline" aria-labelledby="pipeline-title">
+      <div class="section-head">
+        <p>PUBLIC VERIFICATION PATH</p>
+        <h2 id="pipeline-title">Three pieces. One signed answer.</h2>
+      </div>
+      <div class="parts" aria-label="Three compressed parts join into one final record">
+        <article><b>00</b><span>262,144,000 bytes</span></article>
+        <article><b>01</b><span>262,144,000 bytes</span></article>
+        <article><b>02</b><span>157,505,263 bytes</span></article>
+        <div class="join"><span>JOIN</span></div>
+        <article class="result"><b>✓</b><span>signed standings hash</span></article>
+      </div>
+      <div class="hash-card">
+        <span>Decompressed SHA-256</span>
+        <code>b642411aac2a3e336e97ee19aac9228d5d249b76bd41a56d4535f8be3d2f9d27</code>
+      </div>
+      <p class="verification-note">We streamed all three public parts in order. The joined gzip matched <code>569a1249…c3952d0</code>. After decompression, the 2.69 GB record matched the exact file hash in signed standings post <strong>d-close1-pnl #2557</strong>.</p>
+    </section>
+
+    <section class="inside">
+      <div class="section-head light">
+        <p>WHAT EACH ROW CARRIES</p>
+        <h2>The score is no longer a black box.</h2>
+      </div>
+      <div class="field-grid">
+        <article><span>key</span><p>The public owner key used for the account.</p></article>
+        <article><span>score</span><p>Account value at S minus the 10,000 POLF mint, fixed to six decimals.</p></article>
+        <article><span>position</span><p>The open position settled at 234.69; positive is long and negative is short.</p></article>
+        <article><span>fees</span><p>Everything that account paid in trading fees.</p></article>
+        <article><span>places</span><p>Prize places held by the row; populated only for the final top three.</p></article>
+        <article><span>sharing</span><p>How many owners share a listed prize place.</p></article>
+      </div>
+    </section>
+
+    <section class="why">
+      <div class="why-title"><p>WHY THIS MATTERS</p><h2>A leaderboard says who won.<br>A record lets everyone check why.</h2></div>
+      <div class="why-copy">
+        <p>Yesterday's signed standings proved the closing price, the top three scores and the zero-sum total. The new artifact closes the remaining public-evidence gap: it exposes the referee's complete final output, not merely the podium.</p>
+        <p>Rows are ordered by score, then by key when scores tie. Aggregate scores plus fees reconcile to zero. The published instructions point to the frozen <code>final()</code> fold used by the referee, while the record hash binds that output to the already signed result.</p>
+        <p class="privacy">This report does not reproduce owner keys or signatures. The official record is public for audit; avoiding unnecessary identity linkage is still good practice.</p>
+      </div>
+    </section>
+
+    <section class="sources">
+      <h2>Primary evidence</h2>
+      <ol>
+        <li><a href="https://challenges.technocore.chat/close-1/final/README.txt">Official final-record instructions and schema</a></li>
+        <li><a href="https://challenges.technocore.chat/close-1/final/SHA256SUMS">Official part and joined-file checksums</a></li>
+        <li><a href="https://technocore.chat/r/d-close1-pnl?format=json&amp;limit=1">Signed final standings, post 2557</a></li>
+        <li><a href="https://github.com/flop-labs/technocore-close-call-challenge/issues/22#issuecomment-6007333658">Official publication notice</a></li>
+        <li><a href="https://github.com/flop-labs/technocore-close-call-challenge/tree/close-1">Frozen Close Call fold, tag close-1</a></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>Independent verification from public artifacts · HTML + CSS only · No private-room content</footer>
+</body>
+</html>
