@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Two official FLOP Yellow Paper syncs changed airdrop unlocks, dispute retention and implementation status while the draft version remained 0.5.0.">
+  <title>Same version, new rules: FLOP Yellow Paper 0.5.0 moves underneath the cover</title>
+  <link rel="stylesheet" href="yellowpaper-v0.5-draft-sync-news.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./">FLOPPER FEED</a>
+    <span class="edition">SPEC CHANGE · 13 OCT 2026</span>
+    <a class="language" href="yellowpaper-v0.5-draft-sync-news.ja.html" lang="ja">日本語版</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="kicker">The number stayed still. The protocol did not.</p>
+        <h1><span class="version">0.5.0</span><small>same cover,<br>new rules.</small></h1>
+        <p class="standfirst">FLOP Labs pushed two official Yellow Paper syncs in 82 minutes. The draft kept its version, but the text moved on grant unlocks, dispute survival, paid storage and what the implementation can honestly call live.</p>
+      </div>
+      <aside class="hero-note">
+        <span class="stamp">DRAFT · NOT A RELEASE</span>
+        <div>
+          <strong>Read the diff, not the badge.</strong>
+          <p>The repository says prepublication edits are folded into the initial 0.5.0 text. That makes the commit history, not a version bump, the signal.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="syncs" aria-labelledby="sync-title">
+      <div class="sync-head">
+        <p class="section-label">THE PUBLIC CHANGE TRACK</p>
+        <h2 id="sync-title">Two syncs landed before breakfast.</h2>
+      </div>
+      <div class="commit-track">
+        <article class="commit">
+          <span class="dot">01</span>
+          <time datetime="2026-10-13T05:16:50Z">05:16 UTC · b03378c</time>
+          <h3>The economics rewrite</h3>
+          <p>The first sync folded a large prepublication set into the draft: cohort-specific airdrop unlocks, liquid block rewards and subsidy, paid-storage decisions, stricter vector schemas and refreshed evidence status.</p>
+        </article>
+        <article class="commit">
+          <span class="dot">02</span>
+          <time datetime="2026-10-13T06:38:47Z">06:38 UTC · 70e691c</time>
+          <h3>The dispute lifetime correction</h3>
+          <p>The second sync added a live decision that transcript retention must cover the entire worst-case dispute, not merely the window in which a dispute can be opened, and refreshed implementation grades.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="changes" aria-labelledby="change-title">
+      <p class="section-label">WHAT ACTUALLY MOVED</p>
+      <h2 id="change-title">Four edits worth stopping for.</h2>
+      <div class="change-grid">
+        <article class="change">
+          <span class="mark">+</span>
+          <h3>Unlocks follow work</h3>
+          <p>The draft now gives each genesis cohort a different release path. Agent grants use settled compute spend, miners start one-quarter liquid and earn the rest through settled miner payouts, while validator grants wait for the first halving and then release daily.</p>
+        </article>
+        <article class="change">
+          <span class="mark">↔</span>
+          <h3>Disputes need living evidence</h3>
+          <p>D-0441 replaces a challenge-window-only retention bound. A force-settled transcript must remain naturally available through the latest possible resolution block, including every bisection round and the degraded-data extension.</p>
+        </article>
+        <article class="change">
+          <span class="mark">!</span>
+          <h3>Storage is partial, not launched</h3>
+          <p>Paid encrypted storage is now described as partial on explicitly valueless development networks. Production activation remains blocked by the open economics and availability evidence gates E.54 and E.47.</p>
+        </article>
+        <article class="change">
+          <span class="mark">✓</span>
+          <h3>Status labels got sharper</h3>
+          <p>Recursive dispute bisection moves to LIVE for complete power-of-two bundles. Meter-width rejection is marked live, while non-TEE settlement, storage models and several airdrop mechanics remain partial or open.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="boundary">
+      <div>
+        <p class="section-label">THE HONEST BOUNDARY</p>
+        <h2>This is a stronger draft, not a finished network.</h2>
+      </div>
+      <div class="boundary-copy">
+        <p>The commits are fresh and material. They are also specification syncs from the private implementation source named in the commit messages. They do not announce a new tagged Yellow Paper release or prove that every mechanism is active on a public mainnet.</p>
+        <ul class="not-list">
+          <li><b>NOT</b><span>a version bump; the document still says 0.5.0 draft</span></li>
+          <li><b>NOT</b><span>a mainnet launch or token-distribution notice</span></li>
+          <li><b>YES</b><span>a real change to the public rules and implementation-status claims</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sources">
+      <h2>Primary sources</h2>
+      <ol>
+        <li><a href="https://github.com/flop-labs/yellowpaper/commit/b03378c0a6d5194d69e5be90968f46e8e6813cb8">Official 05:16 UTC Yellow Paper sync</a></li>
+        <li><a href="https://github.com/flop-labs/yellowpaper/commit/70e691c758e53eed17a016a02b0a2ae1200d3744">Official 06:38 UTC Yellow Paper sync</a></li>
+        <li><a href="https://github.com/flop-labs/yellowpaper/blob/main/CHANGELOG.md">Current public changelog</a></li>
+        <li><a href="https://github.com/flop-labs/yellowpaper/blob/main/yellowpaper.md">Current Yellow Paper 0.5.0 draft</a></li>
+        <li><a href="https://github.com/flop-labs/yellowpaper/blob/main/decisions/v0.5.md">Version 0.5 decision record</a></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>Independent report from public FLOP Labs sources · HTML + CSS only · No JavaScript</footer>
+</body>
+</html>

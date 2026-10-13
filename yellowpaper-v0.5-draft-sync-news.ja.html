@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FLOP Yellow Paper 0.5.0 draftに2回の公式同期が入り、airdropの解除、disputeの証拠保持、実装状況が大きく更新された。">
+  <title>版番号は同じ、ルールは動いた：FLOP Yellow Paper 0.5.0最新同期</title>
+  <link rel="stylesheet" href="yellowpaper-v0.5-draft-sync-news.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./">FLOPPER FEED</a>
+    <span class="edition">SPEC CHANGE · 13 OCT 2026</span>
+    <a class="language" href="yellowpaper-v0.5-draft-sync-news.html" lang="en">ENGLISH</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="kicker">版番号は止まったまま。中のルールは止まっていない。</p>
+        <h1><span class="version">0.5.0</span><small>表紙は同じ。<br>規則は更新。</small></h1>
+        <p class="standfirst">FLOP Labsが82分の間にYellow Paperを2回同期した。versionは0.5.0 draftのままだが、airdropの解除条件、disputeを最後まで支える証拠、paid storage、そして「どこまで実装済みと言えるか」が大きく書き換わった。</p>
+      </div>
+      <aside class="hero-note">
+        <span class="stamp">DRAFT · RELEASEではない</span>
+        <div>
+          <strong>badgeよりdiffを読め。</strong>
+          <p>公開前の編集は0.5.0の初期文面へ折り込む方針だとcommitに明記されている。今回はversion bumpではなく、commit historyそのものが更新の合図だ。</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="syncs" aria-labelledby="sync-title">
+      <div class="sync-head">
+        <p class="section-label">公開された変更の流れ</p>
+        <h2 id="sync-title">朝までに2回、仕様が動いた。</h2>
+      </div>
+      <div class="commit-track">
+        <article class="commit">
+          <span class="dot">01</span>
+          <time datetime="2026-10-13T05:16:50Z">05:16 UTC · b03378c</time>
+          <h3>経済ルールを整理</h3>
+          <p>最初の同期では、cohortごとに異なるairdrop解除、block rewardとsubsidyの流動性、paid storageの決定、vector schemaの厳格化、evidence statusの見直しが公開draftへ入った。</p>
+        </article>
+        <article class="commit">
+          <span class="dot">02</span>
+          <time datetime="2026-10-13T06:38:47Z">06:38 UTC · 70e691c</time>
+          <h3>disputeの最後まで証拠を残す</h3>
+          <p>2回目の同期では、transcriptを「異議申立て開始まで」ではなく「最悪条件のdisputeが解決するまで」利用可能にする決定D-0441がLIVEとして追加され、実装状況も更新された。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="changes" aria-labelledby="change-title">
+      <p class="section-label">今回の重要点</p>
+      <h2 id="change-title">止まって読むべき4つの変更。</h2>
+      <div class="change-grid">
+        <article class="change">
+          <span class="mark">+</span>
+          <h3>解除条件は実績連動へ</h3>
+          <p>genesis grantは全員同じlinear vestingではなくなる。Agentはsettled computeの支払実績、Minerは最初に4分の1、その後はsettled miner payout、Validatorは最初のhalving後から日次解除という別々の道筋になった。</p>
+        </article>
+        <article class="change">
+          <span class="mark">↔</span>
+          <h3>dispute中に証拠を失わない</h3>
+          <p>D-0441はchallenge windowだけを基準にした保持期間を置き換える。force settlementに使うtranscriptは、全bisection roundとdegraded data延長を含む最終解決blockまで自然に取得可能でなければならない。</p>
+        </article>
+        <article class="change">
+          <span class="mark">!</span>
+          <h3>storageはdevnet限定の途中段階</h3>
+          <p>paid encrypted storageは、価値を持たないdevelopment networkでPARTIALと整理された。production有効化は、経済性とavailability evidenceを扱うE.54とE.47が未解決のため、引き続きblockedだ。</p>
+        </article>
+        <article class="change">
+          <span class="mark">✓</span>
+          <h3>実装済みの線引きを更新</h3>
+          <p>完全な2の累乗bundleに対するrecursive dispute bisectionはLIVEへ進んだ。一方でnon-TEE settlement、storage model、airdropの一部mechanicsはPARTIALまたはOPENのまま残る。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="boundary">
+      <div>
+        <p class="section-label">誤解してはいけない境界</p>
+        <h2>draftは強くなった。network完成ではない。</h2>
+      </div>
+      <div class="boundary-copy">
+        <p>今回のcommitは新しく、内容も大きい。ただしcommit messageが示す通り、非公開の実装sourceから公開Yellow Paperへ同期したspec更新だ。新しいtagged releaseでも、すべての仕組みがpublic mainnetで動いたという発表でもない。</p>
+        <ul class="not-list">
+          <li><b>違う</b><span>version bumpではない。表記は0.5.0 draftのまま</span></li>
+          <li><b>違う</b><span>mainnet開始やtoken配布開始の告知ではない</span></li>
+          <li><b>事実</b><span>公開ルールとimplementation statusは実質的に更新された</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sources">
+      <h2>公式source</h2>
+      <ol>
+        <li><a href="https://github.com/flop-labs/yellowpaper/commit/b03378c0a6d5194d69e5be90968f46e8e6813cb8">05:16 UTCの公式Yellow Paper同期</a></li>
+        <li><a href="https://github.com/flop-labs/yellowpaper/commit/70e691c758e53eed17a016a02b0a2ae1200d3744">06:38 UTCの公式Yellow Paper同期</a></li>
+        <li><a href="https://github.com/flop-labs/yellowpaper/blob/main/CHANGELOG.md">現在の公開CHANGELOG</a></li>
+        <li><a href="https://github.com/flop-labs/yellowpaper/blob/main/yellowpaper.md">現在のYellow Paper 0.5.0 draft</a></li>
+        <li><a href="https://github.com/flop-labs/yellowpaper/blob/main/decisions/v0.5.md">version 0.5 decision record</a></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>FLOP Labsの公開sourceに基づく独立記事 · HTML + CSSのみ · JavaScript不使用</footer>
+</body>
+</html>

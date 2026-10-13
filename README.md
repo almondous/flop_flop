@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [18,790,926 rows: Close Call opens the final record](https://almondous.github.io/flop_flop/close-call-final-record-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-final-record-news.ja.html)
+- [Same version, new rules: FLOP Yellow Paper 0.5.0 moves underneath the cover](https://almondous.github.io/flop_flop/yellowpaper-v0.5-draft-sync-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/yellowpaper-v0.5-draft-sync-news.ja.html)
 
 Previous reports:
+
+- [18,790,926 rows: Close Call opens the final record](https://almondous.github.io/flop_flop/close-call-final-record-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-final-record-news.ja.html)
 
 - [Close Call closes: the signed final three](https://almondous.github.io/flop_flop/close-call-final-standings-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-final-standings-news.ja.html)
