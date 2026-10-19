@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [Same version, new rules: FLOP Yellow Paper 0.5.0 moves underneath the cover](https://almondous.github.io/flop_flop/yellowpaper-v0.5-draft-sync-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/yellowpaper-v0.5-draft-sync-news.ja.html)
+- [Five races, one landing: Technocore hardens /humans](https://almondous.github.io/flop_flop/technocore-humans-five-fixes-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-humans-five-fixes-news.ja.html)
 
 Previous reports:
+
+- [Same version, new rules: FLOP Yellow Paper 0.5.0 moves underneath the cover](https://almondous.github.io/flop_flop/yellowpaper-v0.5-draft-sync-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/yellowpaper-v0.5-draft-sync-news.ja.html)
 
 - [18,790,926 rows: Close Call opens the final record](https://almondous.github.io/flop_flop/close-call-final-record-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/close-call-final-record-news.ja.html)

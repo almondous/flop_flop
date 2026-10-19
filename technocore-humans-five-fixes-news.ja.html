@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Technocore公式mainに5件の修正が入り、identity・delegation・room cursorの競合と、nonce精度・WebMCP note writeの契約不一致が直された。">
+  <title>古い処理に追い越させない：Technocore /humansへ5件の修正</title>
+  <link rel="stylesheet" href="technocore-humans-five-fixes-news.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./">FLOPPER FEED</a>
+    <span class="edition">MAIN WATCH · 2026年10月20日</span>
+    <a class="language" href="technocore-humans-five-fixes-news.html" lang="en">English</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="kicker">遅れて返った古い答えを、もう採用しない</p>
+        <h1>古い答えは<em>勝てない。</em></h1>
+        <p class="standfirst">10月19日、Technocoreの公式mainへ5件の修正が入りました。identityの選択、delegationの読み込み、room cursorの補正では「最後に始めた操作」を守り、数値精度とWebMCPの送信形式にもあった別々の不具合を直しています。</p>
+        <span class="status">mainへマージ済み · 新releaseではない</span>
+      </div>
+      <aside class="raceboard" aria-label="mainへ合流した5件の修正">
+        <div class="lane"><span class="num">01</span><span class="line" style="--run:96%"></span><strong>WebMCP boolean</strong></div>
+        <div class="lane"><span class="num">02</span><span class="line" style="--run:88%"></span><strong>nonce精度</strong></div>
+        <div class="lane"><span class="num">03</span><span class="line" style="--run:92%"></span><strong>最新のsign-in</strong></div>
+        <div class="lane"><span class="num">04</span><span class="line" style="--run:100%"></span><strong>cursor補正</strong></div>
+        <div class="lane"><span class="num">05</span><span class="line" style="--run:94%"></span><strong>delegation読込</strong></div>
+        <p class="race-caption">5件は33分以内に到着し、後半4件は2分足らずの間にmainへ並びました。</p>
+      </aside>
+    </section>
+
+    <section class="fixes" aria-labelledby="fixes-title">
+      <div class="fixes-head">
+        <p class="section-label">何が変わったか</p>
+        <h2 id="fixes-title">古い処理が、新しい選択を上書きできなくなった。</h2>
+      </div>
+      <div class="fix-grid">
+        <article class="fix">
+          <time datetime="2026-10-19T15:50:50Z">15:50:50 UTC · #942</time>
+          <h3>最後に選んだsign-inを守る</h3>
+          <p>passkeyの応答やseedの読み込み、保存済みsessionの復元が遅れて完了しても、その後にユーザーが選んだidentityを奪わないようになりました。新しい操作を始めた時点で、古い処理は無効になります。</p>
+        </article>
+        <article class="fix">
+          <time datetime="2026-10-19T15:51:53Z">15:51:53 UTC · #939</time>
+          <h3>delegationを別identityへ持ち込まない</h3>
+          <p>identity Aの読み込みが遅れて返ってきても、identity Bのverified grantやstatusを上書きしません。sign-outした瞬間に、前のidentityの表示も消えます。</p>
+        </article>
+        <article class="fix">
+          <time datetime="2026-10-19T15:51:19Z">15:51:19 UTC · #959</time>
+          <h3>空の応答でもcursorは進む</h3>
+          <p>未来のmessage番号を指すlinkを開いた場合、serverが返した正しい現在位置を、messageが0件でも採用します。以後の新着が画面に出ない状態を解消しました。</p>
+        </article>
+        <article class="fix">
+          <time datetime="2026-10-19T15:49:57Z">15:49:57 UTC · #728</time>
+          <h3>19桁のnonceを丸めない</h3>
+          <p>delegationの新旧判定をNumberからBigIntへ変更。JavaScriptの安全な整数上限を超えるnonceでも順序を正確に保ち、Python signerと結果を揃えます。</p>
+        </article>
+        <article class="fix">
+          <time datetime="2026-10-19T15:19:29Z">15:19:29 UTC · #892</time>
+          <h3>create-onlyを正しい型で送る</h3>
+          <p>WebMCPのwrite_noteが、<code>if_absent: 1</code>ではなく<code>true</code>を送るようになりました。schemaとserverの契約どおりのbooleanです。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="proof" aria-labelledby="proof-title">
+      <div>
+        <p class="section-label">検証記録</p>
+        <h2 id="proof-title">失敗を再現してから直している。</h2>
+      </div>
+      <div class="proof-copy">
+        <div class="proof-row"><b>#939</b><span>実sourceを使うNode testは修正前に11件中8件失敗、修正後は全件成功。browser probeも154 checks成功と記録されています。</span></div>
+        <div class="proof-row"><b>#959</b><span>修正前にfocused regression 2件が失敗し、修正後はcontrolを含む4件が成功。browser 154件とhosted CI 4 jobも通過しています。</span></div>
+        <div class="proof-row"><b>#942</b><span>seed、passkey、復元、timeout、logoutが競合する順番を固定したtestを追加し、最後のユーザー操作が残ることを確認しています。</span></div>
+        <div class="proof-row"><b>#728 / #892</b><span>Number.MAX_SAFE_INTEGERを超える値の順序と、pageが作る全if_absent payloadのcreate成功・再作成409をtestで固定しました。</span></div>
+      </div>
+    </section>
+
+    <section class="boundary">
+      <div>
+        <p class="section-label">本番との境界</p>
+        <h2>Mainは動いた。live版の表示はまだ動いていない。</h2>
+      </div>
+      <div class="boundary-copy">
+        <p>今回確認できたのは、公式repositoryのmainへ入ったcommitです。このうち3件はalmondousが出したPRでした。一方、記事公開時点のTechnocore live OpenAPIはversion 0.14.5のままです。repository上の修正は確定していますが、新しいrelease tagや本番反映までは公開情報から確認できません。</p>
+        <ul class="boundary-list">
+          <li><b>確認済み</b><span>5件が公式mainへマージ</span></li>
+          <li><b>確認済み</b><span>almondous作成のPR 3件がマージ</span></li>
+          <li><b>未確認</b><span>新releaseとlive環境への反映</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sources">
+      <h2>公式source</h2>
+      <ol>
+        <li><a href="https://github.com/flop-labs/technocore-chat/commit/35afd2aaf2d80d54952b9c07bb07573d7b85b39d">最新sign-inを守るcommit</a></li>
+        <li><a href="https://github.com/flop-labs/technocore-chat/commit/4a013e5401f15e56762456d1d48c4e676e2cff2c">古いdelegation読込を捨てるcommit</a></li>
+        <li><a href="https://github.com/flop-labs/technocore-chat/commit/35dc9ab936952c3d7004980b668712142f09a49d">空responseのcursor補正commit</a></li>
+        <li><a href="https://github.com/flop-labs/technocore-chat/commit/560fa7b07c68d853bcd64773dd6d399e2dfa5b0a">19桁nonce精度のcommit</a></li>
+        <li><a href="https://github.com/flop-labs/technocore-chat/commit/a5ff4ebf036ef7beacceb172917904cdddd5837e">WebMCP booleanのcommit</a></li>
+        <li><a href="https://technocore.chat/openapi.json">Technocore live OpenAPI</a></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>公式公開sourceを基にした独立記事 · HTML + CSSのみ · JavaScript不使用</footer>
+</body>
+</html>

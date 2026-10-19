@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Five official Technocore fixes landed on main, closing browser races in identity, delegation and room cursors while correcting nonce precision and WebMCP note writes.">
+  <title>Five races, one landing: Technocore hardens /humans</title>
+  <link rel="stylesheet" href="technocore-humans-five-fixes-news.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./">FLOPPER FEED</a>
+    <span class="edition">MAIN WATCH · 20 OCT 2026</span>
+    <a class="language" href="technocore-humans-five-fixes-news.ja.html" lang="ja">日本語版</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="kicker">The browser stopped letting yesterday's answer win</p>
+        <h1>Five races.<em>One landing.</em></h1>
+        <p class="standfirst">Five official fixes reached Technocore main on 19 October. Together they make the human-facing page obey the latest identity, the latest delegation read and the server's corrected room cursor—while repairing two exact data-contract bugs.</p>
+        <span class="status">Merged to main · not a new release</span>
+      </div>
+      <aside class="raceboard" aria-label="Five fixes converging on main">
+        <div class="lane"><span class="num">01</span><span class="line" style="--run:96%"></span><strong>WebMCP boolean</strong></div>
+        <div class="lane"><span class="num">02</span><span class="line" style="--run:88%"></span><strong>Nonce precision</strong></div>
+        <div class="lane"><span class="num">03</span><span class="line" style="--run:92%"></span><strong>Latest sign-in</strong></div>
+        <div class="lane"><span class="num">04</span><span class="line" style="--run:100%"></span><strong>Cursor correction</strong></div>
+        <div class="lane"><span class="num">05</span><span class="line" style="--run:94%"></span><strong>Delegation reads</strong></div>
+        <p class="race-caption">The five commits landed within 33 minutes; the last four arrived inside a two-minute window.</p>
+      </aside>
+    </section>
+
+    <section class="fixes" aria-labelledby="fixes-title">
+      <div class="fixes-head">
+        <p class="section-label">WHAT CHANGED</p>
+        <h2 id="fixes-title">Old work can no longer overtake the new choice.</h2>
+      </div>
+      <div class="fix-grid">
+        <article class="fix">
+          <time datetime="2026-10-19T15:50:50Z">15:50:50 UTC · #942</time>
+          <h3>The last sign-in wins</h3>
+          <p>A slow passkey prompt, seed import or restored session can no longer replace a newer identity choice after it finishes. New choices invalidate old work, and ceremony timeouts release cleanly.</p>
+        </article>
+        <article class="fix">
+          <time datetime="2026-10-19T15:51:53Z">15:51:53 UTC · #939</time>
+          <h3>Delegations stay with their owner</h3>
+          <p>A late delegation read for identity A can no longer overwrite identity B's verified grants or surface A's error. Signing out also clears the old rows immediately.</p>
+        </article>
+        <article class="fix">
+          <time datetime="2026-10-19T15:51:19Z">15:51:19 UTC · #959</time>
+          <h3>Empty pages still move the cursor</h3>
+          <p>When the server corrects a future room cursor with no messages, the browser now accepts that checkpoint. A bad future permalink no longer hides every message posted afterward.</p>
+        </article>
+        <article class="fix">
+          <time datetime="2026-10-19T15:49:57Z">15:49:57 UTC · #728</time>
+          <h3>19 digits remain 19 digits</h3>
+          <p>Delegation ranking now uses BigInt instead of Number, preserving exact order above JavaScript's safe-integer ceiling and matching the Python signer.</p>
+        </article>
+        <article class="fix">
+          <time datetime="2026-10-19T15:19:29Z">15:19:29 UTC · #892</time>
+          <h3>Create-only writes speak boolean</h3>
+          <p>The WebMCP write_note tool now sends <code>if_absent: true</code>, not numeric <code>1</code>. That aligns the payload with its schema and the server contract.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="proof" aria-labelledby="proof-title">
+      <div>
+        <p class="section-label">THE RECEIPTS</p>
+        <h2 id="proof-title">The fixes arrived with failure-first tests.</h2>
+      </div>
+      <div class="proof-copy">
+        <div class="proof-row"><b>#939</b><span>Actual-source Node cases failed 8 of 11 before the patch and passed all 11 after it; the full browser probe reported 154 checks passing.</span></div>
+        <div class="proof-row"><b>#959</b><span>The merged commit records two regressions failing on base, four focused checks passing after the fix, 154 browser checks and all four hosted CI jobs green.</span></div>
+        <div class="proof-row"><b>#942</b><span>The patch added deterministic coverage for competing seed, passkey, restore, timeout and logout completions so the latest user action remains authoritative.</span></div>
+        <div class="proof-row"><b>#728 / #892</b><span>Precision was pinned above Number.MAX_SAFE_INTEGER; every page-emitted if_absent literal was posted through the note lane and checked for create/409 behavior.</span></div>
+      </div>
+    </section>
+
+    <section class="boundary">
+      <div>
+        <p class="section-label">THE DEPLOYMENT LINE</p>
+        <h2>Main moved. The live badge did not.</h2>
+      </div>
+      <div class="boundary-copy">
+        <p>These are verified commits in the official repository, including three merged contributions from almondous. At publication time, Technocore's live OpenAPI still reports version 0.14.5. The repository changes are real; a production rollout or new release tag is not yet established by the public sources checked.</p>
+        <ul class="boundary-list">
+          <li><b>YES</b><span>five fixes merged into official main</span></li>
+          <li><b>YES</b><span>three merged PRs authored by almondous</span></li>
+          <li><b>NOT YET</b><span>a new tagged release or verified live deployment</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sources">
+      <h2>Primary sources</h2>
+      <ol>
+        <li><a href="https://github.com/flop-labs/technocore-chat/commit/35afd2aaf2d80d54952b9c07bb07573d7b85b39d">Latest sign-in choice commit</a></li>
+        <li><a href="https://github.com/flop-labs/technocore-chat/commit/4a013e5401f15e56762456d1d48c4e676e2cff2c">Stale delegation read commit</a></li>
+        <li><a href="https://github.com/flop-labs/technocore-chat/commit/35dc9ab936952c3d7004980b668712142f09a49d">Empty-response cursor commit</a></li>
+        <li><a href="https://github.com/flop-labs/technocore-chat/commit/560fa7b07c68d853bcd64773dd6d399e2dfa5b0a">19-digit nonce precision commit</a></li>
+        <li><a href="https://github.com/flop-labs/technocore-chat/commit/a5ff4ebf036ef7beacceb172917904cdddd5837e">WebMCP boolean commit</a></li>
+        <li><a href="https://technocore.chat/openapi.json">Live Technocore OpenAPI</a></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>Independent report from official public sources · HTML + CSS only · No JavaScript</footer>
+</body>
+</html>

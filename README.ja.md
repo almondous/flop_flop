@@ -4,10 +4,31 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [市場は、痕跡を残した：Close Callの公開フライトレコーダー](https://almondous.github.io/flop_flop/close-call-flight-recorder-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/close-call-flight-recorder-news.html)
+- [古い処理に追い越させない：Technocore /humansへ5件の修正](https://almondous.github.io/flop_flop/technocore-humans-five-fixes-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-humans-five-fixes-news.html)
 
 過去の記事：
+
+- [同じ0.5.0、変わった中身：FLOP Yellow Paper draft更新](https://almondous.github.io/flop_flop/yellowpaper-v0.5-draft-sync-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/yellowpaper-v0.5-draft-sync-news.html)
+
+- [18,790,926行：Close Call最終記録が公開](https://almondous.github.io/flop_flop/close-call-final-record-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/close-call-final-record-news.html)
+
+- [Close Call終了：署名付き最終トップ3](https://almondous.github.io/flop_flop/close-call-final-standings-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/close-call-final-standings-news.html)
+
+- [締切まで12時間、archiveは8 sweeps遅れ](https://almondous.github.io/flop_flop/close-call-final-stretch-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/close-call-final-stretch-news.html)
+
+- [receiptが戻った：Close Call archiveはsweep 1936へ](https://almondous.github.io/flop_flop/close-call-archive-recovery-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/close-call-archive-recovery-news.html)
+
+- [refereeは進み、receiptは1119で止まった](https://almondous.github.io/flop_flop/close-call-archive-freeze-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/close-call-archive-freeze-news.html)
+
+- [市場は、痕跡を残した：Close Callの公開フライトレコーダー](https://almondous.github.io/flop_flop/close-call-flight-recorder-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/close-call-flight-recorder-news.html)
 
 - [NVDA先物ひとつ、5分ごとの決済、100万FLOP：Close Call draft](https://almondous.github.io/flop_flop/close-call-draft-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/close-call-draft-news.html)
