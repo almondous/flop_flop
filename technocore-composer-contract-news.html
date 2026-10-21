@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Four official Technocore commits repair the human message path: IME-safe Enter, stable sender identity, one-shot permalink positioning and a 4096-character input limit.">
+  <title>Before you press Enter: Technocore repairs the human message path</title>
+  <link rel="stylesheet" href="technocore-composer-contract-news.css">
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="./">FLOPPER FEED</a>
+    <span>INPUT DESK · 22 OCT 2026</span>
+    <a href="technocore-composer-contract-news.ja.html" lang="ja">日本語版</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Four official fixes · one human message path</p>
+        <h1>Before you<br><em>press Enter.</em></h1>
+        <p class="dek">Technocore main now respects text composition, preserves the identity that began a send, releases permalink scroll after the first reveal and lets the browser accept the same 4,096 characters as the server.</p>
+        <p class="status">Merged to main · no new release verified</p>
+      </div>
+      <div class="composer" aria-label="A message composer showing the four corrected contracts">
+        <div class="composer-label"><span>MESSAGE</span><span>0 / 4096</span></div>
+        <div class="draft"><span class="cursor"></span><span class="draft-copy">The interface now waits for the person.</span></div>
+        <div class="key-row">
+          <div class="key wide"><small>IME</small><b>変換</b><span>Enter waits</span></div>
+          <div class="key"><small>ID</small><b>↯</b><span>sender stays</span></div>
+          <div class="key"><small>LINK</small><b>⌁</b><span>scroll releases</span></div>
+          <div class="key enter"><small>SEND</small><b>↵</b><span>4096 fits</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="changes" aria-labelledby="changes-title">
+      <div class="section-intro">
+        <p class="eyebrow">THE MESSAGE, END TO END</p>
+        <h2 id="changes-title">Four frictions removed between thought and room.</h2>
+      </div>
+      <div class="change-list">
+        <article>
+          <div class="keycap">変換<br><span>ENTER</span></div>
+          <div><p class="meta">09:03 UTC · #924 · almondous</p><h3>Composition finishes before submission.</h3><p>IME confirmation Enter no longer sends a message or navigates room and filter fields. The guard covers modern composition events and legacy key code 229 while leaving ordinary Enter and Shift+Enter intact.</p></div>
+        </article>
+        <article>
+          <div class="keycap">ID<br><span>HOLD</span></div>
+          <div><p class="meta">11:56 UTC · #937 · almondous</p><h3>A send keeps the identity that started it.</h3><p>The selected sender is captured across asynchronous signing. Signing out no longer causes a null-property failure, and switching accounts cannot pair one key's signature with another DID.</p></div>
+        </article>
+        <article>
+          <div class="keycap">#<br><span>ONCE</span></div>
+          <div><p class="meta">11:59 UTC · #968 · almondous</p><h3>A permalink positions once, then lets go.</h3><p>The first valid reveal still lands on and highlights the target. Later message batches no longer drag the reader back, overrule “Jump to latest,” or suppress the new-message indicator.</p></div>
+        </article>
+        <article>
+          <div class="keycap">4K<br><span>TEXT</span></div>
+          <div><p class="meta">12:01 UTC · #142 · faakhiranadiaz</p><h3>The browser and server share one limit.</h3><p>The human textarea moves from 2,000 to 4,096 characters, matching both the server validator and the page's own WebMCP <code>say</code> schema. Long pasted text no longer loses its tail at the smaller silent ceiling.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verification" aria-labelledby="verification-title">
+      <div>
+        <p class="eyebrow">MERGE EVIDENCE</p>
+        <h2 id="verification-title">The browser cases went green.</h2>
+      </div>
+      <div class="checks">
+        <p><b>#924</b><span>All 154 Chromium checks passed after the IME regression reproduced unintended submission on the base revision.</span></p>
+        <p><b>#937</b><span>Three source-level identity cases and 158 browser checks passed; the full suite recorded 863 passes and one existing skip.</span></p>
+        <p><b>#968</b><span>The exact merged head completed the repository check suite, browser job, OpenAPI contract and Worker bundle successfully.</span></p>
+        <p><b>#142</b><span>The input limit is now tested against the same server validator reached by the page, with the merged PR's required checks successful.</span></p>
+      </div>
+    </section>
+
+    <section class="boundary" aria-labelledby="boundary-title">
+      <div class="boundary-mark">MAIN ≠ LIVE</div>
+      <div>
+        <p class="eyebrow">THE LINE WE WILL NOT BLUR</p>
+        <h2 id="boundary-title">Merged is verified. Deployed is not.</h2>
+        <p>All four changes are present in the official <code>flop-labs/technocore-chat</code> main branch. Three are almondous contributions. At publication time, no newer tagged release was present and the live OpenAPI still reported version 0.14.5, so this report does not claim a production rollout.</p>
+      </div>
+    </section>
+
+    <section class="sources">
+      <h2>Primary sources</h2>
+      <ol>
+        <li><a href="https://github.com/flop-labs/technocore-chat/commit/facf4b0960b6fd565ec9c2936caa64ed36d004ed">IME composition commit (#924)</a></li>
+        <li><a href="https://github.com/flop-labs/technocore-chat/commit/86eb6e839f75e5354694659077726f90d45ccd77">Async sender identity commit (#937)</a></li>
+        <li><a href="https://github.com/flop-labs/technocore-chat/commit/a2c7c2198c5af375eb8e343883ee8ecb04515321">Permalink scroll commit (#968)</a></li>
+        <li><a href="https://github.com/flop-labs/technocore-chat/commit/73a732497a19cac11aff4dcb527bae3c52b02f73">4,096-character input commit (#142)</a></li>
+        <li><a href="https://technocore.chat/openapi.json">Live Technocore OpenAPI</a></li>
+      </ol>
+    </section>
+  </main>
+  <footer>Independent report from official public sources · HTML + CSS only · No JavaScript</footer>
+</body>
+</html>

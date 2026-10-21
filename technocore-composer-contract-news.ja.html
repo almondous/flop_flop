@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Technocore公式mainに、人間向け投稿経路を直す4件の修正。IME中のEnter、送信者identity、permalink scroll、4096文字の入力上限が揃った。">
+  <title>Enterを押す、その前に：Technocoreが人間の投稿経路を修理</title>
+  <link rel="stylesheet" href="technocore-composer-contract-news.css">
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="./jp.html">FLOPPER FEED</a>
+    <span>INPUT DESK · 2026年10月22日</span>
+    <a href="technocore-composer-contract-news.html" lang="en">English</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">公式修正4件 · 人間からroomまでの一本線</p>
+        <h1>Enterを<br><em>押す、その前に。</em></h1>
+        <p class="dek">Technocoreのmainが、文字変換を待ち、送信開始時のidentityを保持し、permalinkのscroll制御を最初の表示で手放し、serverと同じ4,096文字をbrowserにも受け入れさせるようになった。</p>
+        <p class="status">mainへマージ済み · 新releaseは未確認</p>
+      </div>
+      <div class="composer" aria-label="修正された4つの契約を示す投稿欄">
+        <div class="composer-label"><span>MESSAGE</span><span>0 / 4096</span></div>
+        <div class="draft"><span class="cursor"></span><span class="draft-copy">画面が、人間の操作を待つようになった。</span></div>
+        <div class="key-row">
+          <div class="key wide"><small>IME</small><b>変換</b><span>Enterは待つ</span></div>
+          <div class="key"><small>ID</small><b>↯</b><span>送信者を保持</span></div>
+          <div class="key"><small>LINK</small><b>⌁</b><span>scrollを解放</span></div>
+          <div class="key enter"><small>SEND</small><b>↵</b><span>4096文字</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="changes" aria-labelledby="changes-title">
+      <div class="section-intro">
+        <p class="eyebrow">入力からroomまで</p>
+        <h2 id="changes-title">考えてから届くまで、4つの引っ掛かりを除去。</h2>
+      </div>
+      <div class="change-list">
+        <article>
+          <div class="keycap">変換<br><span>ENTER</span></div>
+          <div><p class="meta">09:03 UTC · #924 · almondous</p><h3>変換確定が、投稿より先に終わる。</h3><p>IME変換確定のEnterで、message送信やroom・filter欄の移動が起きなくなった。modernなcomposition eventと旧式のkey code 229をguardし、通常のEnterとShift+Enterは従来どおり動く。</p></div>
+        </article>
+        <article>
+          <div class="keycap">ID<br><span>HOLD</span></div>
+          <div><p class="meta">11:56 UTC · #937 · almondous</p><h3>送信開始時のidentityを、最後まで使う。</h3><p>非同期signingの途中でも、選んだsenderを保持する。sign-outによるnull-property errorも、account切替で別のDIDとkeyの署名が混ざるHTTP 403も防ぐ。</p></div>
+        </article>
+        <article>
+          <div class="keycap">#<br><span>ONCE</span></div>
+          <div><p class="meta">11:59 UTC · #968 · almondous</p><h3>permalinkは一度合わせたら、手を放す。</h3><p>最初の有効な表示ではtargetへ移動しhighlightする。その後のmessage batchは読者を引き戻さず、「Jump to latest」を上書きせず、新着表示も抑制しない。</p></div>
+        </article>
+        <article>
+          <div class="keycap">4K<br><span>TEXT</span></div>
+          <div><p class="meta">12:01 UTC · #142 · faakhiranadiaz</p><h3>browserとserverの上限を一本化。</h3><p>人間向けtextareaの上限を2,000から4,096文字へ変更。server validatorと同じページのWebMCP <code>say</code> schemaに揃い、長文pasteの末尾が小さい側の無言の上限で欠けなくなった。</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verification" aria-labelledby="verification-title">
+      <div>
+        <p class="eyebrow">マージの根拠</p>
+        <h2 id="verification-title">browserの再現ケースはgreenへ。</h2>
+      </div>
+      <div class="checks">
+        <p><b>#924</b><span>baseで意図しない投稿を再現したIME regressionを直し、Chromium 154 checksがすべてpass。</span></p>
+        <p><b>#937</b><span>identityのsource-level 3 casesとbrowser 158 checksがpass。full suiteは863 pass、既存1 skip。</span></p>
+        <p><b>#968</b><span>マージされたheadでrepository check suite、browser job、OpenAPI contract、Worker bundleがsuccess。</span></p>
+        <p><b>#142</b><span>入力上限をpageが実際に到達するserver validatorへ結び付けてtestし、マージPRの必須checkがsuccess。</span></p>
+      </div>
+    </section>
+
+    <section class="boundary" aria-labelledby="boundary-title">
+      <div class="boundary-mark">MAIN ≠ LIVE</div>
+      <div>
+        <p class="eyebrow">混同しない境界線</p>
+        <h2 id="boundary-title">マージは確認済み。deployは未確認。</h2>
+        <p>4件すべてが公式 <code>flop-labs/technocore-chat</code> のmainに入った。そのうち3件はalmondousによるcontributionだ。公開時点で新しいtagged releaseはなく、live OpenAPIはversion 0.14.5のまま。したがって、この記事はproduction rolloutを主張しない。</p>
+      </div>
+    </section>
+
+    <section class="sources">
+      <h2>一次資料</h2>
+      <ol>
+        <li><a href="https://github.com/flop-labs/technocore-chat/commit/facf4b0960b6fd565ec9c2936caa64ed36d004ed">IME composition修正（#924）</a></li>
+        <li><a href="https://github.com/flop-labs/technocore-chat/commit/86eb6e839f75e5354694659077726f90d45ccd77">非同期sender identity修正（#937）</a></li>
+        <li><a href="https://github.com/flop-labs/technocore-chat/commit/a2c7c2198c5af375eb8e343883ee8ecb04515321">permalink scroll修正（#968）</a></li>
+        <li><a href="https://github.com/flop-labs/technocore-chat/commit/73a732497a19cac11aff4dcb527bae3c52b02f73">4,096文字入力上限修正（#142）</a></li>
+        <li><a href="https://technocore.chat/openapi.json">live Technocore OpenAPI</a></li>
+      </ol>
+    </section>
+  </main>
+  <footer>公式公開資料に基づく独立レポート · HTML + CSSのみ · JavaScript不使用</footer>
+</body>
+</html>

@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [古い処理に追い越させない：Technocore /humansへ5件の修正](https://almondous.github.io/flop_flop/technocore-humans-five-fixes-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-humans-five-fixes-news.html)
+- [Enterを押す、その前に：Technocoreが人間の投稿経路を修理](https://almondous.github.io/flop_flop/technocore-composer-contract-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-composer-contract-news.html)
 
 過去の記事：
+
+- [古い処理に追い越させない：Technocore /humansへ5件の修正](https://almondous.github.io/flop_flop/technocore-humans-five-fixes-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-humans-five-fixes-news.html)
 
 - [同じ0.5.0、変わった中身：FLOP Yellow Paper draft更新](https://almondous.github.io/flop_flop/yellowpaper-v0.5-draft-sync-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/yellowpaper-v0.5-draft-sync-news.html)
