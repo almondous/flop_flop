@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FLOP Labs merged a native FLOP HTLC settlement rail into tclk, with devnet-verified claim and refund paths, local signing, and explicit deployment limits.">
+  <title>Money gets a rail: tclk lands native FLOP HTLC settlement</title>
+  <link rel="stylesheet" href="tclk-flop-htlc-rail-news.css">
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="./">FLOPPER FEED</a>
+    <span>SETTLEMENT DESK · 23 OCT 2026</span>
+    <a href="tclk-flop-htlc-rail-news.ja.html" lang="ja">日本語版</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="kicker">tclk main · native FLOP escrow</p>
+        <h1>Money gets<br><em>a rail.</em></h1>
+        <p class="dek">FLOP Labs merged <code>@flop-labs/tclk-flop</code>: a configurable HTLC adapter that locks native FLOP, verifies finalized chain state, and exits through claim or refund.</p>
+        <p class="badge">MERGED · DEVNET VERIFIED · NOT RELEASED</p>
+      </div>
+
+      <div class="rail" aria-label="An escrow rail splitting into claim and refund paths">
+        <div class="origin"><span>LOCK</span><b>FLOP</b><small>local signature</small></div>
+        <div class="track track-in"></div>
+        <div class="vault"><span>HTLC</span><b>ESCROW</b><small>finalized state</small></div>
+        <div class="track track-claim"></div>
+        <div class="track track-refund"></div>
+        <div class="exit claim"><span>SECRET</span><b>CLAIM</b><small>payee</small></div>
+        <div class="exit refund"><span>DEADLINE</span><b>REFUND</b><small>payer</small></div>
+      </div>
+    </section>
+
+    <section class="mechanism" aria-labelledby="mechanism-title">
+      <div class="section-head">
+        <p class="kicker">THE VALUE PATH</p>
+        <h2 id="mechanism-title">The room coordinates. The chain moves value.</h2>
+      </div>
+      <div class="steps">
+        <article><span class="step">LOCK</span><h3>Terms become an escrow.</h3><p>The payer derives exact lock terms from the accepted tclk contract. The rail binds parties, asset, amount, deadline, network, genesis and finalized anchor into a versioned <code>flop1.</code> reference.</p></article>
+        <article><span class="step">VERIFY</span><h3>The payee checks before working.</h3><p>Verification reads canonical finalized state and fails closed on stale anchors, chain mismatch, wrong parties, wrong amount, malformed data or RPC errors. A chat reference cannot substitute those terms.</p></article>
+        <article><span class="step claim-label">CLAIM</span><h3>The secret opens one exit.</h3><p>The agreed preimage and public binding witness satisfy the two-leaf policy. Anyone may relay the claim, but the escrow's fixed payee receives the funds.</p></article>
+        <article><span class="step refund-label">REFUND</span><h3>Time opens the other.</h3><p>The payer reclaims only after both wall time and the finalized block deadline permit it. A chain stall can delay that exit; this is not a hard real-time guarantee.</p></article>
+      </div>
+    </section>
+
+    <section class="receipts" aria-labelledby="receipts-title">
+      <div>
+        <p class="kicker">DEVNET RECEIPTS</p>
+        <h2 id="receipts-title">Both exits finalized.</h2>
+        <p class="receipt-intro">The official verification record exercised two fresh 0.001 test FLOP escrows: one claimed, one refunded. Balance events, escrow terminal events and <code>ExtrinsicSuccess</code> were observed; all four test escrows used during development ended closed.</p>
+      </div>
+      <div class="receipt-board">
+        <div><span>CLAIM PATH</span><b>Released</b><small>0.001 test FLOP · finalized</small></div>
+        <div><span>REFUND PATH</span><b>Refunded</b><small>0.001 test FLOP · finalized</small></div>
+        <div><span>WORKSPACE</span><b>249 tests</b><small>72 rail tests · CI green</small></div>
+        <div><span>SECRETS</span><b>Local</b><small>not logged or persisted by tclk</small></div>
+      </div>
+    </section>
+
+    <section class="limits" aria-labelledby="limits-title">
+      <div class="signal">DEVNET<br>≠<br>MAINNET</div>
+      <div>
+        <p class="kicker">THE SAFETY BOARD</p>
+        <h2 id="limits-title">A working rail is not a launch announcement.</h2>
+        <ul>
+          <li><b>Default:</b> devnet. Testnet and mainnet require an explicit RPC endpoint and trusted genesis pin.</li>
+          <li><b>Trust model:</b> this is a trusted-RPC client, not a light client proving storage or consensus.</li>
+          <li><b>Timing:</b> the chain enforces block heights. Nominal block-time conversion cannot promise a wall-clock refund.</li>
+          <li><b>Recovery:</b> transactions are not auto-retried; uncertain submissions must be journaled and checked before replacement.</li>
+          <li><b>Publication:</b> the package exists on tclk main, while publishing it remains a separate release step. The latest repository release is still v0.1.0.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sources">
+      <h2>Primary sources</h2>
+      <ol>
+        <li><a href="https://github.com/flop-labs/tclk/commit/fb910d354b34892f9bad236ca51f390be50a6d4b">Official merge commit</a></li>
+        <li><a href="https://github.com/flop-labs/tclk/pull/210">Merged pull request #210</a></li>
+        <li><a href="https://github.com/flop-labs/tclk/blob/fb910d354b34892f9bad236ca51f390be50a6d4b/flop/README.md">FlopRail design and recovery guide</a></li>
+        <li><a href="https://github.com/flop-labs/tclk/blob/fb910d354b34892f9bad236ca51f390be50a6d4b/flop/VERIFICATION.md">Official devnet verification record</a></li>
+        <li><a href="https://github.com/flop-labs/tclk/releases/tag/v0.1.0">Latest tagged tclk release</a></li>
+      </ol>
+    </section>
+  </main>
+  <footer>Independent report from official public sources · HTML + CSS only · No JavaScript</footer>
+</body>
+</html>

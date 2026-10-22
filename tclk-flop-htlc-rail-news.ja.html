@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FLOP Labsがnative FLOPのHTLC settlement railをtclkへmerge。devnetでclaimとrefundを検証し、local signingとdeploy境界を明記した。">
+  <title>価値を運ぶrail：tclkにnative FLOP HTLC決済</title>
+  <link rel="stylesheet" href="tclk-flop-htlc-rail-news.css">
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="./jp.html">FLOPPER FEED</a>
+    <span>SETTLEMENT DESK · 2026年10月23日</span>
+    <a href="tclk-flop-htlc-rail-news.html" lang="en">English</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="kicker">tclk main · native FLOP escrow</p>
+        <h1>価値を運ぶ<br><em>railが来た。</em></h1>
+        <p class="dek">FLOP Labsが <code>@flop-labs/tclk-flop</code> をmergeした。native FLOPをlockし、finalized chain stateを検証し、claimまたはrefundへ抜ける設定可能なHTLC adapterだ。</p>
+        <p class="badge">MERGED · DEVNET検証済み · 未RELEASE</p>
+      </div>
+
+      <div class="rail" aria-label="escrowからclaimとrefundへ分かれる決済rail">
+        <div class="origin"><span>LOCK</span><b>FLOP</b><small>local signature</small></div>
+        <div class="track track-in"></div>
+        <div class="vault"><span>HTLC</span><b>ESCROW</b><small>finalized state</small></div>
+        <div class="track track-claim"></div>
+        <div class="track track-refund"></div>
+        <div class="exit claim"><span>SECRET</span><b>CLAIM</b><small>payee</small></div>
+        <div class="exit refund"><span>DEADLINE</span><b>REFUND</b><small>payer</small></div>
+      </div>
+    </section>
+
+    <section class="mechanism" aria-labelledby="mechanism-title">
+      <div class="section-head">
+        <p class="kicker">価値が通る道</p>
+        <h2 id="mechanism-title">roomは合意を運び、chainは価値を動かす。</h2>
+      </div>
+      <div class="steps">
+        <article><span class="step">LOCK</span><h3>合意したtermsをescrowへ。</h3><p>payerはaccepted tclk contractから正確なlock termsを導く。party、asset、amount、deadline、network、genesis、finalized anchorをversion付き <code>flop1.</code> referenceへ結び付ける。</p></article>
+        <article><span class="step">VERIFY</span><h3>payeeは仕事の前にchainを見る。</h3><p>canonicalなfinalized stateを読み、stale anchor、chain不一致、partyやamountの相違、malformed data、RPC errorならfail closed。chat上のreferenceだけで条件を差し替えることはできない。</p></article>
+        <article><span class="step claim-label">CLAIM</span><h3>secretが片方の出口を開く。</h3><p>合意したpreimageと公開binding witnessが二つのleaf policyを満たす。誰でもclaimをrelayできるが、資金を受け取るのはescrowに固定されたpayeeだ。</p></article>
+        <article><span class="step refund-label">REFUND</span><h3>時間がもう片方を開く。</h3><p>payerが取り戻せるのはwall timeとfinalized block deadlineの両方が許した後。chain停止で出口は遅れ得るため、hard real-time guaranteeではない。</p></article>
+      </div>
+    </section>
+
+    <section class="receipts" aria-labelledby="receipts-title">
+      <div>
+        <p class="kicker">DEVNET RECEIPTS</p>
+        <h2 id="receipts-title">二つの出口をfinalize。</h2>
+        <p class="receipt-intro">公式verification記録は、freshな0.001 test FLOP escrowを二つ実行した。一つはclaim、もう一つはrefund。balance event、escrowのterminal event、<code>ExtrinsicSuccess</code>を確認し、開発中に使ったtest escrow 4件はすべてclosedになった。</p>
+      </div>
+      <div class="receipt-board">
+        <div><span>CLAIM PATH</span><b>Released</b><small>0.001 test FLOP · finalized</small></div>
+        <div><span>REFUND PATH</span><b>Refunded</b><small>0.001 test FLOP · finalized</small></div>
+        <div><span>WORKSPACE</span><b>249 tests</b><small>rail 72 tests · CI green</small></div>
+        <div><span>SECRETS</span><b>Local</b><small>tclkはlog・永続保存しない</small></div>
+      </div>
+    </section>
+
+    <section class="limits" aria-labelledby="limits-title">
+      <div class="signal">DEVNET<br>≠<br>MAINNET</div>
+      <div>
+        <p class="kicker">SAFETY BOARD</p>
+        <h2 id="limits-title">動くrailは、launch告知ではない。</h2>
+        <ul>
+          <li><b>default：</b>devnet。testnetとmainnetには明示的なRPC endpointと信頼済みgenesis pinが必要。</li>
+          <li><b>trust model：</b>trusted-RPC clientであり、storage proofやconsensusを検証するlight clientではない。</li>
+          <li><b>timing：</b>chainが強制するのはblock height。nominal block-time換算はwall-clock refundを保証しない。</li>
+          <li><b>recovery：</b>transactionを自動retryしない。不確実なsubmissionはjournalへ残し、replacement前に確認する。</li>
+          <li><b>publication：</b>packageはtclk mainに存在するが、publishは別のrelease作業。repositoryのlatest releaseはまだv0.1.0。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sources">
+      <h2>一次資料</h2>
+      <ol>
+        <li><a href="https://github.com/flop-labs/tclk/commit/fb910d354b34892f9bad236ca51f390be50a6d4b">公式merge commit</a></li>
+        <li><a href="https://github.com/flop-labs/tclk/pull/210">merge済みPR #210</a></li>
+        <li><a href="https://github.com/flop-labs/tclk/blob/fb910d354b34892f9bad236ca51f390be50a6d4b/flop/README.md">FlopRail design・recovery guide</a></li>
+        <li><a href="https://github.com/flop-labs/tclk/blob/fb910d354b34892f9bad236ca51f390be50a6d4b/flop/VERIFICATION.md">公式devnet verification記録</a></li>
+        <li><a href="https://github.com/flop-labs/tclk/releases/tag/v0.1.0">最新tagged tclk release</a></li>
+      </ol>
+    </section>
+  </main>
+  <footer>公式公開資料に基づく独立レポート · HTML + CSSのみ · JavaScript不使用</footer>
+</body>
+</html>

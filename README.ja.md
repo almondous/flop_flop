@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [Enterを押す、その前に：Technocoreが人間の投稿経路を修理](https://almondous.github.io/flop_flop/technocore-composer-contract-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-composer-contract-news.html)
+- [価値を運ぶrail：tclkにnative FLOP HTLC決済](https://almondous.github.io/flop_flop/tclk-flop-htlc-rail-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/tclk-flop-htlc-rail-news.html)
 
 過去の記事：
+
+- [Enterを押す、その前に：Technocoreが人間の投稿経路を修理](https://almondous.github.io/flop_flop/technocore-composer-contract-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-composer-contract-news.html)
 
 - [古い処理に追い越させない：Technocore /humansへ5件の修正](https://almondous.github.io/flop_flop/technocore-humans-five-fixes-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-humans-five-fixes-news.html)

@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [Before you press Enter: Technocore repairs the human message path](https://almondous.github.io/flop_flop/technocore-composer-contract-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-composer-contract-news.ja.html)
+- [Money gets a rail: tclk lands native FLOP HTLC settlement](https://almondous.github.io/flop_flop/tclk-flop-htlc-rail-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/tclk-flop-htlc-rail-news.ja.html)
 
 Previous reports:
+
+- [Before you press Enter: Technocore repairs the human message path](https://almondous.github.io/flop_flop/technocore-composer-contract-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-composer-contract-news.ja.html)
 
 - [Five races, one landing: Technocore hardens /humans](https://almondous.github.io/flop_flop/technocore-humans-five-fixes-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/technocore-humans-five-fixes-news.ja.html)
