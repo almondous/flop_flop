@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [価値を運ぶrail：tclkにnative FLOP HTLC決済](https://almondous.github.io/flop_flop/tclk-flop-htlc-rail-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/tclk-flop-htlc-rail-news.html)
+- [85は計算へ。15は検証へ：FLOP草案が資金の行き先を更新](https://almondous.github.io/flop_flop/yellowpaper-money-routing-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/yellowpaper-money-routing-news.html)
 
 過去の記事：
+
+- [価値を運ぶrail：tclkにnative FLOP HTLC決済](https://almondous.github.io/flop_flop/tclk-flop-htlc-rail-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/tclk-flop-htlc-rail-news.html)
 
 - [Enterを押す、その前に：Technocoreが人間の投稿経路を修理](https://almondous.github.io/flop_flop/technocore-composer-contract-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/technocore-composer-contract-news.html)

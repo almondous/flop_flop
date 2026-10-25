@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FLOP Yellow Paperの新しい公式同期で、推論料金85対15、バーン0%、自己ステーク中心の規定が公開。資金の行き先と検証範囲を図解します。">
+  <title>85は計算へ。15は検証へ。— FLOPPER FEED</title>
+  <link rel="stylesheet" href="yellowpaper-money-routing-news.css">
+</head>
+<body>
+<header><a class="brand" href="./">FLOPPER FEED</a><span class="edition">公開仕様 / 2026年10月26日</span><a class="lang" href="yellowpaper-money-routing-news.html" lang="en">English</a></header>
+<main>
+  <section class="hero" aria-labelledby="headline">
+    <div><p class="eyebrow">YELLOW PAPER / 資金の行き先</p><h1 id="headline">85は計算へ。<span>15は検証へ。</span></h1></div>
+    <p class="intro">FLOP Labsが10月25日に公開ミラーを同期。推論料金、取引手数料、罰則、保有者のステーキングについて、草案の<b>「誰にお金が届くのか」</b>が更新された。文書は引き続き<b>0.5.0 draft</b>だ。</p>
+  </section>
+  <figure class="allocation" aria-labelledby="split-title">
+    <div class="allocation-head"><div><p class="eyebrow">決済された推論料金ひとつを分解</p><h2 id="split-title">100の行き先を追う。</h2></div><div class="amount">100<small>配分説明用の総額</small></div></div>
+    <div class="split" aria-hidden="true"><div class="miner">85</div><div class="validator">14</div><div class="audit"></div></div>
+    <div class="split-labels"><div><strong><i class="swatch miner"></i>85 / 計算miner</strong><p>計算を提供する側への支払い。</p></div><div><strong><i class="swatch validator"></i>14 / validators</strong><p>検証側の配分から監査分を除いた部分。</p></div><div><strong><i class="swatch audit"></i>1 / 監査pool</strong><p>検証側15の内側に確保する。</p></div></div>
+    <p class="bracket">14 + 1 = 15。監査分は追加徴収ではなく、15の内数。</p>
+    <figcaption>D-0525はminerへ85%、validator poolへ15%と規定する。総支払額の1%に相当する監査枠は、その15%に含まれる。図は最小単位への丸めを適用する前の比率。ブロック報酬の新規発行とは別の配分だ。</figcaption>
+  </figure>
+  <section class="story" aria-label="送金先の変更">
+    <p class="lead">新しいcommit <a href="https://github.com/flop-labs/yellowpaper/commit/5730f4b6cf56fa88bb93bbda272dc449b2f77b17">5730f4b</a>は、<a href="yellowpaper-v0.5-draft-sync-news.ja.html">10月13日の既報</a>より先へ公開記録を進めた。D-0525、D-0529〜D-0531を決定記録に加え、本文と正規パラメータを整合させている。決定自体の承認日は以前の日付であり、今回の新着は公開ミラーへの反映だ。</p>
+    <div class="routes">
+      <article class="route"><h3>取引手数料</h3><div class="destination"><span class="tag">D-0529</span>100%をブロック作者へ</div><p>公開パラメータの取引手数料バーン率が10%から0%へ変わった。基本・長さ・weightの手数料とtipは作者に届く。バーン0%は送金先の変更であり、取引が無料になる意味ではない。</p></article>
+      <article class="route"><h3>没収された担保</h3><div class="destination"><span class="tag">D-0529</span>100%をFoundationへ</div><p>従来の「full-burn」表現を、没収して<code>FLOPFoundationAccount</code>へ移す規定に置き換えた。全額slashなら対象のstakeは失われるが、草案上は消却せず送金する。</p></article>
+      <article class="route"><h3>紹介インセンティブ</h3><div class="destination"><span class="tag">D-0531</span>off-chainでreserveから</div><p>on-chainの紹介手数料に代わり、explorerのランキングと定期抽選を規定。財源は8億FLOPのgenesis reserveで、他のエコシステム施策にも使う枠だ。制度の記述であり、支払いや募集開始の告知ではない。</p></article>
+    </div>
+  </section>
+  <section class="staking" aria-labelledby="staking-title">
+    <div><p class="eyebrow">D-0530 / 二つの役割</p><h2 id="staking-title">運営者は自分で積む。<br>保有者は期間でlock。</h2><p class="sub">運営者のself-stakeと、community stakingを分ける。</p></div>
+    <div class="body"><p>validatorやminerのstakeに第三者が委任し、運営報酬を分けてもらう方式を草案は認めない。関連する委任call、上限、commissionはdeprecatedとされる。</p><p>ハードウェアを運営しない保有者向けには、<strong>ブロック報酬の5%枠</strong>を期間lock型のcommunity poolへ配る。D-0530は運営者のslashにさらされない7段階を記すが、正確な重みとclaim方法はE.40で未確定。利用可能な商品や確定利回りが示されたわけではない。</p><p>別のD-0528はdevnet・testnetでスポンサー所有の登録bondを許す。runtimeが該当機能を有効にした場合だけself-stakeとして数え、返金先はスポンサー。mainnetの論点は残る。</p></div>
+  </section>
+  <section class="evidence" aria-labelledby="evidence-title">
+    <p class="eyebrow">公開証拠 / 検証範囲を混ぜない</p><h2 id="evidence-title">31ケース ≠ 31件合格。</h2><p class="evidence-intro">公開されたmoney-path JSONを集計し、case guideと照合した。landedが12件、pendingが19件。その内訳と意味は異なる。</p>
+    <table class="evidence-table"><thead><tr><th scope="col">件数</th><th scope="col">資料が示す範囲</th><th scope="col">限界</th></tr></thead><tbody><tr><td class="count">5</td><td>compute-channelのmock runtimeケース</td><td>監査配分ゼロのmockを使う。新しい85対15配分の検証にはならない。</td></tr><tr><td class="count">7</td><td>paid-storageのrent算術ケース</td><td>算術のcoverageはruntime適合性を証明しない。</td></tr><tr><td class="count">19</td><td>決定・coverage待ちのseed</td><td>期待払出額がなく、合格でも想定失敗でもない。</td></tr></tbody></table>
+    <p class="limit">公開checkerが検査するのはコーパスの構造。実行による金額検証には、元の実装リポジトリのpallet runnerが必要となる。本記事ではその非公開runnerや稼働chainを検証していない。公開規定、modelのcoverage、本番有効化は別々に読む。</p>
+  </section>
+  <section class="sources" aria-labelledby="sources-title"><div><p class="eyebrow">COMMIT固定の一次資料</p><h2 id="sources-title">数字の出所。</h2><p class="provenance">公式同期は2026年10月25日15:44:54 UTC、日本時間10月26日00:44:54。記事確認日は10月26日。以下はすべて当該commitに固定したリンク。</p></div><ul>
+    <li><a href="https://github.com/flop-labs/yellowpaper/commit/5730f4b6cf56fa88bb93bbda272dc449b2f77b17">10月13日のparentからの公式差分</a></li>
+    <li><a href="https://github.com/flop-labs/yellowpaper/blob/5730f4b6cf56fa88bb93bbda272dc449b2f77b17/decisions/v0.5.md">D-0525、D-0528〜D-0531の決定記録</a></li>
+    <li><a href="https://github.com/flop-labs/yellowpaper/blob/5730f4b6cf56fa88bb93bbda272dc449b2f77b17/params/flop-protocol-params.yaml">正規パラメータ：850/150 ppt、手数料バーン0%</a></li>
+    <li><a href="https://github.com/flop-labs/yellowpaper/blob/5730f4b6cf56fa88bb93bbda272dc449b2f77b17/yellowpaper.md">未確定のE.40を含む規範本文</a></li>
+    <li><a href="https://github.com/flop-labs/yellowpaper/blob/5730f4b6cf56fa88bb93bbda272dc449b2f77b17/evidence/money-path-v1.md">money-path case guide</a>と<a href="https://github.com/flop-labs/yellowpaper/blob/5730f4b6cf56fa88bb93bbda272dc449b2f77b17/evidence/money-path-v1.json">31ケースのJSON</a></li>
+  </ul></section>
+</main><footer>FLOPPER FEED / FLOP Labsの公開資料による独立記事。資金の配分をレイアウトに反映。HTML + CSSのみ。<a href="README.ja.md">記事一覧</a></footer>
+</body></html>

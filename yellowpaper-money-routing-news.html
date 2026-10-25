@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A new official FLOP Yellow Paper sync publishes an 85/15 inference-fee split, zero-burn routing and operator self-stake rules. What changed, and what remains unverified.">
+  <title>85 to compute. 15 to validation. — FLOPPER FEED</title>
+  <link rel="stylesheet" href="yellowpaper-money-routing-news.css">
+</head>
+<body>
+<header><a class="brand" href="./">FLOPPER FEED</a><span class="edition">PUBLIC SPECIFICATION / 26 OCT 2026</span><a class="lang" href="yellowpaper-money-routing-news.ja.html" lang="ja">日本語版</a></header>
+<main>
+  <section class="hero" aria-labelledby="headline">
+    <div><p class="eyebrow">YELLOW PAPER / MONEY DESTINATIONS</p><h1 id="headline">85 to compute.<span>15 to validation.</span></h1></div>
+    <p class="intro">FLOP Labs' October 25 public mirror sync changes the draft's account of <b>who receives the money</b>: inference payments, transaction fees, penalties and passive staking now have clearer destinations. The document remains <b>0.5.0 draft</b>.</p>
+  </section>
+  <figure class="allocation" aria-labelledby="split-title">
+    <div class="allocation-head"><div><p class="eyebrow">ONE SETTLED INFERENCE PAYMENT</p><h2 id="split-title">Follow the whole 100.</h2></div><div class="amount">100<small>ILLUSTRATIVE GROSS AMOUNT</small></div></div>
+    <div class="split" aria-hidden="true"><div class="miner">85</div><div class="validator">14</div><div class="audit"></div></div>
+    <div class="split-labels"><div><strong><i class="swatch miner"></i>85 / compute miner</strong><p>Payment for the computation.</p></div><div><strong><i class="swatch validator"></i>14 / validators</strong><p>The remainder of their fee leg.</p></div><div><strong><i class="swatch audit"></i>1 / audit pool</strong><p>Earmarked inside the validator leg.</p></div></div>
+    <p class="bracket">14 + 1 = 15. The audit allocation is included, not added on top.</p>
+    <figcaption>D-0525 specifies 85% to the miner and 15% to the validator pool; one percentage point of the gross payment is reserved for audits inside that 15%. The diagram illustrates the percentages before base-unit rounding. This fee split is separate from block-reward emission.</figcaption>
+  </figure>
+  <section class="story" aria-label="Routing changes">
+    <p class="lead">The new commit, <a href="https://github.com/flop-labs/yellowpaper/commit/5730f4b6cf56fa88bb93bbda272dc449b2f77b17">5730f4b</a>, extends the public record beyond <a href="yellowpaper-v0.5-draft-sync-news.html">our October 13 report</a>. It brings D-0525 and D-0529–D-0531 into the visible decision record and aligns the main text and canonical parameters. The decisions carry earlier ratification dates; the fresh event is their publication in this mirror.</p>
+    <div class="routes">
+      <article class="route"><h3>Transaction fees</h3><div class="destination"><span class="tag">D-0529</span>100% to the block author</div><p>The published parameter changes from 10% transaction-fee burn to 0%. Base, length and weight fees, plus tips, go to the author. Zero burn changes the destination; it does not make transactions free.</p></article>
+      <article class="route"><h3>Slashed collateral</h3><div class="destination"><span class="tag">D-0529</span>100% to the Foundation</div><p>The draft replaces legacy “full-burn” language with confiscation and transfer to <code>FLOPFoundationAccount</code>. A full slash still takes the penalized stake; the text says the proceeds are transferred rather than destroyed.</p></article>
+      <article class="route"><h3>Referral incentives</h3><div class="destination"><span class="tag">D-0531</span>Off-chain reserve funding</div><p>On-chain referral commissions are superseded by an explorer leaderboard and periodic lotteries funded from the 800 million FLOP genesis reserve, which also serves other ecosystem programmes. This is a specification of the programme, not a payout announcement.</p></article>
+    </div>
+  </section>
+  <section class="staking" aria-labelledby="staking-title">
+    <div><p class="eyebrow">D-0530 / TWO DIFFERENT ROLES</p><h2 id="staking-title">Operate with your stake.<br>Lock without an operator.</h2><p class="sub">Operator self-stake and community staking are separate paths.</p></div>
+    <div class="body"><p>The draft prohibits third-party delegation into validator or miner stakes for a share of operator rewards. Delegation calls, caps and commissions are marked deprecated.</p><p>Non-operating holders instead have a duration-locked community pool assigned the <strong>5% block-reward leg</strong>. D-0530 describes seven tiers with no operator-slashing exposure. Exact tier weights and claim mechanics remain under E.40; the text does not establish an available product or a guaranteed yield.</p><p>D-0528 separately permits sponsor-owned registration bonds on devnet and testnet. They count as self-stake only when the runtime enables that feature, and refunds return to the sponsor. Mainnet questions remain open.</p></div>
+  </section>
+  <section class="evidence" aria-labelledby="evidence-title">
+    <p class="eyebrow">PUBLIC EVIDENCE / KEEP THE CATEGORIES SEPARATE</p><h2 id="evidence-title">31 fixtures are not 31 passes.</h2><p class="evidence-intro">We counted the current public money-path JSON and checked its case guide. It contains 12 “landed” fixtures and 19 pending seeds, with different meanings:</p>
+    <table class="evidence-table"><thead><tr><th scope="col">Cases</th><th scope="col">Scope described by the source</th><th scope="col">Limit</th></tr></thead><tbody><tr><td class="count">5</td><td>Compute-channel mock-runtime fixtures</td><td>Use a zero-audit-split mock; they do not verify the new 85/15 routing.</td></tr><tr><td class="count">7</td><td>Paid-storage rent arithmetic fixtures</td><td>Arithmetic coverage does not establish runtime conformance.</td></tr><tr><td class="count">19</td><td>Pending decision or coverage seeds</td><td>No expected payouts; neither passes nor expected failures.</td></tr></tbody></table>
+    <p class="limit">The public checker validates corpus structure. Executable amount checks need the authoring repository's pallet runners. This report did not run those private runners or verify a deployed chain. Published rules, model coverage and production activation remain distinct.</p>
+  </section>
+  <section class="sources" aria-labelledby="sources-title"><div><p class="eyebrow">PINNED PRIMARY SOURCES</p><h2 id="sources-title">Where the figures come from.</h2><p class="provenance">Official sync: October 25, 2026 at 15:44:54 UTC / October 26 at 00:44:54 JST. Report checked October 26 JST. All source links below are pinned to that commit.</p></div><ul>
+    <li><a href="https://github.com/flop-labs/yellowpaper/commit/5730f4b6cf56fa88bb93bbda272dc449b2f77b17">Official mirror diff, from the October 13 parent</a></li>
+    <li><a href="https://github.com/flop-labs/yellowpaper/blob/5730f4b6cf56fa88bb93bbda272dc449b2f77b17/decisions/v0.5.md">Decisions D-0525 and D-0528–D-0531</a></li>
+    <li><a href="https://github.com/flop-labs/yellowpaper/blob/5730f4b6cf56fa88bb93bbda272dc449b2f77b17/params/flop-protocol-params.yaml">Canonical parameters: 850/150 parts per thousand; 0% fee burn</a></li>
+    <li><a href="https://github.com/flop-labs/yellowpaper/blob/5730f4b6cf56fa88bb93bbda272dc449b2f77b17/yellowpaper.md">Normative draft, including open E.40</a></li>
+    <li><a href="https://github.com/flop-labs/yellowpaper/blob/5730f4b6cf56fa88bb93bbda272dc449b2f77b17/evidence/money-path-v1.md">Money-path case guide</a> and <a href="https://github.com/flop-labs/yellowpaper/blob/5730f4b6cf56fa88bb93bbda272dc449b2f77b17/evidence/money-path-v1.json">31-fixture corpus</a></li>
+  </ul></section>
+</main><footer>FLOPPER FEED / Independent reporting from public FLOP Labs material. Design follows the payment allocation. HTML + CSS only. <a href="README.md">Article index</a></footer>
+</body></html>
