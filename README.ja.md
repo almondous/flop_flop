@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [85は計算へ。15は検証へ：FLOP草案が資金の行き先を更新](https://almondous.github.io/flop_flop/yellowpaper-money-routing-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/yellowpaper-money-routing-news.html)
+- [罰則金の行き先が、揃っていない：Yellow Paperが実装との差を開示](https://almondous.github.io/flop_flop/yellowpaper-penalty-gap-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/yellowpaper-penalty-gap-news.html)
 
 過去の記事：
+
+- [85は計算へ。15は検証へ：FLOP草案が資金の行き先を更新](https://almondous.github.io/flop_flop/yellowpaper-money-routing-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/yellowpaper-money-routing-news.html)
 
 - [価値を運ぶrail：tclkにnative FLOP HTLC決済](https://almondous.github.io/flop_flop/tclk-flop-htlc-rail-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/tclk-flop-htlc-rail-news.html)

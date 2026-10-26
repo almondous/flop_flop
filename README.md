@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [85 to compute. 15 to validation: FLOP's public draft redraws money destinations](https://almondous.github.io/flop_flop/yellowpaper-money-routing-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/yellowpaper-money-routing-news.ja.html)
+- [One penalty. Two destinations: Yellow Paper discloses an implementation gap](https://almondous.github.io/flop_flop/yellowpaper-penalty-gap-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/yellowpaper-penalty-gap-news.ja.html)
 
 Previous reports:
+
+- [85 to compute. 15 to validation: FLOP's public draft redraws money destinations](https://almondous.github.io/flop_flop/yellowpaper-money-routing-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/yellowpaper-money-routing-news.ja.html)
 
 - [Money gets a rail: tclk lands native FLOP HTLC settlement](https://almondous.github.io/flop_flop/tclk-flop-htlc-rail-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/tclk-flop-htlc-rail-news.ja.html)
