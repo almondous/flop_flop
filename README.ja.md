@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [罰則金の行き先が、揃っていない：Yellow Paperが実装との差を開示](https://almondous.github.io/flop_flop/yellowpaper-penalty-gap-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/yellowpaper-penalty-gap-news.html)
+- [最後の1桁まで運ぶ：MCPとtclkの精度修正](https://almondous.github.io/flop_flop/precision-nonce-paths-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/precision-nonce-paths-news.html)
 
 過去の記事：
+
+- [罰則金の行き先が、揃っていない：Yellow Paperが実装との差を開示](https://almondous.github.io/flop_flop/yellowpaper-penalty-gap-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/yellowpaper-penalty-gap-news.html)
 
 - [85は計算へ。15は検証へ：FLOP草案が資金の行き先を更新](https://almondous.github.io/flop_flop/yellowpaper-money-routing-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/yellowpaper-money-routing-news.html)

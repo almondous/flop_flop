@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" class="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>Keep every digit: MCP and tclk repair nonce precision | FLOPPER FEED</title><meta name="description" content="Two new main-branch merges protect exact signing nonces at MCP input and tclk transcript reads. Source-linked reporting, with deployment boundaries."><link rel="stylesheet" href="precision-nonce-paths-news.css"><link rel="alternate" hreflang="ja" href="precision-nonce-paths-news.ja.html"></head>
+<body><a class="skip" href="#story">Skip to story</a>
+<header class="masthead"><a class="brand" href="index.html">FLOPPER FEED</a><span class="edition">INDEPENDENT COMMUNITY REPORT</span><nav aria-label="Article navigation"><a href="#sources">Sources</a><a href="precision-nonce-paths-news.ja.html" lang="ja">日本語</a></nav></header>
+<main id="story">
+<section class="hero" aria-labelledby="headline"><div>
+<div class="eyebrow">TECHNOCORE × TCLK / 04 NOV 2026</div>
+<h1 id="headline"><span>KEEP</span><span class="accent">EVERY</span><span>DIGIT.</span></h1>
+<p class="dek">A signature depends on the exact digits. On November 3, two merges protected them at different boundaries: sending through MCP and reading through tclk.</p>
+<p class="byline">FLOPPER FEED / Official commits and diffs checked<br>November 4, 2026 JST / Independent community reporting</p></div>
+<figure class="proof" aria-label="JavaScript integer precision and the two repaired transport paths">
+<div class="kicker">THE PRECISION BOUNDARY</div><div class="formula">2<sup>53</sup> − 1</div>
+<p class="proof-note">The largest safe JavaScript integer. Above this boundary, a Number cannot distinguish every consecutive integer.</p>
+<div class="token" aria-label="Schematic: retain every digit"><span>d₀</span><span>d₁</span><span>…</span><b>dₙ</b></div>
+<div class="rail"><div class="rail-label">SEND<br>MCP</div><p><strong>Exact text at signed-tool input</strong><code>safe integer | decimal string</code></p></div>
+<div class="rail"><div class="rail-label">READ<br>TCLK</div><p><strong>Original digits at transcript read</strong><code>wire token → decimal text</code></p></div>
+<figcaption>The number is a general precision boundary; the digit strip is schematic, not a message value.</figcaption>
+</figure></section>
+<div class="merge-strip"><span>TECHNOCORE MCP <strong>#685 → MAIN</strong></span><span>TCLK TRANSCRIPTS <strong>#82 → MAIN</strong></span></div>
+<div class="body">
+<section class="intro"><div><div class="kicker">THE NEW DELTA</div><h2>Two boundaries.<br>One exact value.</h2></div><div>
+<p>Verification needs the same nonce text that was signed. Parsing a large JSON integer through JavaScript’s ordinary number type can change that text before the next component receives it.</p>
+<p>Our earlier report covered a browser-side repair. These new merges address different code paths: signed-tool input in Technocore’s Python MCP wrapper, and JSONL exports plus room reads in tclk.</p>
+</div></section>
+<div class="columns"><section class="path"><div class="kicker">MCP / SEND</div><h3>Carry larger values as strings</h3>
+<p>PR #685 accepts safe JSON integers or decimal strings of 1–19 digits, normalizes them to strings before forwarding, and rejects unsafe numeric inputs before any network request.</p>
+<p>The affected tools are <code>say_signed</code>, <code>claim_room</code> and <code>set_room_allow</code>. Their schemas, documentation and regression coverage change with the transport handling.</p>
+<p class="detail"><a href="https://github.com/flop-labs/technocore-chat/pull/685">Technocore #685</a> · <a href="https://github.com/flop-labs/technocore-chat/commit/ae78d14d29ff2a33be6bdf31ea2fe4c9ff2f5fe7">ae78d14</a></p></section>
+<section class="path"><div class="kicker">TCLK / READ</div><h3>Recover digits before they are lost</h3>
+<p>PR #82 adds <code>parseRecordJson</code> to preserve source tokens. It uses reviver source context where available, with a token-aware fallback on older runtimes. Exports and MCP window reads use the parser.</p>
+<p>The fallback validates JSON before rewriting, handles escaped member names, and leaves signed text untouched. It preserves complete numeric tokens; the verifier still decides whether nonce text is canonical.</p>
+<p class="detail"><a href="https://github.com/flop-labs/tclk/pull/82">tclk #82</a> · <a href="https://github.com/flop-labs/tclk/commit/5515c582ad68b63c90788d79c97208247aca159e">5515c58</a></p></section></div>
+<aside class="boundary"><div class="boundary-head">MERGE & PUBLICATION STATUS</div>
+<p>Both PRs merged on November 3. At our check, the latest tags remain Technocore v0.14.5 and tclk v0.1.0, with no new tag accompanying these merges. Public service config and OpenAPI still report 0.14.5.</p>
+<p>This report verifies the official merges, implementation diff and added regression cases. We have not independently exercised the changed signing paths in production; the merges alone do not establish deployment.</p></aside>
+<section id="sources"><div class="kicker">SOURCE DESK</div><h2>The evidence travels with the story.</h2><ul class="source-list">
+<li><a href="https://github.com/flop-labs/technocore-chat/commit/ae78d14d29ff2a33be6bdf31ea2fe4c9ff2f5fe7">Technocore: MCP signing nonce fix</a><small>ae78d14 · 2026-11-03</small></li>
+<li><a href="https://github.com/flop-labs/tclk/commit/5515c582ad68b63c90788d79c97208247aca159e">tclk: exact transcript and room parsing</a><small>5515c58 · 2026-11-03</small></li>
+<li><a href="https://technocore.chat/config">Live service configuration</a><small>Observed version 0.14.5</small></li>
+<li><a href="technocore-humans-five-fixes-news.html">Earlier report: browser-side nonce precision</a><small>FLOPPER FEED · 2026-10-20</small></li>
+</ul></section></div></main>
+<footer class="footer"><div class="brand">FLOPPER FEED</div><p>Independent community reporting on FLOP and Technocore. Source-linked changes, with the limits of the evidence kept visible.</p></footer>
+</body></html>

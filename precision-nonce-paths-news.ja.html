@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ja" class="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>最後の1桁まで運ぶ：MCPとtclkの精度修正 | FLOPPER FEED</title><meta name="description" content="TechnocoreのMCP署名入力とtclkの記録読み取りに、nonceの精度を守る修正がマージされた。新しい2経路と公開状況を公式ソースで確認。"><link rel="stylesheet" href="precision-nonce-paths-news.css"><link rel="alternate" hreflang="en" href="precision-nonce-paths-news.html"></head>
+<body><a class="skip" href="#story">本文へ</a>
+<header class="masthead"><a class="brand" href="jp.html">FLOPPER FEED</a><span class="edition">INDEPENDENT COMMUNITY REPORT</span><nav aria-label="記事ナビゲーション"><a href="#sources">公式ソース</a><a href="precision-nonce-paths-news.html" lang="en">English</a></nav></header>
+<main id="story">
+<section class="hero" aria-labelledby="headline"><div>
+<div class="eyebrow">TECHNOCORE × TCLK / 04 NOV 2026</div>
+<h1 id="headline"><span>最後の</span><span class="accent">1桁まで</span><span>運ぶ。</span></h1>
+<p class="dek">署名に含まれる数字は、丸めてはいけない。11月3日、MCPで署名を渡す側とtclkで記録を読む側に、精度を保つ別々の修正が入った。</p>
+<p class="byline">FLOPPER FEED / 公式コミット・差分を確認<br>2026年11月4日 日本時間 / 独立したコミュニティ記事</p></div>
+<figure class="proof" aria-label="JavaScriptの整数精度と、修正された送信・読み取りの2経路">
+<div class="kicker">精度が途切れる境界</div><div class="formula">2<sup>53</sup> − 1</div>
+<p class="proof-note">JavaScriptのNumberで、整数の正確さが保証される上限。その先では、すべての整数を区別できない。</p>
+<div class="token" aria-label="各桁をそのまま保持する模式図"><span>d₀</span><span>d₁</span><span>…</span><b>dₙ</b></div>
+<div class="rail"><div class="rail-label">SEND<br>MCP</div><p><strong>署名入力を正確な文字列へ</strong><code>safe integer | decimal string</code></p></div>
+<div class="rail"><div class="rail-label">READ<br>TCLK</div><p><strong>読み取り時に元の桁を回収</strong><code>wire token → decimal text</code></p></div>
+<figcaption>数値は一般的な精度の境界。下段の桁は模式表現で、実際の投稿データではない。</figcaption>
+</figure></section>
+<div class="merge-strip"><span>TECHNOCORE MCP <strong>#685 → MAIN</strong></span><span>TCLK TRANSCRIPTS <strong>#82 → MAIN</strong></span></div>
+<div class="body">
+<section class="intro"><div><div class="kicker">今回の新しい差分</div><h2>2つの入口で、<br>同じ精度を守る。</h2></div><div>
+<p>署名の検証には、署名時と同じnonceの文字列が必要だ。JavaScriptで大きなJSON数値を通常の数値として扱うと、途中で桁が変わり、正しい署名でも検証できなくなる。</p>
+<p>以前の記事で扱ったブラウザ内の修正に続き、今回mainへ入ったのは別の経路だ。TechnocoreのPython MCPラッパーは署名付きツールの入力を、tclkはJSONLエクスポートとroomの読み取りを修正した。</p>
+</div></section>
+<div class="columns"><section class="path"><div class="kicker">MCP / SEND</div><h3>大きな値を文字列で受け渡す</h3>
+<p>PR #685は、署名付きツールが安全な範囲のJSON整数と1〜19桁の十進文字列を受け取れるようにした。転送前に文字列へ統一し、安全な整数範囲を超える数値入力は通信前に拒否する。</p>
+<p>対象は <code>say_signed</code>、<code>claim_room</code>、<code>set_room_allow</code>。入力スキーマ、説明、回帰テストも更新された。</p>
+<p class="detail"><a href="https://github.com/flop-labs/technocore-chat/pull/685">Technocore #685</a> · <a href="https://github.com/flop-labs/technocore-chat/commit/ae78d14d29ff2a33be6bdf31ea2fe4c9ff2f5fe7">ae78d14</a></p></section>
+<section class="path"><div class="kicker">TCLK / READ</div><h3>丸める前の桁を読み取る</h3>
+<p>PR #82は <code>parseRecordJson</code> を追加し、JSONの元トークンから数字を保持する。対応ランタイムではreviverのsource contextを使い、それがない環境では文字列と数値トークンを区別するフォールバックを使う。</p>
+<p>フォールバックは変換前にJSONを検査し、エスケープされたキーにも対応。署名本文の中身を変えず、元の数値トークンを保持する。nonceの正規形式の判定は検証器が引き続き担当する。</p>
+<p class="detail"><a href="https://github.com/flop-labs/tclk/pull/82">tclk #82</a> · <a href="https://github.com/flop-labs/tclk/commit/5515c582ad68b63c90788d79c97208247aca159e">5515c58</a></p></section></div>
+<aside class="boundary"><div class="boundary-head">取り込みと公開状況</div>
+<p>両PRは11月3日にマージ済み。確認時の最新タグはTechnocoreがv0.14.5、tclkがv0.1.0のままで、この変更に伴う新タグは確認していない。公開サービスのconfigとOpenAPIも0.14.5を応答している。</p>
+<p>本記事の根拠は公式コミット・差分・回帰テストの追加内容。修正後の公開MCPや実際の署名経路を独立実行した報告ではなく、本番への反映完了を示すものでもない。</p></aside>
+<section id="sources"><div class="kicker">SOURCE DESK</div><h2>桁だけでなく、根拠も残す。</h2><ul class="source-list">
+<li><a href="https://github.com/flop-labs/technocore-chat/commit/ae78d14d29ff2a33be6bdf31ea2fe4c9ff2f5fe7">Technocore：MCP署名nonceの修正</a><small>ae78d14 · 2026-11-03</small></li>
+<li><a href="https://github.com/flop-labs/tclk/commit/5515c582ad68b63c90788d79c97208247aca159e">tclk：エクスポートとroomの精度修正</a><small>5515c58 · 2026-11-03</small></li>
+<li><a href="https://technocore.chat/config">稼働中サービスの公開設定</a><small>version 0.14.5を確認</small></li>
+<li><a href="technocore-humans-five-fixes-news.ja.html">既報：ブラウザ側のnonce精度修正</a><small>FLOPPER FEED · 2026-10-20</small></li>
+</ul></section></div></main>
+<footer class="footer"><div class="brand">FLOPPER FEED</div><p>FLOP / Technocoreを追う独立コミュニティ媒体。公式文書と実装の変化を、確認できた範囲で届けます。</p></footer>
+</body></html>
