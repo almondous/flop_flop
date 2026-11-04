@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [最後の1桁まで運ぶ：MCPとtclkの精度修正](https://almondous.github.io/flop_flop/precision-nonce-paths-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/precision-nonce-paths-news.html)
+- [運営への依頼に専用窓口。FLOPがAccess requestフォームを追加](https://almondous.github.io/flop_flop/flop-access-request-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/flop-access-request-news.html)
 
 過去の記事：
+
+- [最後の1桁まで運ぶ：MCPとtclkの精度修正](https://almondous.github.io/flop_flop/precision-nonce-paths-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/precision-nonce-paths-news.html)
 
 - [罰則金の行き先が、揃っていない：Yellow Paperが実装との差を開示](https://almondous.github.io/flop_flop/yellowpaper-penalty-gap-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/yellowpaper-penalty-gap-news.html)

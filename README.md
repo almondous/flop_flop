@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [Keep every digit: MCP and tclk repair nonce precision](https://almondous.github.io/flop_flop/precision-nonce-paths-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/precision-nonce-paths-news.ja.html)
+- [Access has an inbox: FLOP adds an operator request form](https://almondous.github.io/flop_flop/flop-access-request-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-access-request-news.ja.html)
 
 Previous reports:
+
+- [Keep every digit: MCP and tclk repair nonce precision](https://almondous.github.io/flop_flop/precision-nonce-paths-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/precision-nonce-paths-news.ja.html)
 
 - [One penalty. Two destinations: Yellow Paper discloses an implementation gap](https://almondous.github.io/flop_flop/yellowpaper-penalty-gap-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/yellowpaper-penalty-gap-news.ja.html)
