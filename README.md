@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [Access has an inbox: FLOP adds an operator request form](https://almondous.github.io/flop_flop/flop-access-request-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-access-request-news.ja.html)
+- [The backlog gets a clock: FLOP Labs adds daily public triage](https://almondous.github.io/flop_flop/flop-public-triage-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-public-triage-news.ja.html)
 
 Previous reports:
+
+- [Access has an inbox: FLOP adds an operator request form](https://almondous.github.io/flop_flop/flop-access-request-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-access-request-news.ja.html)
 
 - [Keep every digit: MCP and tclk repair nonce precision](https://almondous.github.io/flop_flop/precision-nonce-paths-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/precision-nonce-paths-news.ja.html)
