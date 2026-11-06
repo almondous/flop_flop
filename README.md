@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [The backlog gets a clock: FLOP Labs adds daily public triage](https://almondous.github.io/flop_flop/flop-public-triage-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-public-triage-news.ja.html)
+- [The miner kit is on the shelf: inspect FLOP’s public manual pack](https://almondous.github.io/flop_flop/flop-public-miner-kit-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-public-miner-kit-news.ja.html)
 
 Previous reports:
+
+- [The backlog gets a clock: FLOP Labs adds daily public triage](https://almondous.github.io/flop_flop/flop-public-triage-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-public-triage-news.ja.html)
 
 - [Access has an inbox: FLOP adds an operator request form](https://almondous.github.io/flop_flop/flop-access-request-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-access-request-news.ja.html)

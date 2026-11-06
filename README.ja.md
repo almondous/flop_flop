@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [未処理の山に、定刻を。FLOP Labsが日次triageを追加](https://almondous.github.io/flop_flop/flop-public-triage-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/flop-public-triage-news.html)
+- [minerの公開キット、中身は16ファイル。](https://almondous.github.io/flop_flop/flop-public-miner-kit-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/flop-public-miner-kit-news.html)
 
 過去の記事：
+
+- [未処理の山に、定刻を。FLOP Labsが日次triageを追加](https://almondous.github.io/flop_flop/flop-public-triage-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/flop-public-triage-news.html)
 
 - [運営への依頼に専用窓口。FLOPがAccess requestフォームを追加](https://almondous.github.io/flop_flop/flop-access-request-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/flop-access-request-news.html)
