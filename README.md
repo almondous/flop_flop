@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [The miner kit is on the shelf: inspect FLOP’s public manual pack](https://almondous.github.io/flop_flop/flop-public-miner-kit-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-public-miner-kit-news.ja.html)
+- [The runtime moved. The SDK says no: live spec 1014014 meets SDK 0.4.0](https://almondous.github.io/flop_flop/flop-runtime-qualification-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-runtime-qualification-news.ja.html)
 
 Previous reports:
+
+- [The miner kit is on the shelf: inspect FLOP’s public manual pack](https://almondous.github.io/flop_flop/flop-public-miner-kit-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-public-miner-kit-news.ja.html)
 
 - [The backlog gets a clock: FLOP Labs adds daily public triage](https://almondous.github.io/flop_flop/flop-public-triage-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-public-triage-news.ja.html)

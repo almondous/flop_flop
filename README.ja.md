@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [minerの公開キット、中身は16ファイル。](https://almondous.github.io/flop_flop/flop-public-miner-kit-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/flop-public-miner-kit-news.html)
+- [runtimeは進んだ。SDKは止めた。spec 1014014とSDK 0.4.0の不一致](https://almondous.github.io/flop_flop/flop-runtime-qualification-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/flop-runtime-qualification-news.html)
 
 過去の記事：
+
+- [minerの公開キット、中身は16ファイル。](https://almondous.github.io/flop_flop/flop-public-miner-kit-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/flop-public-miner-kit-news.html)
 
 - [未処理の山に、定刻を。FLOP Labsが日次triageを追加](https://almondous.github.io/flop_flop/flop-public-triage-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/flop-public-triage-news.html)
