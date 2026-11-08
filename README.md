@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [The runtime moved. The SDK says no: live spec 1014014 meets SDK 0.4.0](https://almondous.github.io/flop_flop/flop-runtime-qualification-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-runtime-qualification-news.ja.html)
+- [The qualified SDK has arrived: SDK 0.5.1 and CLI 0.4.1](https://almondous.github.io/flop_flop/flop-qualified-release-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-qualified-release-news.ja.html)
 
 Previous reports:
+
+- [The runtime moved. The SDK says no: live spec 1014014 meets SDK 0.4.0](https://almondous.github.io/flop_flop/flop-runtime-qualification-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-runtime-qualification-news.ja.html)
 
 - [The miner kit is on the shelf: inspect FLOP’s public manual pack](https://almondous.github.io/flop_flop/flop-public-miner-kit-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-public-miner-kit-news.ja.html)

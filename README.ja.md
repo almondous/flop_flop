@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [runtimeは進んだ。SDKは止めた。spec 1014014とSDK 0.4.0の不一致](https://almondous.github.io/flop_flop/flop-runtime-qualification-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/flop-runtime-qualification-news.html)
+- [対応版が出た。SDK 0.5.1とCLI 0.4.1](https://almondous.github.io/flop_flop/flop-qualified-release-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/flop-qualified-release-news.html)
 
 過去の記事：
+
+- [runtimeは進んだ。SDKは止めた。spec 1014014とSDK 0.4.0の不一致](https://almondous.github.io/flop_flop/flop-runtime-qualification-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/flop-runtime-qualification-news.html)
 
 - [minerの公開キット、中身は16ファイル。](https://almondous.github.io/flop_flop/flop-public-miner-kit-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/flop-public-miner-kit-news.html)
