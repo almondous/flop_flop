@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [The qualified SDK has arrived: SDK 0.5.1 and CLI 0.4.1](https://almondous.github.io/flop_flop/flop-qualified-release-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-qualified-release-news.ja.html)
+- [CLI 0.4.2 removes a disk stop from model backup](https://almondous.github.io/flop_flop/flop-streamed-backup-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-streamed-backup-news.ja.html)
 
 Previous reports:
+
+- [The qualified SDK has arrived: SDK 0.5.1 and CLI 0.4.1](https://almondous.github.io/flop_flop/flop-qualified-release-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-qualified-release-news.ja.html)
 
 - [The runtime moved. The SDK says no: live spec 1014014 meets SDK 0.4.0](https://almondous.github.io/flop_flop/flop-runtime-qualification-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-runtime-qualification-news.ja.html)
