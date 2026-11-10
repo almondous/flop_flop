@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [CLI 0.4.2 removes a disk stop from model backup](https://almondous.github.io/flop_flop/flop-streamed-backup-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-streamed-backup-news.ja.html)
+- [A lost reply meets the ledger: CLI 0.4.4 and SDK 0.5.2](https://almondous.github.io/flop_flop/flop-outcome-check-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-outcome-check-news.ja.html)
 
 Previous reports:
+
+- [CLI 0.4.2 removes a disk stop from model backup](https://almondous.github.io/flop_flop/flop-streamed-backup-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-streamed-backup-news.ja.html)
 
 - [The qualified SDK has arrived: SDK 0.5.1 and CLI 0.4.1](https://almondous.github.io/flop_flop/flop-qualified-release-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-qualified-release-news.ja.html)
