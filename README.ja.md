@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [返事が消えても、決着は台帳で追う。CLI 0.4.4とSDK 0.5.2](https://almondous.github.io/flop_flop/flop-outcome-check-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/flop-outcome-check-news.html)
+- [リリースノートに、公開の宛先ができた。](https://almondous.github.io/flop_flop/flop-release-desk-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/flop-release-desk-news.html)
 
 過去の記事：
+
+- [返事が消えても、決着は台帳で追う。CLI 0.4.4とSDK 0.5.2](https://almondous.github.io/flop_flop/flop-outcome-check-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/flop-outcome-check-news.html)
 
 - [packed imageの保存を飛ばす。CLI 0.4.2のモデルバックアップ](https://almondous.github.io/flop_flop/flop-streamed-backup-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/flop-streamed-backup-news.html)
