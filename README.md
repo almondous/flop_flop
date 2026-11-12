@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [Release notes get a public address: FLOP’s new staging workflow](https://almondous.github.io/flop_flop/flop-release-desk-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-release-desk-news.ja.html)
+- [Publishers get the mirror switch: CLI 0.5.0 and SDK 0.6.0](https://almondous.github.io/flop_flop/flop-mirror-control-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-mirror-control-news.ja.html)
 
 Previous reports:
+
+- [Release notes get a public address: FLOP’s new staging workflow](https://almondous.github.io/flop_flop/flop-release-desk-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-release-desk-news.ja.html)
 
 - [A lost reply meets the ledger: CLI 0.4.4 and SDK 0.5.2](https://almondous.github.io/flop_flop/flop-outcome-check-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-outcome-check-news.ja.html)

@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [リリースノートに、公開の宛先ができた。](https://almondous.github.io/flop_flop/flop-release-desk-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/flop-release-desk-news.html)
+- [mirrorを動かす。rootは保つ。CLI 0.5.0とSDK 0.6.0](https://almondous.github.io/flop_flop/flop-mirror-control-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/flop-mirror-control-news.html)
 
 過去の記事：
+
+- [リリースノートに、公開の宛先ができた。](https://almondous.github.io/flop_flop/flop-release-desk-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/flop-release-desk-news.html)
 
 - [返事が消えても、決着は台帳で追う。CLI 0.4.4とSDK 0.5.2](https://almondous.github.io/flop_flop/flop-outcome-check-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/flop-outcome-check-news.html)
