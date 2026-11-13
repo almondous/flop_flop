@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [Publishers get the mirror switch: CLI 0.5.0 and SDK 0.6.0](https://almondous.github.io/flop_flop/flop-mirror-control-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-mirror-control-news.ja.html)
+- [The checklist now names its limits: FLOP operator-guide update](https://almondous.github.io/flop_flop/flop-readiness-boundary-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-readiness-boundary-news.ja.html)
 
 Previous reports:
+
+- [Publishers get the mirror switch: CLI 0.5.0 and SDK 0.6.0](https://almondous.github.io/flop_flop/flop-mirror-control-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-mirror-control-news.ja.html)
 
 - [Release notes get a public address: FLOP’s new staging workflow](https://almondous.github.io/flop_flop/flop-release-desk-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-release-desk-news.ja.html)

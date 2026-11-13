@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [mirrorを動かす。rootは保つ。CLI 0.5.0とSDK 0.6.0](https://almondous.github.io/flop_flop/flop-mirror-control-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/flop-mirror-control-news.html)
+- [チェックの範囲を、はっきりさせる。FLOP運用ガイド更新](https://almondous.github.io/flop_flop/flop-readiness-boundary-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/flop-readiness-boundary-news.html)
 
 過去の記事：
+
+- [mirrorを動かす。rootは保つ。CLI 0.5.0とSDK 0.6.0](https://almondous.github.io/flop_flop/flop-mirror-control-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/flop-mirror-control-news.html)
 
 - [リリースノートに、公開の宛先ができた。](https://almondous.github.io/flop_flop/flop-release-desk-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/flop-release-desk-news.html)
