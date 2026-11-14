@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [チェックの範囲を、はっきりさせる。FLOP運用ガイド更新](https://almondous.github.io/flop_flop/flop-readiness-boundary-news.ja.html)
-- [英語版 / English edition](https://almondous.github.io/flop_flop/flop-readiness-boundary-news.html)
+- [Testnet目標は11月24日、準備状況次第](https://almondous.github.io/flop_flop/flop-testnet-pencil-date-news.ja.html)
+- [English edition / 英語版](https://almondous.github.io/flop_flop/flop-testnet-pencil-date-news.html)
 
 過去の記事：
+
+- [チェックの範囲を、はっきりさせる。FLOP運用ガイド更新](https://almondous.github.io/flop_flop/flop-readiness-boundary-news.ja.html)
+- [英語版 / English edition](https://almondous.github.io/flop_flop/flop-readiness-boundary-news.html)
 
 - [mirrorを動かす。rootは保つ。CLI 0.5.0とSDK 0.6.0](https://almondous.github.io/flop_flop/flop-mirror-control-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/flop-mirror-control-news.html)

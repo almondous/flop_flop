@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [The checklist now names its limits: FLOP operator-guide update](https://almondous.github.io/flop_flop/flop-readiness-boundary-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-readiness-boundary-news.ja.html)
+- [FLOP pencils in 24 November: a conditional Testnet target](https://almondous.github.io/flop_flop/flop-testnet-pencil-date-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-testnet-pencil-date-news.ja.html)
 
 Previous reports:
+
+- [The checklist now names its limits: FLOP operator-guide update](https://almondous.github.io/flop_flop/flop-readiness-boundary-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-readiness-boundary-news.ja.html)
 
 - [Publishers get the mirror switch: CLI 0.5.0 and SDK 0.6.0](https://almondous.github.io/flop_flop/flop-mirror-control-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-mirror-control-news.ja.html)
