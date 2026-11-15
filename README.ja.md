@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [Testnet目標は11月24日、準備状況次第](https://almondous.github.io/flop_flop/flop-testnet-pencil-date-news.ja.html)
-- [English edition / 英語版](https://almondous.github.io/flop_flop/flop-testnet-pencil-date-news.html)
+- [Qwen3-Coderが公開カタログの3枠目に](https://almondous.github.io/flop_flop/flop-coder-catalogue-news.ja.html)
+- [English edition / 英語版](https://almondous.github.io/flop_flop/flop-coder-catalogue-news.html)
 
 過去の記事：
+
+- [Testnet目標は11月24日、準備状況次第](https://almondous.github.io/flop_flop/flop-testnet-pencil-date-news.ja.html)
+- [English edition / 英語版](https://almondous.github.io/flop_flop/flop-testnet-pencil-date-news.html)
 
 - [チェックの範囲を、はっきりさせる。FLOP運用ガイド更新](https://almondous.github.io/flop_flop/flop-readiness-boundary-news.ja.html)
 - [英語版 / English edition](https://almondous.github.io/flop_flop/flop-readiness-boundary-news.html)

@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [FLOP pencils in 24 November: a conditional Testnet target](https://almondous.github.io/flop_flop/flop-testnet-pencil-date-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-testnet-pencil-date-news.ja.html)
+- [Qwen3-Coder takes a third public catalogue slot](https://almondous.github.io/flop_flop/flop-coder-catalogue-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-coder-catalogue-news.ja.html)
 
 Previous reports:
+
+- [FLOP pencils in 24 November: a conditional Testnet target](https://almondous.github.io/flop_flop/flop-testnet-pencil-date-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-testnet-pencil-date-news.ja.html)
 
 - [The checklist now names its limits: FLOP operator-guide update](https://almondous.github.io/flop_flop/flop-readiness-boundary-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-readiness-boundary-news.ja.html)
