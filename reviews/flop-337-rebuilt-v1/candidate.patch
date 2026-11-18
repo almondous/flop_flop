@@ -1,0 +1,55 @@
+--- a/cli.js
++++ b/cli.js
+@@ -5019,6 +5019,24 @@
+ import { Command } from "commander";
+ 
+ // src/client-factory.ts
++function typedSigner(signer) {
++  return typeof signer === "string" && /^(ed25519|sr25519):/.test(signer);
++}
++async function loadSigner(signer) {
++  if (signer.startsWith("keystore:")) {
++    const [, encodedPath, encodedEnv] = signer.split(":");
++    return loadKeystore(decodeURIComponent(encodedPath), decodeURIComponent(encodedEnv));
++  }
++  const match = /^(ed25519|sr25519):(.*)$/s.exec(signer);
++  const type = match?.[1] ?? "sr25519";
++  const uri = match ? match[2] : signer;
++  if (!uri) throw new Error("typed signer URI must not be empty");
++  const [{ Keyring }, { cryptoWaitReady }] = await Promise.all([
++    import("@polkadot/keyring"), import("@polkadot/util-crypto")
++  ]);
++  await cryptoWaitReady();
++  return new Keyring({ type, ss58Format: 42 }).addFromUri(uri);
++}
+ async function loadKeystore(path5, envName) {
+   const password = process.env[envName];
+   if (!password) throw new Error(`keystore password environment variable is unset: ${envName}`);
+@@ -5042,7 +5060,7 @@
+   ]);
+   await cryptoWaitReady5();
+   const [, encodedPath, encodedEnv] = signer.split(":");
+-  const pair = signer.startsWith("keystore:") ? await loadKeystore(decodeURIComponent(encodedPath), decodeURIComponent(encodedEnv)) : new Keyring6({ type: "sr25519" }).addFromUri(signer);
++  const pair = await loadSigner(signer);
+   if (pair.type !== "sr25519") {
+     if (!required) return void 0;
+     throw new Error(`DA shard uploads are signed with sr25519; this signer is ${pair.type}`);
+@@ -5052,15 +5070,15 @@
+ }
+ async function agentSignerConfig(signer) {
+   const [, encodedPath, encodedEnv] = signer.split(":");
+-  return signer.startsWith("keystore:") ? { keypair: await loadKeystore(decodeURIComponent(encodedPath), decodeURIComponent(encodedEnv)) } : { signerUri: signer };
++  return signer.startsWith("keystore:") || typedSigner(signer) ? { keypair: await loadSigner(signer) } : { signerUri: signer };
+ }
+ async function createClient(rpcUrl, signer) {
+   const { FlopClient: FlopClient7 } = await import("@flop-labs/sdk");
+-  if (signer?.startsWith("keystore:")) {
++  if (signer?.startsWith("keystore:") || typedSigner(signer)) {
+     const [, encodedPath, encodedEnv] = signer.split(":");
+     return FlopClient7.createWithKeypair(
+       rpcUrl,
+-      await loadKeystore(decodeURIComponent(encodedPath), decodeURIComponent(encodedEnv))
++      await loadSigner(signer)
+     );
+   }
+   const opts = { endpoint: rpcUrl };
