@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — latest report
 
-- [Qwen3-Coder takes a third public catalogue slot](https://almondous.github.io/flop_flop/flop-coder-catalogue-news.html)
-- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-coder-catalogue-news.ja.html)
+- [Arete 27B joins FLOP’s public model catalogue](https://almondous.github.io/flop_flop/flop-arete-text-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-arete-text-news.ja.html)
 
 Previous reports:
+
+- [Qwen3-Coder takes a third public catalogue slot](https://almondous.github.io/flop_flop/flop-coder-catalogue-news.html)
+- [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-coder-catalogue-news.ja.html)
 
 - [FLOP pencils in 24 November: a conditional Testnet target](https://almondous.github.io/flop_flop/flop-testnet-pencil-date-news.html)
 - [Japanese edition / 日本語版](https://almondous.github.io/flop_flop/flop-testnet-pencil-date-news.ja.html)

@@ -4,10 +4,13 @@
 
 ## FLOPPER FEED — 最新記事
 
-- [Qwen3-Coderが公開カタログの3枠目に](https://almondous.github.io/flop_flop/flop-coder-catalogue-news.ja.html)
-- [English edition / 英語版](https://almondous.github.io/flop_flop/flop-coder-catalogue-news.html)
+- [Arete 27BがFLOPの公開モデル一覧に追加](https://almondous.github.io/flop_flop/flop-arete-text-news.ja.html)
+- [English edition / 英語版](https://almondous.github.io/flop_flop/flop-arete-text-news.html)
 
 過去の記事：
+
+- [Qwen3-Coderが公開カタログの3枠目に](https://almondous.github.io/flop_flop/flop-coder-catalogue-news.ja.html)
+- [English edition / 英語版](https://almondous.github.io/flop_flop/flop-coder-catalogue-news.html)
 
 - [Testnet目標は11月24日、準備状況次第](https://almondous.github.io/flop_flop/flop-testnet-pencil-date-news.ja.html)
 - [English edition / 英語版](https://almondous.github.io/flop_flop/flop-testnet-pencil-date-news.html)
